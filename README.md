@@ -43,6 +43,10 @@ https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be added to y
 - Instructions to create your custom connector, can be found [here](./CUSTOM_CONNECTOR.md) 
 - Sample custom connector can be found [here](./SampleFHIRCustomConnector)
 
+## PowerApps and PowerAutomate- Healthcare Use Cases
+This repository provides starter kit PowerApp and PowerAutomate pacakges with the ability to extend the App.
+
+
 
 
 
