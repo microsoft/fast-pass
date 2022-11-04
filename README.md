@@ -3,6 +3,19 @@
 > This repo has been populated by an initial template to help get you started. Please
 > make sure to update the content to build a great experience for community-building.
 
+## Scenario
+
+**Digitizing Paper forms** Documents are uploaded using PowerApps which triggers a PowerAutomate flow. The flow scans the document using OCR and Text Anlaytics for Health extracts the relevant keyword.
+
+## Overview
+
+### Azure API for FHIR
+The healthcare industry is rapidly transforming health data to the emerging standard of FHIR® (Fast Healthcare Interoperability Resources). FHIR enables a robust, extensible data model with standardized semantics and data exchange that enables all systems using FHIR to work together. FHIR also enables the rapid exchange of data in applications. Backed by a managed PaaS [Azure API for FHIR](https://docs.microsoft.com/en-us/azure/healthcare-apis/overview) offering, FHIR also provides a scalable and secure environment for the management and storage of Protected Health Information (PHI) data in the native FHIR format.
+
+### Power Platform Connectors for Azure API for FHIR
+A connector is a proxy or a wrapper around an API that allows the underlying service to talk to Microsoft Power Platform. Connectors provide a way for users to leverage a set of pre-built actions and triggers to build applications and workflows.
+
+
 As the maintainer of this project, please make a few updates:
 
 - Improving this README.MD file to provide a great experience
