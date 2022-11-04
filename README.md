@@ -15,6 +15,39 @@ The healthcare industry is rapidly transforming health data to the emerging stan
 ### Power Platform Connectors for Azure API for FHIR
 A connector is a proxy or a wrapper around an API that allows the underlying service to talk to Microsoft Power Platform. Connectors provide a way for users to leverage a set of pre-built actions and triggers to build applications and workflows.
 
+The two Connectors that work with Azure API for FHIR contain a subset of FHIR Resources and are bi-directional, supporting both reads and writes to the FHIR Service.
+
+**[FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/)** and **[FHIRClinical](
+https://docs.microsoft.com/en-us/connectors/fhirclinical/)** are certified custom connectors that allows for building secure healthcare applications to enable interoperability using FHIR.
+
+## Prerequisites
+
+### Azure API for FHIR
+- Deploy Azure API for FHIR with First Party Auth by [deploying via the Azure Portal](https://docs.microsoft.com/en-us/azure/healthcare-apis/fhir-paas-portal-quickstart). 
+- To access the Azure API for FHIR, apply RBAC by adding users to `FHIR Data Reader` or `FHIR Data Contributor` role using Access Control (IAM). The users with access will authenticate through the Connector which assumes their role.
+- Load sample data into Azure API for FHIR. 
+    - Sample project to load data into FHIR can be found [here](./FHIR-Seed-Data)
+    - Detailed instructions to load synthetic data can be found in the [OpenHack-FHIR Github](https://github.com/microsoft/OpenHack-FHIR/tree/main/Challenge01-AzureAPIforFHIR#task-2-generate--load-synthetic-data)
+- See the following link for more details on [Using Azure API for FHIR](https://github.com/microsoft/OpenHack-FHIR)
+
+### Power Platform
+#### Certified Connector
+- Get access to [Power Platform](https://docs.microsoft.com/en-us/power-platform/) environment to create Power Apps.
+- Custom Connectors [FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/) and [FHIRClinical](
+https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be added to your PowerPlatform Environment by an Environment Administrator.
+- Details on [FHIRBase Actions](https://docs.microsoft.com/en-us/connectors/fhirbase/#actions) and [FHIRClinical Actions](https://docs.microsoft.com/en-us/connectors/fhirclinical/#actions) for API calls.
+- Mapping [FHIR Base and Clinical Resources](https://www.hl7.org/fhir/resourcelist.html) to FHIRBase and FHIRClinical connectors.
+- More details on [Power Apps](https://docs.microsoft.com/en-us/powerapps/)
+
+#### Custom Connector
+- Instructions to create your custom connector, can be found [here](./CUSTOM_CONNECTOR.md) 
+- Sample custom connector can be found [here](./SampleFHIRCustomConnector)
+
+
+
+
+
+
 
 As the maintainer of this project, please make a few updates:
 
