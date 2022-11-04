@@ -26,7 +26,7 @@ https://docs.microsoft.com/en-us/connectors/fhirclinical/)** are certified custo
 - Deploy Azure API for FHIR with First Party Auth by [deploying via the Azure Portal](https://docs.microsoft.com/en-us/azure/healthcare-apis/fhir-paas-portal-quickstart). 
 - To access the Azure API for FHIR, apply RBAC by adding users to `FHIR Data Reader` or `FHIR Data Contributor` role using Access Control (IAM). The users with access will authenticate through the Connector which assumes their role.
 - Load sample data into Azure API for FHIR. 
-    - Sample project to load data into FHIR can be found [here](./FHIR-Seed-Data)
+    - Sample project to load data into FHIR can be found [here](https://github.com/microsoft/FHIRPower/tree/main/FHIR-Seed-Data)
     - Detailed instructions to load synthetic data can be found in the [OpenHack-FHIR Github](https://github.com/microsoft/OpenHack-FHIR/tree/main/Challenge01-AzureAPIforFHIR#task-2-generate--load-synthetic-data)
 - See the following link for more details on [Using Azure API for FHIR](https://github.com/microsoft/OpenHack-FHIR)
 
