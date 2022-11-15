@@ -3,6 +3,7 @@ using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Net.Http;
 
 [assembly: FunctionsStartup(typeof(Startup))]
 namespace FastPass.API;
@@ -21,35 +22,16 @@ public class Startup : FunctionsStartup
 
     public override void Configure(IFunctionsHostBuilder builder)
     {
-        // TODO: Borrowed from elsewhere, remove what's not necessary
-
-        var containerConfig = new ContainerConfiguration
+        var config = new Configuration
         {
-            ClientId = Environment.GetEnvironmentVariable("ContainerConfiguration:ClientId"),
-            ClientSecret = Environment.GetEnvironmentVariable("ContainerConfiguration:ClientSecret"),
-            TenantId = Environment.GetEnvironmentVariable("ContainerConfiguration:TenantId"),
-            SubscriptionId = Environment.GetEnvironmentVariable("ContainerConfiguration:SubscriptionId"),
-            ResourceGroupName = Environment.GetEnvironmentVariable("ContainerConfiguration:ResourceGroupName"),
-            StorageName = Environment.GetEnvironmentVariable("ContainerConfiguration:StorageName"),
-            StorageKey = Environment.GetEnvironmentVariable("ContainerConfiguration:StorageKey"),
-            BatchRegion = Environment.GetEnvironmentVariable("ContainerConfiguration:BatchRegion"),
-            BatchAccountName = Environment.GetEnvironmentVariable("ContainerConfiguration:BatchAccountName"),
-            BatchKey = Environment.GetEnvironmentVariable("ContainerConfiguration:BatchKey")
+            TextAnalyticsBase = Environment.GetEnvironmentVariable("TextAnalyticsBase"),
+            TextAnalyticsKey = Environment.GetEnvironmentVariable("TextAnalyticsKey"),
         };
 
-        var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings:DefaultConnection");
-
-        builder.Services.AddSingleton(containerConfig);
-
-        //builder.Services.AddScoped(options =>
-        //{
-        //    var tokenProvider = new ClientSecretCredential(containerConfig.TenantId, containerConfig.ClientId, containerConfig.ClientSecret);
-        //    var creds = new TokenCredentials(tokenProvider.GetToken(new TokenRequestContext(new[] { "https://management.azure.com/.default" })).Token);
-
-        //    return new ContainerInstanceManagementClient(creds)
-        //    {
-        //        SubscriptionId = containerConfig.SubscriptionId
-        //    };
-        //});
+        builder.Services.AddSingleton(config);
+        builder.Services.AddSingleton(new HttpClient
+        {
+            BaseAddress = new Uri(config.TextAnalyticsBase)
+        });
     }
 }
