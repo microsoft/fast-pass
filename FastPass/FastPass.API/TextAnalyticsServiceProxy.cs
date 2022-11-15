@@ -12,6 +12,7 @@ using ResourceType = Hl7.Fhir.Model.ResourceType;
 using System.Collections.Generic;
 using System.Net.Http;
 using FastPass.API.TextAnalyticsModels;
+using Hl7.Fhir.Model;
 
 namespace FastPass.API
 {
@@ -35,13 +36,31 @@ namespace FastPass.API
 
             var textRequest = new TextAnalyticsRequest();
 
-            // TODO: Move stuff to configs
-            _client.BaseAddress = new Uri("https://yoururl.cognitiveservices.azure.com");
-            var result = await _client.PostAsJsonAsync<TextAnalyticsRequest>("/language/analyze-text/jobs?api-version=2022-05-15-preview", textRequest);
+            //// TODO: Move stuff to configs
+            //_client.BaseAddress = new Uri("https://yoururl.cognitiveservices.azure.com");
+            //var result = await _client.PostAsJsonAsync<TextAnalyticsRequest>("/language/analyze-text/jobs?api-version=2022-05-15-preview", textRequest);
 
+            var mockReturn = new TextAnalyticsProxyResponse
+            {
+                Resources = new List<Resource>
+                {
+                    new Patient
+                    {
+                        Name = new List<HumanName>
+                        {
+                            new HumanName
+                            {
+                                Given = new List<string> { "Joseph" },
+                                Family = "Schmo"
+                            }
+                        },
+                        BirthDate = "12/31/1999"
 
+                    }
+                }
+            };
 
-            return new OkResult();
+            return new OkObjectResult(mockReturn);
         }
     }
 }
