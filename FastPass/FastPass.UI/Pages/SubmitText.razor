@@ -1,16 +1,28 @@
 ﻿@page "/submittext"
-<h3>Component1</h3>
+@using FastPass.Models
+@inject ILogger<SubmitText> Logger
+@inject HttpClient Http
 
-<EditForm>
+<h3>Submit Text</h3>
+
+<EditForm Model="@textAnalyticsProxyRequest" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <p>
         <label>Input Text:</label>
-        <InputTextArea />
+        <InputTextArea @bind-Value="textAnalyticsProxyRequest.TextToAnalize" />
     </p>
+    <button type="submit">Submit</button>
 </EditForm>
 
 @code {
+    private TextAnalyticsProxyRequest textAnalyticsProxyRequest = new TextAnalyticsProxyRequest { };
 
+    private async Task HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
+        await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TestAnalyticsServiceProxy", textAnalyticsProxyRequest);
+        // Process the valid form
+    }
 }
 
