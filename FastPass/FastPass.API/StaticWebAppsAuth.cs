@@ -45,4 +45,11 @@ public static class StaticWebAppsAuth
 
         return new ClaimsPrincipal(identity);
     }
+
+    public static bool AuthorizeUser(HttpRequest req)
+    {
+        var claimsPrincipal = Parse(req);
+        var isDev = !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("IsDevelopment"));
+        return isDev || (claimsPrincipal.Identity?.IsAuthenticated ?? false);
+    }
 }
