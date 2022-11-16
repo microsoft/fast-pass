@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FastPass.API.TextAnalyticsModels
 {
     public class TextAnalyticsRequest
     {
-        public TextAnalyticsRequest(string kind = "Heathcare", string fhirVersion = "4.0.1", string documentId = "")
+        public TextAnalyticsRequest(string text, string kind = "Healthcare", string fhirVersion = "4.0.1", string language = "en", string documentId = "")
         {
             Tasks = new List<TextAnalyticsTask>()
             {
@@ -15,6 +14,18 @@ namespace FastPass.API.TextAnalyticsModels
                     Parameters = new TextAnalyticsParameters
                     {
                         FhirVersion = fhirVersion
+                    }
+                }
+            };
+            AnalysisInput = new TextAnalyticsAnalysisInput
+            {
+                Documents = new List<TextAnalyticsDocument>()
+                {
+                    new TextAnalyticsDocument
+                    {
+                        Id = documentId,
+                        Language = language,
+                        Text = text
                     }
                 }
             };
