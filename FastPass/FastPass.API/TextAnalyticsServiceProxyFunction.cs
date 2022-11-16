@@ -38,7 +38,7 @@ namespace FastPass.API
         {
             // Check if user is authenticated
             var cp = StaticWebAppsAuth.Parse(req);
-            if (!cp.Identity.IsAuthenticated)
+            if (cp.Identity is null || !cp.Identity.IsAuthenticated)
                 return new UnauthorizedResult();
 
             string bodyString;
