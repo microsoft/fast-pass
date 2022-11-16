@@ -34,8 +34,13 @@ namespace FastPass.API
 
 
         [FunctionName("TestAnalyticsServiceProxy")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req, ILogger log)
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req, ILogger log)
         {
+            // Check if user is authenticated
+            var cp = StaticWebAppsAuth.Parse(req);
+            if (!cp.Identity.IsAuthenticated)
+                return new UnauthorizedResult();
+
             string bodyString;
             using(var sr = new StreamReader(req.Body))
             {
