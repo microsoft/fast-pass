@@ -1,9 +1,25 @@
 ﻿@page "/validate"
 @using Hl7.Fhir.Model
+@using Hl7.Fhir.Serialization
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject ILogger<Validate> Logger
 
 <h1>Validate</h1>
 
-@code {
+@code { protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        try
+        {
+            var result = await sessionStorage.GetItemAsStringAsync("bundle");
+
+            var parser = new Hl7.Fhir.Serialization.FhirJsonParser();
+
+            var bundle = parser.Parse<Bundle>(result);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex.Message);
+        }
+    }
 }
 

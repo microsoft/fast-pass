@@ -26,22 +26,19 @@
     {
         Logger.LogInformation("HandleValidSubmit called");
 
-        var result = await Http.GetStringAsync("sample-data/fhirBundle.json");
+        //var result = await Http.GetStringAsync("sample-data/fhirBundle.json");
 
-        var parser = new Hl7.Fhir.Serialization.FhirJsonParser();
+        var result = await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TestAnalyticsServiceProxy", textAnalyticsProxyRequest);
 
-        var bundle = parser.Parse<Bundle>(result);
+        var bundle = await result.Content.ReadAsStringAsync();
 
-        await sessionStorage.SetItemAsync<Bundle>("bundle", bundle);
+        await sessionStorage.SetItemAsStringAsync("bundle", bundle);
 
         //var patient = bundle.Entry.Find(x => x.Resource.TypeName.ToLower() == "patient")?.Resource as Patient;
 
-        Logger.LogInformation(result);
+        Logger.LogInformation(bundle);
 
         NavigationManager.NavigateTo("/validate");
-
-        //await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TestAnalyticsServiceProxy", textAnalyticsProxyRequest);
-        // Process the valid form
     }
 }
 
