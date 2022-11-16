@@ -16,7 +16,7 @@ public class Startup : FunctionsStartup
 
         builder.ConfigurationBuilder
             .SetBasePath(context.ApplicationRootPath)
-            .AddEnvironmentVariables()            ;
+            .AddEnvironmentVariables();
 
     }
 
