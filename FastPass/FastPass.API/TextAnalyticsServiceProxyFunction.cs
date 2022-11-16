@@ -20,12 +20,12 @@ namespace FastPass.API
 {
     public class TextAnalyticsServiceProxyFunction
     {
-        private static HttpClient _client;
-        private static string OPERATION_LOCATION_HEADER = "operation-location";
-        private static string SUBSCRIPTION_HEADER_NAME = "Ocp-Apim-Subscription-Key";
-        private static string RUNNING_STATUS = "running";
-        private static TimeSpan REQUEST_DELAY = TimeSpan.FromSeconds(5);
+        private const string OPERATION_LOCATION_HEADER = "operation-location";
+        private const string SUBSCRIPTION_HEADER_NAME = "Ocp-Apim-Subscription-Key";
+        private const string RUNNING_STATUS = "running";
+        private static readonly TimeSpan _requestDelay = TimeSpan.FromSeconds(5);
         private static string _textAnalyticsKey;
+        private static HttpClient _client;
 
         public TextAnalyticsServiceProxyFunction(IOptions<ConfigurationModel> config, HttpClient client)
         {
@@ -89,7 +89,7 @@ namespace FastPass.API
                 TextAnalyticsResponse responseObj;
                 do
                 {
-                    Thread.Sleep(REQUEST_DELAY);
+                    Thread.Sleep(_requestDelay);
 
                     using (var request = new HttpRequestMessage(HttpMethod.Get, callbackLocation.PathAndQuery))
                     {
