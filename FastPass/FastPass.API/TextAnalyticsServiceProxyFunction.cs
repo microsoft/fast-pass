@@ -34,7 +34,7 @@ namespace FastPass.API
         }
 
 
-        [FunctionName("TestAnalyticsServiceProxy")]
+        [FunctionName("TextAnalyticsServiceProxy")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req, ILogger log)
         {
             // Check if user is authenticated
@@ -68,7 +68,7 @@ namespace FastPass.API
                 using (var request = new HttpRequestMessage(HttpMethod.Post, "/language/analyze-text/jobs?api-version=2022-05-15-preview"))
                 {
                     request.Headers.TryAddWithoutValidation(SUBSCRIPTION_HEADER_NAME, _textAnalyticsKey);
-                    request.Content = new StringContent(JsonConvert.SerializeObject(new TextAnalyticsRequest(proxyRequest.TextToAnalize, language: proxyRequest.Language, documentId: documentId), jsonSettings));
+                    request.Content = new StringContent(JsonConvert.SerializeObject(new TextAnalyticsRequest(proxyRequest.TextToAnalyze, language: proxyRequest.Language, documentId: documentId), jsonSettings));
                     request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
                     log.Log(LogLevel.Trace, $"Calling TextAnalytics for documentId {documentId}");
@@ -83,7 +83,7 @@ namespace FastPass.API
 
                 var callbackLocation = new Uri(result.Headers.GetValues(OPERATION_LOCATION_HEADER).FirstOrDefault());
 
-                log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) call succeeded with a call back location of {callbackLocation}.");
+                log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) call succeeded with a callback location of {callbackLocation}.");
 
                 string requestStatus;
                 TextAnalyticsResponse responseObj;
