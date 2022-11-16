@@ -1,10 +1,14 @@
 ﻿@page "/submittext"
 @using FastPass.Models
+@using FastPass.UI.ViewModels
+@using Hl7.Fhir.Model
+@using Hl7.Fhir.Serialization
 @inject ILogger<SubmitText> Logger
 @inject HttpClient Http
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject NavigationManager NavigationManager
 
 <h3>Submit Text</h3>
-
 <EditForm Model="@textAnalyticsProxyRequest" OnValidSubmit="@HandleValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -16,12 +20,27 @@
 </EditForm>
 
 @code {
-    private TextAnalyticsProxyRequest textAnalyticsProxyRequest = new TextAnalyticsProxyRequest { };
+    TextAnalyticsProxyRequest textAnalyticsProxyRequest = new TextAnalyticsProxyRequest { };
 
-    private async Task HandleValidSubmit()
+    private async System.Threading.Tasks.Task HandleValidSubmit()
     {
         Logger.LogInformation("HandleValidSubmit called");
-        await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TestAnalyticsServiceProxy", textAnalyticsProxyRequest);
+
+        var result = await Http.GetStringAsync("sample-data/fhirBundle.json");
+
+        var parser = new Hl7.Fhir.Serialization.FhirJsonParser();
+
+        var bundle = parser.Parse<Bundle>(result);
+
+        await sessionStorage.SetItemAsync<Bundle>("bundle", bundle);
+
+        //var patient = bundle.Entry.Find(x => x.Resource.TypeName.ToLower() == "patient")?.Resource as Patient;
+
+        Logger.LogInformation(result);
+
+        NavigationManager.NavigateTo("/validate");
+
+        //await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TestAnalyticsServiceProxy", textAnalyticsProxyRequest);
         // Process the valid form
     }
 }
