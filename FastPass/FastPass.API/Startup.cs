@@ -31,7 +31,7 @@ public class Startup : FunctionsStartup
         builder.Services.AddSingleton(config);
         builder.Services.AddSingleton(new HttpClient
         {
-            BaseAddress = new Uri(config.TextAnalyticsBase)
+            BaseAddress = new Uri("https://fp-lang.cognitiveservices.azure.com")
         });
     }
 }
