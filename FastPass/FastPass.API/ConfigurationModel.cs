@@ -1,10 +1,8 @@
 ﻿namespace FastPass.API;
 
-public class Configuration
+public class ConfigurationModel
 {
-    public const string ConfigSection = "ContainerConfiguration";
-
+    public const string Section = "APIConfig";
     public string TextAnalyticsBase { get; set; } = string.Empty;
     public string TextAnalyticsKey { get; set; } = string.Empty;
-
 }

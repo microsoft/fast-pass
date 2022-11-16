@@ -22,16 +22,21 @@ public class Startup : FunctionsStartup
 
     public override void Configure(IFunctionsHostBuilder builder)
     {
-        var config = new Configuration
-        {
-            TextAnalyticsBase = Environment.GetEnvironmentVariable("TextAnalyticsBase"),
-            TextAnalyticsKey = Environment.GetEnvironmentVariable("TextAnalyticsKey"),
-        };
+        builder.Services.AddOptions<ConfigurationModel>()
+            .Configure<IConfiguration>((settings, configuration) =>
+            {
+                configuration.GetSection(ConfigurationModel.Section).Bind(settings);
+            });
 
-        builder.Services.AddSingleton(config);
-        builder.Services.AddSingleton(new HttpClient
+        builder.Services.AddScoped(c =>
         {
-            BaseAddress = new Uri("https://fp-lang.cognitiveservices.azure.com")
+            var configSvc = c.GetService<IConfiguration>();
+            ConfigurationModel model = new ConfigurationModel();
+            configSvc.GetSection(ConfigurationModel.Section).Bind(model);
+            return new HttpClient
+            {
+                BaseAddress = new Uri(model.TextAnalyticsBase)
+            };
         });
     }
 }
