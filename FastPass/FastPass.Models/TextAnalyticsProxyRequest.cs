@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using ResourceType = Hl7.Fhir.Model.ResourceType;
 
 namespace FastPass.Models
