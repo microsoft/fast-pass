@@ -2,6 +2,8 @@
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Net.Http;
 
@@ -17,7 +19,6 @@ public class Startup : FunctionsStartup
         builder.ConfigurationBuilder
             .SetBasePath(context.ApplicationRootPath)
             .AddEnvironmentVariables();
-
     }
 
     public override void Configure(IFunctionsHostBuilder builder)
@@ -31,12 +32,22 @@ public class Startup : FunctionsStartup
         builder.Services.AddScoped(c =>
         {
             var configSvc = c.GetService<IConfiguration>();
-            ConfigurationModel model = new ConfigurationModel();
+            var model = new ConfigurationModel();
             configSvc.GetSection(ConfigurationModel.Section).Bind(model);
             return new HttpClient
             {
                 BaseAddress = new Uri(model.TextAnalyticsBase)
             };
+        });
+
+        builder.Services.AddSingleton(new JsonSerializerSettings()
+        {
+            ContractResolver = new DefaultContractResolver
+            {
+                NamingStrategy = new CamelCaseNamingStrategy()
+            },
+            Formatting = Formatting.Indented,
+            NullValueHandling = NullValueHandling.Ignore
         });
     }
 }

@@ -7,7 +7,6 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.IO;
 using System.Linq;
@@ -23,16 +22,17 @@ namespace FastPass.API
         private const string OPERATION_LOCATION_HEADER = "operation-location";
         private const string SUBSCRIPTION_HEADER_NAME = "Ocp-Apim-Subscription-Key";
         private const string RUNNING_STATUS = "running";
-        private static readonly TimeSpan _requestDelay = TimeSpan.FromSeconds(5);
+        private static readonly TimeSpan _requestDelay = TimeSpan.FromSeconds(2);
         private static string _textAnalyticsKey;
         private static HttpClient _client;
+        private static JsonSerializerSettings _jsonsettings;
 
-        public TextAnalyticsServiceProxyFunction(IOptions<ConfigurationModel> config, HttpClient client)
+        public TextAnalyticsServiceProxyFunction(IOptions<ConfigurationModel> config, HttpClient client, JsonSerializerSettings jsonSettings)
         {
             _client = client;
             _textAnalyticsKey = config.Value.TextAnalyticsKey;
+            _jsonsettings = jsonSettings;
         }
-
 
         [FunctionName("TextAnalyticsServiceProxy")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req, ILogger log)
@@ -47,18 +47,7 @@ namespace FastPass.API
                 bodyString = await sr.ReadToEndAsync();
             }
 
-            // TODO Move to startup
-            var jsonSettings = new JsonSerializerSettings
-            {
-                ContractResolver = new DefaultContractResolver
-                {
-                    NamingStrategy = new CamelCaseNamingStrategy()
-                },
-                Formatting = Formatting.Indented
-            };
-
             var proxyRequest = JsonConvert.DeserializeObject<TextAnalyticsProxyRequest>(bodyString);
-
             var documentId = String.IsNullOrWhiteSpace(proxyRequest.Id) ? Guid.NewGuid().ToString() : proxyRequest.Id;
 
             try
@@ -67,7 +56,7 @@ namespace FastPass.API
                 using (var request = new HttpRequestMessage(HttpMethod.Post, "/language/analyze-text/jobs?api-version=2022-05-15-preview"))
                 {
                     request.Headers.TryAddWithoutValidation(SUBSCRIPTION_HEADER_NAME, _textAnalyticsKey);
-                    request.Content = new StringContent(JsonConvert.SerializeObject(new TextAnalyticsRequest(proxyRequest.TextToAnalyze, language: proxyRequest.Language, documentId: documentId), jsonSettings));
+                    request.Content = new StringContent(JsonConvert.SerializeObject(new TextAnalyticsRequest(proxyRequest.TextToAnalyze, language: proxyRequest.Language, documentId: documentId), _jsonsettings));
                     request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
                     log.Log(LogLevel.Trace, $"Calling TextAnalytics for documentId {documentId}");
