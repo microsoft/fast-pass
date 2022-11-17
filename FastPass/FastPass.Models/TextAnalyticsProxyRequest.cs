@@ -7,9 +7,7 @@ namespace FastPass.Models
 {
     public class TextAnalyticsProxyRequest
     {
-
-        [Required]
-        public string? TextToAnalize { get; set; }
+        public string? TextToAnalyze { get; set; }
         public string? Id { get; set; }
         public string? Language { get; set; }
     }
