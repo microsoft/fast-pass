@@ -1,23 +1,87 @@
 ﻿@page "/validate"
+@using FastPass.Models
 @using Hl7.Fhir.Model
 @using Hl7.Fhir.Serialization
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject ILogger<Validate> Logger
+@inject HttpClient Http
 
-<h1>Validate</h1>
+<h3>Validate Text</h3>
+<EditForm Model="@patientInformation" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <p>
+        <label>First Name:</label>
+        <InputText @bind-Value="patientInformation.FirstName" />
+    </p>
+    <p>
+        <label>Last Name:</label>
+        <InputText @bind-Value="patientInformation.LastName" />
+    </p>
+    <p>
+        <label>Gender:</label>
+        <InputText @bind-Value="patientInformation.Gender" />
+    </p>
+    <p>
+        <label>Street Address:</label>
+        <InputText @bind-Value="patientInformation.StreetAddress" />
+    </p>
+    <p>
+        <label>City:</label>
+        <InputText @bind-Value="patientInformation.City" />
+    </p>
+    <p>
+        <label>State:</label>
+        <InputText @bind-Value="patientInformation.State" />
+    </p>
+    <p>
+        <label>Postal Code:</label>
+        <InputText @bind-Value="patientInformation.PostalCode" />
+    </p>
+    <p>
+        <label>Country:</label>
+        <InputText @bind-Value="patientInformation.Country" />
+    </p>
+    <button type="submit">Submit</button>
+</EditForm>
 
-@code { protected override async System.Threading.Tasks.Task OnInitializedAsync()
+@code {
+
+    PatientInformation patientInformation = new PatientInformation();
+
+    protected override async System.Threading.Tasks.Task OnInitializedAsync()
     {
         try
         {
             var result = await sessionStorage.GetItemAsStringAsync("bundle");
             var parser = new Hl7.Fhir.Serialization.FhirJsonParser();
             var bundle = parser.Parse<Bundle>(result);
+
+            var patient = bundle.Entry.Find(x => x.Resource.TypeName.ToLower() == "patient")?.Resource as Patient;
+
+            patientInformation.FirstName = patient?.Name[0]?.Given?.FirstOrDefault() ?? string.Empty;
+            patientInformation.LastName = patient?.Name[0]?.Family ?? string.Empty;
+            patientInformation.Gender = patient?.Gender?.ToString() ?? string.Empty;
+
+            var address = patient?.Address?.FirstOrDefault();
+
+            patientInformation.StreetAddress = address?.Line?.FirstOrDefault() ?? string.Empty;
+            patientInformation.City = address?.City ?? string.Empty;
+            patientInformation.State = address?.State ?? string.Empty;
+            patientInformation.PostalCode = address?.PostalCode ?? string.Empty;
+            patientInformation.Country = address?.Country ?? string.Empty;
+
+            var observations = bundle.Entry.Where(x => x.Resource.TypeName.ToLower() == "observation").Select(x => (Observation)x.Resource).ToList();
         }
         catch (Exception ex)
         {
             Logger.LogError(ex.Message);
         }
+    }
+
+    private async System.Threading.Tasks.Task HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
     }
 }
 
