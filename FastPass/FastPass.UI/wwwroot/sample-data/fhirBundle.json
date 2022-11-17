@@ -1,0 +1,3988 @@
+﻿{
+  "entry": [
+    {
+      "fullUrl": "Composition/fe184dbb-82ee-4f5c-bb0a-ac1900a95618",
+      "resource": {
+        "author": [
+          {
+            "display": "Unknown",
+            "reference": "Practitioner/406bf504-ef56-497a-bd19-8ce89b7f147b",
+            "type": "Practitioner"
+          }
+        ],
+        "date": "2001-05-22",
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "id": "fe184dbb-82ee-4f5c-bb0a-ac1900a95618",
+        "resourceType": "Composition",
+        "section": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "10164-2",
+                  "display": "History of present illness",
+                  "system": "http://loinc.org"
+                }
+              ],
+              "text": "HISTORY OF PRESENT ILLNESS"
+            },
+            "entry": [
+              {
+                "display": "HISTORY OF PRESENT ILLNESS",
+                "reference": "List/89981c04-f2e1-4ef1-987b-5334d696ae7a",
+                "type": "List"
+              }
+            ],
+            "text": {
+              "div": "<div>\r\n\t\t\t\t\t\t\t<h1>HISTORY OF PRESENT ILLNESS</h1>\r\n\t\t\t\t\t\t\t<p>The patient is a 54-year-old gentleman with a history of progressive angina over the past several months.\nThe patient had a cardiac catheterization in year revealing total occlusion of the RCA and 50% left main disease ,\nwith a strong family history of coronary artery disease with a brother dying at the age of 52 from a myocardial infarction and\nanother brother who is status post coronary artery bypass grafting. The patient had a stress echocardiogram done on July , 2001\nwhich showed no wall motion abnormalities , but this was a difficult study due to body habitus. The patient went for six minutes with\nminimal ST depressions in the anterior lateral leads , thought due to fatigue and wrist pain , his anginal equivalent. Due to the patient's\nincreased symptoms and family history and history left main disease with total occasional of his RCA was referred for revascularization with open heart surgery.\";</p>\r\n\t\t\t\t\t</div>",
+              "status": "additional"
+            },
+            "title": "HISTORY OF PRESENT ILLNESS"
+          }
+        ],
+        "status": "final",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "title": "History and physical note",
+        "type": {
+          "coding": [
+            {
+              "code": "34117-2",
+              "display": "History and physical note",
+              "system": "http://loinc.org"
+            }
+          ],
+          "text": "History and physical note"
+        }
+      }
+    },
+    {
+      "fullUrl": "Practitioner/406bf504-ef56-497a-bd19-8ce89b7f147b",
+      "resource": {
+        "id": "406bf504-ef56-497a-bd19-8ce89b7f147b",
+        "name": [
+          {
+            "family": "Unknown",
+            "text": "Unknown"
+          }
+        ],
+        "resourceType": "Practitioner"
+      }
+    },
+    {
+      "fullUrl": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+      "resource": {
+        "birthDate": "1947-06",
+        "gender": "male",
+        "id": "e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+        "identifier": [
+          {
+            "type": {
+              "text": "RECORD"
+            },
+            "use": "usual",
+            "value": "#333582770390100 | MH | 85986313 | | 054351 | 2/14/2001 AM I CORONARY ARTERY DISEASE I Signed I DIS I"
+          }
+        ],
+        "name": [
+          {
+            "given": [
+              "Jeff"
+            ]
+          }
+        ],
+        "resourceType": "Patient"
+      }
+    },
+    {
+      "fullUrl": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+      "resource": {
+        "class": {
+          "display": "unknown",
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode"
+        },
+        "id": "e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter"
+          ]
+        },
+        "period": {
+          "end": "2001-05-22",
+          "start": "2001-05-22"
+        },
+        "resourceType": "Encounter",
+        "status": "finished",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        }
+      }
+    },
+    {
+      "fullUrl": "Observation/8c6320a8-0eb5-419f-979d-0da72f2c2988",
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "C0018795",
+              "display": "Cardiac Catheterization Procedures",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "1002003",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "7.5.2",
+              "system": "http://www.nlm.nih.gov/research/umls/ccs"
+            },
+            {
+              "code": "0000005872",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "154",
+              "system": "http://www.nlm.nih.gov/research/umls/costar"
+            },
+            {
+              "code": "1013071",
+              "system": "http://www.ama-assn.org/go/cpt"
+            },
+            {
+              "code": "1393-7244",
+              "system": "http://www.nlm.nih.gov/research/umls/csp"
+            },
+            {
+              "code": "667",
+              "system": "http://hl7.org/fhir/sid/icd-10-am"
+            },
+            {
+              "code": "667",
+              "system": "http://hl7.org/fhir/sid/icd-10-amae"
+            },
+            {
+              "code": "U005615",
+              "system": "http://www.nlm.nih.gov/research/umls/lch"
+            },
+            {
+              "code": "sh85020181",
+              "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+            },
+            {
+              "code": "LP6170-7",
+              "system": "http://loinc.org"
+            },
+            {
+              "code": "10007815",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "22704",
+              "system": "http://www.nlm.nih.gov/research/umls/medcin"
+            },
+            {
+              "code": "D006328",
+              "system": "http://www.nlm.nih.gov/research/umls/msh"
+            },
+            {
+              "code": "U001971",
+              "system": "http://www.nlm.nih.gov/research/umls/mth"
+            },
+            {
+              "code": "37.21",
+              "system": "http://www.nlm.nih.gov/research/umls/mthicd9"
+            },
+            {
+              "code": "C38044",
+              "system": "http://ncimeta.nci.nih.gov"
+            },
+            {
+              "code": "C38044",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+            },
+            {
+              "code": "7939.",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "7939.",
+              "system": "http://www.nlm.nih.gov/research/umls/rcdae"
+            },
+            {
+              "code": "P-7200",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "P1-31600",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "41976001",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "cardiac catheterization"
+        },
+        "effectiveTiming": {
+          "code": {
+            "text": "in year"
+          },
+          "repeat": {
+            "duration": 1,
+            "durationUnit": "a"
+          }
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 376
+              },
+              {
+                "url": "length",
+                "valueInteger": 23
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "8c6320a8-0eb5-419f-979d-0da72f2c2988",
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "code": "POS",
+                "display": "Positive",
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"
+              }
+            ],
+            "text": "Positive"
+          }
+        ],
+        "resourceType": "Observation",
+        "status": "final",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        }
+      }
+    },
+    {
+      "fullUrl": "Observation/30656c53-7692-4a21-acc5-eec29f57e8e2",
+      "resource": {
+        "code": {
+          "coding": [
+            {
+              "code": "C0920208",
+              "display": "Echocardiography, Stress",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0000052531",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "sh91004821",
+              "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+            },
+            {
+              "code": "LA28649-4",
+              "system": "http://loinc.org"
+            },
+            {
+              "code": "10050241",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "D025401",
+              "system": "http://www.nlm.nih.gov/research/umls/msh"
+            },
+            {
+              "code": "C80407",
+              "system": "http://ncimeta.nci.nih.gov"
+            },
+            {
+              "code": "C80407",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+            },
+            {
+              "code": "816996009",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "stress echocardiogram"
+        },
+        "effectiveDateTime": "2001",
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 686
+              },
+              {
+                "url": "length",
+                "valueInteger": 21
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "30656c53-7692-4a21-acc5-eec29f57e8e2",
+        "interpretation": [
+          {
+            "coding": [
+              {
+                "code": "POS",
+                "display": "Positive",
+                "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"
+              }
+            ],
+            "text": "Positive"
+          }
+        ],
+        "resourceType": "Observation",
+        "status": "final",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/dea2b434-133e-4857-bbdc-5adf28e11bd0",
+      "resource": {
+        "bodySite": [
+          {
+            "coding": [
+              {
+                "code": "C1261316",
+                "display": "Right coronary artery structure",
+                "system": "http://www.nlm.nih.gov/research/umls"
+              },
+              {
+                "code": "0000056439",
+                "system": "http://www.nlm.nih.gov/research/umls/chv"
+              },
+              {
+                "code": "RC",
+                "system": "http://www.ama-assn.org/go/cpt"
+              },
+              {
+                "code": "1398-9631",
+                "system": "http://www.nlm.nih.gov/research/umls/csp"
+              },
+              {
+                "code": "50039",
+                "system": "http://www.nlm.nih.gov/research/umls/fma"
+              },
+              {
+                "code": "RC",
+                "system": "http://www.nlm.nih.gov/research/umls/hcpcs"
+              },
+              {
+                "code": "C12875",
+                "system": "http://ncimeta.nci.nih.gov"
+              },
+              {
+                "code": "C12875",
+                "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+              },
+              {
+                "code": "T-43200",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "T-43200",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "13647002",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "50039",
+                "system": "http://www.nlm.nih.gov/research/umls/uwda"
+              }
+            ],
+            "extension": [
+              {
+                "extension": [
+                  {
+                    "url": "offset",
+                    "valueInteger": 441
+                  },
+                  {
+                    "url": "length",
+                    "valueInteger": 3
+                  }
+                ],
+                "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+              }
+            ],
+            "text": "RCA"
+          },
+          {
+            "coding": [
+              {
+                "code": "C1261082",
+                "display": "Left coronary artery structure",
+                "system": "http://www.nlm.nih.gov/research/umls"
+              },
+              {
+                "code": "0000056387",
+                "system": "http://www.nlm.nih.gov/research/umls/chv"
+              },
+              {
+                "code": "LM",
+                "system": "http://www.ama-assn.org/go/cpt"
+              },
+              {
+                "code": "1398-9631",
+                "system": "http://www.nlm.nih.gov/research/umls/csp"
+              },
+              {
+                "code": "50040",
+                "system": "http://www.nlm.nih.gov/research/umls/fma"
+              },
+              {
+                "code": "LM",
+                "system": "http://www.nlm.nih.gov/research/umls/hcpcs"
+              },
+              {
+                "code": "LP199529-1",
+                "system": "http://loinc.org"
+              },
+              {
+                "code": "C12872",
+                "system": "http://ncimeta.nci.nih.gov"
+              },
+              {
+                "code": "C12872",
+                "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+              },
+              {
+                "code": "X74eC",
+                "system": "http://www.nlm.nih.gov/research/umls/rcd"
+              },
+              {
+                "code": "T-43100",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "T-43100",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "50018008",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "50040",
+                "system": "http://www.nlm.nih.gov/research/umls/uwda"
+              }
+            ],
+            "extension": [
+              {
+                "extension": [
+                  {
+                    "url": "offset",
+                    "valueInteger": 453
+                  },
+                  {
+                    "url": "length",
+                    "valueInteger": 9
+                  }
+                ],
+                "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+              }
+            ],
+            "text": "left main"
+          }
+        ],
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "C0012634",
+              "display": "Disease",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0007490",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "0000004014",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "0944-4756",
+              "system": "http://www.nlm.nih.gov/research/umls/csp"
+            },
+            {
+              "code": "MTHU000256",
+              "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+            },
+            {
+              "code": "A99001",
+              "system": "http://hl7.org/fhir/sid/icpc-2p"
+            },
+            {
+              "code": "U001423",
+              "system": "http://www.nlm.nih.gov/research/umls/lch"
+            },
+            {
+              "code": "sh85038411",
+              "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+            },
+            {
+              "code": "LP21006-9",
+              "system": "http://loinc.org"
+            },
+            {
+              "code": "39448",
+              "system": "http://www.nlm.nih.gov/research/umls/medcin"
+            },
+            {
+              "code": "D004194",
+              "system": "http://www.nlm.nih.gov/research/umls/msh"
+            },
+            {
+              "code": "C2991",
+              "system": "http://ncimeta.nci.nih.gov"
+            },
+            {
+              "code": "C2991",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc-gloss"
+            },
+            {
+              "code": "C2991",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_ctdc"
+            },
+            {
+              "code": "C2991",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_ctrp"
+            },
+            {
+              "code": "CDR0000651193",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_nci-gloss"
+            },
+            {
+              "code": "C2991",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_nichd"
+            },
+            {
+              "code": "C2991",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cadsr"
+            },
+            {
+              "code": "14520",
+              "system": "http://www.nlm.nih.gov/research/umls/psy"
+            },
+            {
+              "code": "X0003",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "D-Y000",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "DF-00000",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "64572001",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "disease"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "evidence": [
+          {
+            "detail": [
+              {
+                "display": "cardiac catheterization",
+                "reference": "Observation/8c6320a8-0eb5-419f-979d-0da72f2c2988",
+                "type": "Observation"
+              }
+            ]
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 463
+              },
+              {
+                "url": "length",
+                "valueInteger": 7
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "dea2b434-133e-4857-bbdc-5adf28e11bd0",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/854d4c1c-545a-44a9-b720-220db80ed987",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C1956346",
+                  "display": "Coronary Artery Disease",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "0000005327",
+                  "system": "http://www.nlm.nih.gov/research/umls/aod"
+                },
+                {
+                  "code": "BI00010",
+                  "system": "http://www.nlm.nih.gov/research/umls/bi"
+                },
+                {
+                  "code": "0037465",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+                },
+                {
+                  "code": "1393-3397",
+                  "system": "http://www.nlm.nih.gov/research/umls/csp"
+                },
+                {
+                  "code": "CORONARY ART DIS",
+                  "system": "http://www.nlm.nih.gov/research/umls/cst"
+                },
+                {
+                  "code": "U000871",
+                  "system": "http://www.nlm.nih.gov/research/umls/dxp"
+                },
+                {
+                  "code": "HP:0001677",
+                  "system": "http://www.nlm.nih.gov/research/umls/hpo"
+                },
+                {
+                  "code": "I25.1",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm"
+                },
+                {
+                  "code": "MTHU019520",
+                  "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+                },
+                {
+                  "code": "K76003",
+                  "system": "http://hl7.org/fhir/sid/icpc-2p"
+                },
+                {
+                  "code": "LP90122-0",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "10011078",
+                  "system": "http://www.nlm.nih.gov/research/umls/mdr"
+                },
+                {
+                  "code": "35988",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "1276",
+                  "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+                },
+                {
+                  "code": "D003324",
+                  "system": "http://www.nlm.nih.gov/research/umls/msh"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://ncimeta.nci.nih.gov"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cellosaurus"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_gdc"
+                },
+                {
+                  "code": "CDR0000439400",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_nci-gloss"
+                },
+                {
+                  "code": "MTHU002067",
+                  "system": "http://www.nlm.nih.gov/research/umls/omim"
+                },
+                {
+                  "code": "XE2uV",
+                  "system": "http://www.nlm.nih.gov/research/umls/rcd"
+                },
+                {
+                  "code": "D3-13000",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "414024009",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "0426",
+                  "system": "http://www.nlm.nih.gov/research/umls/who"
+                }
+              ],
+              "text": "coronary artery disease"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 505
+              },
+              {
+                "url": "length",
+                "valueInteger": 23
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "854d4c1c-545a-44a9-b720-220db80ed987",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0015576",
+              "display": "Family",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 487
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 6
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "family"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/84de0935-9e3b-4acd-aeef-98decdb85a84",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C1956346",
+                  "display": "Coronary Artery Disease",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "0000005327",
+                  "system": "http://www.nlm.nih.gov/research/umls/aod"
+                },
+                {
+                  "code": "BI00010",
+                  "system": "http://www.nlm.nih.gov/research/umls/bi"
+                },
+                {
+                  "code": "0037465",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+                },
+                {
+                  "code": "1393-3397",
+                  "system": "http://www.nlm.nih.gov/research/umls/csp"
+                },
+                {
+                  "code": "CORONARY ART DIS",
+                  "system": "http://www.nlm.nih.gov/research/umls/cst"
+                },
+                {
+                  "code": "U000871",
+                  "system": "http://www.nlm.nih.gov/research/umls/dxp"
+                },
+                {
+                  "code": "HP:0001677",
+                  "system": "http://www.nlm.nih.gov/research/umls/hpo"
+                },
+                {
+                  "code": "I25.1",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm"
+                },
+                {
+                  "code": "MTHU019520",
+                  "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+                },
+                {
+                  "code": "K76003",
+                  "system": "http://hl7.org/fhir/sid/icpc-2p"
+                },
+                {
+                  "code": "LP90122-0",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "10011078",
+                  "system": "http://www.nlm.nih.gov/research/umls/mdr"
+                },
+                {
+                  "code": "35988",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "1276",
+                  "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+                },
+                {
+                  "code": "D003324",
+                  "system": "http://www.nlm.nih.gov/research/umls/msh"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://ncimeta.nci.nih.gov"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cellosaurus"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_gdc"
+                },
+                {
+                  "code": "CDR0000439400",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_nci-gloss"
+                },
+                {
+                  "code": "MTHU002067",
+                  "system": "http://www.nlm.nih.gov/research/umls/omim"
+                },
+                {
+                  "code": "XE2uV",
+                  "system": "http://www.nlm.nih.gov/research/umls/rcd"
+                },
+                {
+                  "code": "D3-13000",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "414024009",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "0426",
+                  "system": "http://www.nlm.nih.gov/research/umls/who"
+                }
+              ],
+              "text": "coronary artery disease"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 505
+              },
+              {
+                "url": "length",
+                "valueInteger": 23
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "84de0935-9e3b-4acd-aeef-98decdb85a84",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0337527",
+              "display": "Brothers",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 536
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 7
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "brother"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/64da4ee8-54b0-4fe2-8abe-c19c9ef5cd4b",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C1956346",
+                  "display": "Coronary Artery Disease",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "0000005327",
+                  "system": "http://www.nlm.nih.gov/research/umls/aod"
+                },
+                {
+                  "code": "BI00010",
+                  "system": "http://www.nlm.nih.gov/research/umls/bi"
+                },
+                {
+                  "code": "0037465",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+                },
+                {
+                  "code": "1393-3397",
+                  "system": "http://www.nlm.nih.gov/research/umls/csp"
+                },
+                {
+                  "code": "CORONARY ART DIS",
+                  "system": "http://www.nlm.nih.gov/research/umls/cst"
+                },
+                {
+                  "code": "U000871",
+                  "system": "http://www.nlm.nih.gov/research/umls/dxp"
+                },
+                {
+                  "code": "HP:0001677",
+                  "system": "http://www.nlm.nih.gov/research/umls/hpo"
+                },
+                {
+                  "code": "I25.1",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm"
+                },
+                {
+                  "code": "MTHU019520",
+                  "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+                },
+                {
+                  "code": "K76003",
+                  "system": "http://hl7.org/fhir/sid/icpc-2p"
+                },
+                {
+                  "code": "LP90122-0",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "10011078",
+                  "system": "http://www.nlm.nih.gov/research/umls/mdr"
+                },
+                {
+                  "code": "35988",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "1276",
+                  "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+                },
+                {
+                  "code": "D003324",
+                  "system": "http://www.nlm.nih.gov/research/umls/msh"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://ncimeta.nci.nih.gov"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cellosaurus"
+                },
+                {
+                  "code": "C26732",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_gdc"
+                },
+                {
+                  "code": "CDR0000439400",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_nci-gloss"
+                },
+                {
+                  "code": "MTHU002067",
+                  "system": "http://www.nlm.nih.gov/research/umls/omim"
+                },
+                {
+                  "code": "XE2uV",
+                  "system": "http://www.nlm.nih.gov/research/umls/rcd"
+                },
+                {
+                  "code": "D3-13000",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "414024009",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "0426",
+                  "system": "http://www.nlm.nih.gov/research/umls/who"
+                }
+              ],
+              "text": "coronary artery disease"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 505
+              },
+              {
+                "url": "length",
+                "valueInteger": 23
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "64da4ee8-54b0-4fe2-8abe-c19c9ef5cd4b",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0337527",
+              "display": "Brothers",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 608
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 7
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "brother"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/af797969-718b-4c90-bf16-fed87c3a6852",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C0184532",
+                  "display": "Dying Process",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "E10.0",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccc"
+                },
+                {
+                  "code": "0000019055",
+                  "system": "http://www.nlm.nih.gov/research/umls/chv"
+                },
+                {
+                  "code": "65246",
+                  "system": "http://www.nlm.nih.gov/research/umls/cpm"
+                },
+                {
+                  "code": "MTHU013352",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "314356",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "15550",
+                  "system": "http://www.nlm.nih.gov/research/umls/psy"
+                },
+                {
+                  "code": "399069006",
+                  "system": "http://snomed.info/sct"
+                }
+              ],
+              "text": "dying"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 544
+              },
+              {
+                "url": "length",
+                "valueInteger": 5
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "af797969-718b-4c90-bf16-fed87c3a6852",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0015576",
+              "display": "Family",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 487
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 6
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "family"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/1618d4d9-2417-4cc6-9b2a-7a69c3964a7a",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C0184532",
+                  "display": "Dying Process",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "E10.0",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccc"
+                },
+                {
+                  "code": "0000019055",
+                  "system": "http://www.nlm.nih.gov/research/umls/chv"
+                },
+                {
+                  "code": "65246",
+                  "system": "http://www.nlm.nih.gov/research/umls/cpm"
+                },
+                {
+                  "code": "MTHU013352",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "314356",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "15550",
+                  "system": "http://www.nlm.nih.gov/research/umls/psy"
+                },
+                {
+                  "code": "399069006",
+                  "system": "http://snomed.info/sct"
+                }
+              ],
+              "text": "dying"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 544
+              },
+              {
+                "url": "length",
+                "valueInteger": 5
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "1618d4d9-2417-4cc6-9b2a-7a69c3964a7a",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0337527",
+              "display": "Brothers",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 536
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 7
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "brother"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/a87fb000-e393-4212-9773-9c39835fa4bc",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C0184532",
+                  "display": "Dying Process",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "E10.0",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccc"
+                },
+                {
+                  "code": "0000019055",
+                  "system": "http://www.nlm.nih.gov/research/umls/chv"
+                },
+                {
+                  "code": "65246",
+                  "system": "http://www.nlm.nih.gov/research/umls/cpm"
+                },
+                {
+                  "code": "MTHU013352",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "314356",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "15550",
+                  "system": "http://www.nlm.nih.gov/research/umls/psy"
+                },
+                {
+                  "code": "399069006",
+                  "system": "http://snomed.info/sct"
+                }
+              ],
+              "text": "dying"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 544
+              },
+              {
+                "url": "length",
+                "valueInteger": 5
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "a87fb000-e393-4212-9773-9c39835fa4bc",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0337527",
+              "display": "Brothers",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 608
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 7
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "brother"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/965bc116-b141-4e5e-8d1a-2cb7703cbb54",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C0027051",
+                  "display": "Myocardial Infarction",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "MYCNF",
+                  "system": "http://www.nlm.nih.gov/research/umls/air"
+                },
+                {
+                  "code": "0000005332",
+                  "system": "http://www.nlm.nih.gov/research/umls/aod"
+                },
+                {
+                  "code": "BI00102",
+                  "system": "http://www.nlm.nih.gov/research/umls/bi"
+                },
+                {
+                  "code": "1018028",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+                },
+                {
+                  "code": "0000008423",
+                  "system": "http://www.nlm.nih.gov/research/umls/chv"
+                },
+                {
+                  "code": "505",
+                  "system": "http://www.nlm.nih.gov/research/umls/costar"
+                },
+                {
+                  "code": "1393-3417",
+                  "system": "http://www.nlm.nih.gov/research/umls/csp"
+                },
+                {
+                  "code": "INFARCT MYOCARD",
+                  "system": "http://www.nlm.nih.gov/research/umls/cst"
+                },
+                {
+                  "code": "HP:0001658",
+                  "system": "http://www.nlm.nih.gov/research/umls/hpo"
+                },
+                {
+                  "code": "I21",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm"
+                },
+                {
+                  "code": "MTHU037952",
+                  "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+                },
+                {
+                  "code": "K75013",
+                  "system": "http://hl7.org/fhir/sid/icpc-2p"
+                },
+                {
+                  "code": "sh85059683",
+                  "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+                },
+                {
+                  "code": "LP98884-7",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "10028596",
+                  "system": "http://www.nlm.nih.gov/research/umls/mdr"
+                },
+                {
+                  "code": "353001",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "5",
+                  "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+                },
+                {
+                  "code": "D009203",
+                  "system": "http://www.nlm.nih.gov/research/umls/msh"
+                },
+                {
+                  "code": "410.9",
+                  "system": "http://www.nlm.nih.gov/research/umls/mthicd9"
+                },
+                {
+                  "code": "01329",
+                  "system": "http://www.nlm.nih.gov/research/umls/nanda-i"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://ncimeta.nci.nih.gov"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cellosaurus"
+                },
+                {
+                  "code": "E10152",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_ctcae"
+                },
+                {
+                  "code": "1969",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_fda"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_gdc"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_nichd"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cadsr"
+                },
+                {
+                  "code": "MTHU008101",
+                  "system": "http://www.nlm.nih.gov/research/umls/omim"
+                },
+                {
+                  "code": "32820",
+                  "system": "http://www.nlm.nih.gov/research/umls/psy"
+                },
+                {
+                  "code": "X200E",
+                  "system": "http://www.nlm.nih.gov/research/umls/rcd"
+                },
+                {
+                  "code": "M-54700",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "D3-15000",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "22298006",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "0428",
+                  "system": "http://www.nlm.nih.gov/research/umls/who"
+                }
+              ],
+              "text": "myocardial infarction"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 574
+              },
+              {
+                "url": "length",
+                "valueInteger": 21
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "965bc116-b141-4e5e-8d1a-2cb7703cbb54",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0015576",
+              "display": "Family",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 487
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 6
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "family"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/de458b16-5019-4b33-8449-d68fd907f895",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C0027051",
+                  "display": "Myocardial Infarction",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "MYCNF",
+                  "system": "http://www.nlm.nih.gov/research/umls/air"
+                },
+                {
+                  "code": "0000005332",
+                  "system": "http://www.nlm.nih.gov/research/umls/aod"
+                },
+                {
+                  "code": "BI00102",
+                  "system": "http://www.nlm.nih.gov/research/umls/bi"
+                },
+                {
+                  "code": "1018028",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+                },
+                {
+                  "code": "0000008423",
+                  "system": "http://www.nlm.nih.gov/research/umls/chv"
+                },
+                {
+                  "code": "505",
+                  "system": "http://www.nlm.nih.gov/research/umls/costar"
+                },
+                {
+                  "code": "1393-3417",
+                  "system": "http://www.nlm.nih.gov/research/umls/csp"
+                },
+                {
+                  "code": "INFARCT MYOCARD",
+                  "system": "http://www.nlm.nih.gov/research/umls/cst"
+                },
+                {
+                  "code": "HP:0001658",
+                  "system": "http://www.nlm.nih.gov/research/umls/hpo"
+                },
+                {
+                  "code": "I21",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm"
+                },
+                {
+                  "code": "MTHU037952",
+                  "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+                },
+                {
+                  "code": "K75013",
+                  "system": "http://hl7.org/fhir/sid/icpc-2p"
+                },
+                {
+                  "code": "sh85059683",
+                  "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+                },
+                {
+                  "code": "LP98884-7",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "10028596",
+                  "system": "http://www.nlm.nih.gov/research/umls/mdr"
+                },
+                {
+                  "code": "353001",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "5",
+                  "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+                },
+                {
+                  "code": "D009203",
+                  "system": "http://www.nlm.nih.gov/research/umls/msh"
+                },
+                {
+                  "code": "410.9",
+                  "system": "http://www.nlm.nih.gov/research/umls/mthicd9"
+                },
+                {
+                  "code": "01329",
+                  "system": "http://www.nlm.nih.gov/research/umls/nanda-i"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://ncimeta.nci.nih.gov"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cellosaurus"
+                },
+                {
+                  "code": "E10152",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_ctcae"
+                },
+                {
+                  "code": "1969",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_fda"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_gdc"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_nichd"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cadsr"
+                },
+                {
+                  "code": "MTHU008101",
+                  "system": "http://www.nlm.nih.gov/research/umls/omim"
+                },
+                {
+                  "code": "32820",
+                  "system": "http://www.nlm.nih.gov/research/umls/psy"
+                },
+                {
+                  "code": "X200E",
+                  "system": "http://www.nlm.nih.gov/research/umls/rcd"
+                },
+                {
+                  "code": "M-54700",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "D3-15000",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "22298006",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "0428",
+                  "system": "http://www.nlm.nih.gov/research/umls/who"
+                }
+              ],
+              "text": "myocardial infarction"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 574
+              },
+              {
+                "url": "length",
+                "valueInteger": 21
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "de458b16-5019-4b33-8449-d68fd907f895",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0337527",
+              "display": "Brothers",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 536
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 7
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "brother"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/a9db0e96-9880-4856-9ad9-00dd179aefca",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C0027051",
+                  "display": "Myocardial Infarction",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "MYCNF",
+                  "system": "http://www.nlm.nih.gov/research/umls/air"
+                },
+                {
+                  "code": "0000005332",
+                  "system": "http://www.nlm.nih.gov/research/umls/aod"
+                },
+                {
+                  "code": "BI00102",
+                  "system": "http://www.nlm.nih.gov/research/umls/bi"
+                },
+                {
+                  "code": "1018028",
+                  "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+                },
+                {
+                  "code": "0000008423",
+                  "system": "http://www.nlm.nih.gov/research/umls/chv"
+                },
+                {
+                  "code": "505",
+                  "system": "http://www.nlm.nih.gov/research/umls/costar"
+                },
+                {
+                  "code": "1393-3417",
+                  "system": "http://www.nlm.nih.gov/research/umls/csp"
+                },
+                {
+                  "code": "INFARCT MYOCARD",
+                  "system": "http://www.nlm.nih.gov/research/umls/cst"
+                },
+                {
+                  "code": "HP:0001658",
+                  "system": "http://www.nlm.nih.gov/research/umls/hpo"
+                },
+                {
+                  "code": "I21",
+                  "system": "http://hl7.org/fhir/sid/icd-10-cm"
+                },
+                {
+                  "code": "MTHU037952",
+                  "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+                },
+                {
+                  "code": "K75013",
+                  "system": "http://hl7.org/fhir/sid/icpc-2p"
+                },
+                {
+                  "code": "sh85059683",
+                  "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+                },
+                {
+                  "code": "LP98884-7",
+                  "system": "http://loinc.org"
+                },
+                {
+                  "code": "10028596",
+                  "system": "http://www.nlm.nih.gov/research/umls/mdr"
+                },
+                {
+                  "code": "353001",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "5",
+                  "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+                },
+                {
+                  "code": "D009203",
+                  "system": "http://www.nlm.nih.gov/research/umls/msh"
+                },
+                {
+                  "code": "410.9",
+                  "system": "http://www.nlm.nih.gov/research/umls/mthicd9"
+                },
+                {
+                  "code": "01329",
+                  "system": "http://www.nlm.nih.gov/research/umls/nanda-i"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://ncimeta.nci.nih.gov"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cellosaurus"
+                },
+                {
+                  "code": "E10152",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_ctcae"
+                },
+                {
+                  "code": "1969",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_fda"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_gdc"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_nichd"
+                },
+                {
+                  "code": "C27996",
+                  "system": "http://www.nlm.nih.gov/research/umls/nci_cadsr"
+                },
+                {
+                  "code": "MTHU008101",
+                  "system": "http://www.nlm.nih.gov/research/umls/omim"
+                },
+                {
+                  "code": "32820",
+                  "system": "http://www.nlm.nih.gov/research/umls/psy"
+                },
+                {
+                  "code": "X200E",
+                  "system": "http://www.nlm.nih.gov/research/umls/rcd"
+                },
+                {
+                  "code": "M-54700",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "D3-15000",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "22298006",
+                  "system": "http://snomed.info/sct"
+                },
+                {
+                  "code": "0428",
+                  "system": "http://www.nlm.nih.gov/research/umls/who"
+                }
+              ],
+              "text": "myocardial infarction"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 574
+              },
+              {
+                "url": "length",
+                "valueInteger": 21
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "a9db0e96-9880-4856-9ad9-00dd179aefca",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0337527",
+              "display": "Brothers",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 608
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 7
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "brother"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "FamilyMemberHistory/b7414c1c-c74c-4afd-861a-1dc6a0bbffaa",
+      "resource": {
+        "condition": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "code": "C1299433",
+                  "display": "Left Main Coronary Artery Disease",
+                  "system": "http://www.nlm.nih.gov/research/umls"
+                },
+                {
+                  "code": "339763",
+                  "system": "http://www.nlm.nih.gov/research/umls/medcin"
+                },
+                {
+                  "code": "D003324",
+                  "system": "http://www.nlm.nih.gov/research/umls/msh"
+                },
+                {
+                  "code": "371804009",
+                  "system": "http://snomed.info/sct"
+                }
+              ],
+              "text": "left main disease"
+            }
+          }
+        ],
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 1052
+              },
+              {
+                "url": "length",
+                "valueInteger": 17
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "b7414c1c-c74c-4afd-861a-1dc6a0bbffaa",
+        "patient": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "relationship": {
+          "coding": [
+            {
+              "code": "C0015576",
+              "display": "Family",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 1025
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 6
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "family"
+        },
+        "resourceType": "FamilyMemberHistory",
+        "status": "completed"
+      }
+    },
+    {
+      "fullUrl": "Procedure/51fff192-e92a-4fea-a945-28af8e640d3e",
+      "resource": {
+        "_performedDateTime": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+              "valueCode": "unknown"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "C0010055",
+              "display": "Coronary Artery Bypass Surgery",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0000008214",
+              "system": "http://www.nlm.nih.gov/research/umls/aod"
+            },
+            {
+              "code": "BI00768",
+              "system": "http://www.nlm.nih.gov/research/umls/bi"
+            },
+            {
+              "code": "0000669",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "7.2",
+              "system": "http://www.nlm.nih.gov/research/umls/ccs"
+            },
+            {
+              "code": "CAR003",
+              "system": "http://www.nlm.nih.gov/research/umls/ccsr_icd10pcs"
+            },
+            {
+              "code": "44",
+              "system": "http://www.nlm.nih.gov/research/umls/ccs_10"
+            },
+            {
+              "code": "0000003366",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "208",
+              "system": "http://www.nlm.nih.gov/research/umls/costar"
+            },
+            {
+              "code": "1396-8456",
+              "system": "http://www.nlm.nih.gov/research/umls/csp"
+            },
+            {
+              "code": "36.10",
+              "system": "http://hl7.org/fhir/sid/icd-9-cm"
+            },
+            {
+              "code": "K54007",
+              "system": "http://hl7.org/fhir/sid/icpc-2p"
+            },
+            {
+              "code": "sh85005874",
+              "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+            },
+            {
+              "code": "LA14276-2",
+              "system": "http://loinc.org"
+            },
+            {
+              "code": "10011077",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "342508",
+              "system": "http://www.nlm.nih.gov/research/umls/medcin"
+            },
+            {
+              "code": "202",
+              "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+            },
+            {
+              "code": "D001026",
+              "system": "http://www.nlm.nih.gov/research/umls/msh"
+            },
+            {
+              "code": "C51998",
+              "system": "http://ncimeta.nci.nih.gov"
+            },
+            {
+              "code": "C51998",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+            },
+            {
+              "code": "C51998",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cptac"
+            },
+            {
+              "code": "CDR0000513055",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_nci-gloss"
+            },
+            {
+              "code": "X00tE",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "P-1436",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "P1-33840",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "232717009",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "coronary artery bypass grafting"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 635
+              },
+              {
+                "url": "length",
+                "valueInteger": 31
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "51fff192-e92a-4fea-a945-28af8e640d3e",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"
+          ]
+        },
+        "resourceType": "Procedure",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        }
+      }
+    },
+    {
+      "fullUrl": "Procedure/c4e46cf9-0e16-497e-a3c7-8fe91760018d",
+      "resource": {
+        "_performedDateTime": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+              "valueCode": "unknown"
+            }
+          ]
+        },
+        "bodySite": [
+          {
+            "coding": [
+              {
+                "code": "C1261316",
+                "display": "Right coronary artery structure",
+                "system": "http://www.nlm.nih.gov/research/umls"
+              },
+              {
+                "code": "0000056439",
+                "system": "http://www.nlm.nih.gov/research/umls/chv"
+              },
+              {
+                "code": "RC",
+                "system": "http://www.ama-assn.org/go/cpt"
+              },
+              {
+                "code": "1398-9631",
+                "system": "http://www.nlm.nih.gov/research/umls/csp"
+              },
+              {
+                "code": "50039",
+                "system": "http://www.nlm.nih.gov/research/umls/fma"
+              },
+              {
+                "code": "RC",
+                "system": "http://www.nlm.nih.gov/research/umls/hcpcs"
+              },
+              {
+                "code": "C12875",
+                "system": "http://ncimeta.nci.nih.gov"
+              },
+              {
+                "code": "C12875",
+                "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+              },
+              {
+                "code": "T-43200",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "T-43200",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "13647002",
+                "system": "http://snomed.info/sct"
+              },
+              {
+                "code": "50039",
+                "system": "http://www.nlm.nih.gov/research/umls/uwda"
+              }
+            ],
+            "extension": [
+              {
+                "extension": [
+                  {
+                    "url": "offset",
+                    "valueInteger": 1099
+                  },
+                  {
+                    "url": "length",
+                    "valueInteger": 3
+                  }
+                ],
+                "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+              }
+            ],
+            "text": "RCA"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "C0581603",
+              "display": "Revascularization - action",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0000008211",
+              "system": "http://www.nlm.nih.gov/research/umls/aod"
+            },
+            {
+              "code": "0000040599",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "0579-1046",
+              "system": "http://www.nlm.nih.gov/research/umls/csp"
+            },
+            {
+              "code": "Xa6ZQ",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "Xa6ZQ",
+              "system": "http://www.nlm.nih.gov/research/umls/rcdae"
+            },
+            {
+              "code": "297183000",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "revascularization"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 1120
+              },
+              {
+                "url": "length",
+                "valueInteger": 17
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "c4e46cf9-0e16-497e-a3c7-8fe91760018d",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"
+          ]
+        },
+        "resourceType": "Procedure",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        }
+      }
+    },
+    {
+      "fullUrl": "Procedure/aee7f9e5-1150-46c5-9e2e-4d860f477266",
+      "resource": {
+        "_performedDateTime": {
+          "extension": [
+            {
+              "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+              "valueCode": "unknown"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "C0189745",
+              "display": "Open heart surgery",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0000019333",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "10048935",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "4119",
+              "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+            },
+            {
+              "code": "P1-31004",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "2598006",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "open heart surgery"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 1143
+              },
+              {
+                "url": "length",
+                "valueInteger": 18
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "aee7f9e5-1150-46c5-9e2e-4d860f477266",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-procedure"
+          ]
+        },
+        "resourceType": "Procedure",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/157d9602-8a77-4c7c-af40-f2a6a430f1e4",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "clinicalStatus": {
+          "coding": [
+            {
+              "code": "active",
+              "display": "Active",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 309
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 11
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "progressive"
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "C0002962",
+              "display": "Angina Pectoris",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0000005330",
+              "system": "http://www.nlm.nih.gov/research/umls/aod"
+            },
+            {
+              "code": "BI00047",
+              "system": "http://www.nlm.nih.gov/research/umls/bi"
+            },
+            {
+              "code": "1017852",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "7.2.4.1",
+              "system": "http://www.nlm.nih.gov/research/umls/ccs"
+            },
+            {
+              "code": "0000001165",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "054",
+              "system": "http://www.nlm.nih.gov/research/umls/costar"
+            },
+            {
+              "code": "1393-3407",
+              "system": "http://www.nlm.nih.gov/research/umls/csp"
+            },
+            {
+              "code": "ANGINA PECTORIS",
+              "system": "http://www.nlm.nih.gov/research/umls/cst"
+            },
+            {
+              "code": "U000113",
+              "system": "http://www.nlm.nih.gov/research/umls/dxp"
+            },
+            {
+              "code": "HP:0001681",
+              "system": "http://www.nlm.nih.gov/research/umls/hpo"
+            },
+            {
+              "code": "I20.9",
+              "system": "http://hl7.org/fhir/sid/icd-10"
+            },
+            {
+              "code": "I20.9",
+              "system": "http://hl7.org/fhir/sid/icd-10-am"
+            },
+            {
+              "code": "I20.9",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm"
+            },
+            {
+              "code": "413",
+              "system": "http://hl7.org/fhir/sid/icd-9-cm"
+            },
+            {
+              "code": "K74",
+              "system": "http://www.nlm.nih.gov/research/umls/icpc"
+            },
+            {
+              "code": "K74",
+              "system": "http://www.nlm.nih.gov/research/umls/icpc2eeng"
+            },
+            {
+              "code": "MTHU006338",
+              "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+            },
+            {
+              "code": "K74001",
+              "system": "http://hl7.org/fhir/sid/icpc-2p"
+            },
+            {
+              "code": "U000244",
+              "system": "http://www.nlm.nih.gov/research/umls/lch"
+            },
+            {
+              "code": "sh85005022",
+              "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+            },
+            {
+              "code": "LA14275-4",
+              "system": "http://loinc.org"
+            },
+            {
+              "code": "10002383",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "33215",
+              "system": "http://www.nlm.nih.gov/research/umls/medcin"
+            },
+            {
+              "code": "142",
+              "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+            },
+            {
+              "code": "D000787",
+              "system": "http://www.nlm.nih.gov/research/umls/msh"
+            },
+            {
+              "code": "053",
+              "system": "http://www.nlm.nih.gov/research/umls/mth"
+            },
+            {
+              "code": "413.9",
+              "system": "http://www.nlm.nih.gov/research/umls/mthicd9"
+            },
+            {
+              "code": "K74",
+              "system": "http://hl7.org/fhir/sid/mthicpc2eae"
+            },
+            {
+              "code": "C51221",
+              "system": "http://ncimeta.nci.nih.gov"
+            },
+            {
+              "code": "E10110",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_ctcae"
+            },
+            {
+              "code": "1710",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_fda"
+            },
+            {
+              "code": "C51221",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_nichd"
+            },
+            {
+              "code": "040504",
+              "system": "http://www.nlm.nih.gov/research/umls/noc"
+            },
+            {
+              "code": "MTHU009903",
+              "system": "http://www.nlm.nih.gov/research/umls/omim"
+            },
+            {
+              "code": "29.13",
+              "system": "http://www.nlm.nih.gov/research/umls/oms"
+            },
+            {
+              "code": "PRB_02040.07",
+              "system": "http://www.nlm.nih.gov/research/umls/pcds"
+            },
+            {
+              "code": "02530",
+              "system": "http://www.nlm.nih.gov/research/umls/psy"
+            },
+            {
+              "code": "Q0300326",
+              "system": "http://www.nlm.nih.gov/research/umls/qmr"
+            },
+            {
+              "code": "G33..",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "Ua1eH",
+              "system": "http://www.nlm.nih.gov/research/umls/rcdae"
+            },
+            {
+              "code": "F-71500",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "D3-12000",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "194828000",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "0422",
+              "system": "http://www.nlm.nih.gov/research/umls/who"
+            }
+          ],
+          "text": "angina"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 321
+              },
+              {
+                "url": "length",
+                "valueInteger": 6
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "157d9602-8a77-4c7c-af40-f2a6a430f1e4",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "onsetString": "past several months",
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/56885ddc-d16f-46a2-91f2-48e8a7506309",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "C0028778",
+              "display": "Obstruction",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0000004470",
+              "system": "http://www.nlm.nih.gov/research/umls/aod"
+            },
+            {
+              "code": "1002744",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "0000008870",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "MTHU053672",
+              "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+            },
+            {
+              "code": "U006537",
+              "system": "http://www.nlm.nih.gov/research/umls/lch"
+            },
+            {
+              "code": "LP222112-7",
+              "system": "http://loinc.org"
+            },
+            {
+              "code": "10061876",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "U003467",
+              "system": "http://www.nlm.nih.gov/research/umls/mth"
+            },
+            {
+              "code": "C3284",
+              "system": "http://ncimeta.nci.nih.gov"
+            },
+            {
+              "code": "C3284",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+            },
+            {
+              "code": "2422",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_fda"
+            },
+            {
+              "code": "CDR0000044954",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_nci-gloss"
+            },
+            {
+              "code": "C3284",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cadsr"
+            },
+            {
+              "code": "X79q0",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "M-34000",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "M-34000",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "26036001",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "occlusion"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 424
+              },
+              {
+                "url": "length",
+                "valueInteger": 9
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "56885ddc-d16f-46a2-91f2-48e8a7506309",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "note": [
+          {
+            "extension": [
+              {
+                "extension": [
+                  {
+                    "url": "offset",
+                    "valueInteger": 418
+                  },
+                  {
+                    "url": "length",
+                    "valueInteger": 5
+                  }
+                ],
+                "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+              }
+            ],
+            "text": "total"
+          }
+        ],
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/7143bb52-acf3-4b7b-8654-cbbbdcfe3397",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "text": "wall motion abnormalities"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 744
+              },
+              {
+                "url": "length",
+                "valueInteger": 25
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "7143bb52-acf3-4b7b-8654-cbbbdcfe3397",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "refuted",
+              "display": "Refuted",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Refuted"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/c5190bee-909a-4f28-87e9-a318a4ace6ee",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "C1318474",
+              "display": "Assessment of body build",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0000058128",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "62294",
+              "system": "http://www.nlm.nih.gov/research/umls/medcin"
+            },
+            {
+              "code": "3851.",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "165184000",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "body habitus"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 810
+              },
+              {
+                "url": "length",
+                "valueInteger": 12
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "c5190bee-909a-4f28-87e9-a318a4ace6ee",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/061532f2-3805-4623-ae0c-6a4ea212524a",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "text": "ST depressions in the anterior lateral leads"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 870
+              },
+              {
+                "url": "length",
+                "valueInteger": 44
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "061532f2-3805-4623-ae0c-6a4ea212524a",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "onsetString": "six minutes",
+        "resourceType": "Condition",
+        "severity": {
+          "coding": [
+            {
+              "code": "255604002",
+              "display": "Mild",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "extension": [
+            {
+              "extension": [
+                {
+                  "url": "offset",
+                  "valueInteger": 862
+                },
+                {
+                  "url": "length",
+                  "valueInteger": 7
+                }
+              ],
+              "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+            }
+          ],
+          "text": "minimal"
+        },
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/e0c7098e-9a93-4aef-9587-11ce777533e8",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "C0015672",
+              "display": "Fatigue",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "FATIG",
+              "system": "http://www.nlm.nih.gov/research/umls/air"
+            },
+            {
+              "code": "0000001768",
+              "system": "http://www.nlm.nih.gov/research/umls/aod"
+            },
+            {
+              "code": "BI00028",
+              "system": "http://www.nlm.nih.gov/research/umls/bi"
+            },
+            {
+              "code": "A01.4",
+              "system": "http://www.nlm.nih.gov/research/umls/ccc"
+            },
+            {
+              "code": "1014729",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "0000004914",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "298",
+              "system": "http://www.nlm.nih.gov/research/umls/costar"
+            },
+            {
+              "code": "65221",
+              "system": "http://www.nlm.nih.gov/research/umls/cpm"
+            },
+            {
+              "code": "1385-2059",
+              "system": "http://www.nlm.nih.gov/research/umls/csp"
+            },
+            {
+              "code": "ASTHENIA",
+              "system": "http://www.nlm.nih.gov/research/umls/cst"
+            },
+            {
+              "code": "U001451",
+              "system": "http://www.nlm.nih.gov/research/umls/dxp"
+            },
+            {
+              "code": "HP:0012378",
+              "system": "http://www.nlm.nih.gov/research/umls/hpo"
+            },
+            {
+              "code": "R53.83",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm"
+            },
+            {
+              "code": "10000695",
+              "system": "http://www.nlm.nih.gov/research/umls/icnp"
+            },
+            {
+              "code": "MTHU080142",
+              "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+            },
+            {
+              "code": "A04004",
+              "system": "http://hl7.org/fhir/sid/icpc-2p"
+            },
+            {
+              "code": "U001739",
+              "system": "http://www.nlm.nih.gov/research/umls/lch"
+            },
+            {
+              "code": "sh85047465",
+              "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+            },
+            {
+              "code": "MTHU013358",
+              "system": "http://loinc.org"
+            },
+            {
+              "code": "10016256",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "273174",
+              "system": "http://www.nlm.nih.gov/research/umls/medcin"
+            },
+            {
+              "code": "5324",
+              "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+            },
+            {
+              "code": "D005221",
+              "system": "http://www.nlm.nih.gov/research/umls/msh"
+            },
+            {
+              "code": "780.79",
+              "system": "http://www.nlm.nih.gov/research/umls/mthicd9"
+            },
+            {
+              "code": "00742",
+              "system": "http://www.nlm.nih.gov/research/umls/nanda-i"
+            },
+            {
+              "code": "C3036",
+              "system": "http://ncimeta.nci.nih.gov"
+            },
+            {
+              "code": "C3036",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+            },
+            {
+              "code": "E11098",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_ctcae"
+            },
+            {
+              "code": "C3036",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_ctrp"
+            },
+            {
+              "code": "1849",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_fda"
+            },
+            {
+              "code": "CDR0000321374",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_nci-gloss"
+            },
+            {
+              "code": "C3036",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_nichd"
+            },
+            {
+              "code": "C3036",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cadsr"
+            },
+            {
+              "code": "121028",
+              "system": "http://www.nlm.nih.gov/research/umls/noc"
+            },
+            {
+              "code": "MTHU010062",
+              "system": "http://www.nlm.nih.gov/research/umls/omim"
+            },
+            {
+              "code": "PRB_00010.03",
+              "system": "http://www.nlm.nih.gov/research/umls/pcds"
+            },
+            {
+              "code": "CDR0000041390",
+              "system": "http://www.nlm.nih.gov/research/umls/pdq"
+            },
+            {
+              "code": "19400",
+              "system": "http://www.nlm.nih.gov/research/umls/psy"
+            },
+            {
+              "code": "1682.",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "F-01610",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "F-01360",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "84229001",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "0724",
+              "system": "http://www.nlm.nih.gov/research/umls/who"
+            }
+          ],
+          "text": "fatigue"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 932
+              },
+              {
+                "url": "length",
+                "valueInteger": 7
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "e0c7098e-9a93-4aef-9587-11ce777533e8",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/f4f10d5e-f56d-453a-9c01-38dc1ae93660",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "C0221785",
+              "display": "Pain in wrist",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "BI00504",
+              "system": "http://www.nlm.nih.gov/research/umls/bi"
+            },
+            {
+              "code": "1016217",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "0000021489",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "U000624",
+              "system": "http://www.nlm.nih.gov/research/umls/costar"
+            },
+            {
+              "code": "U004491",
+              "system": "http://www.nlm.nih.gov/research/umls/dxp"
+            },
+            {
+              "code": "HP:0030836",
+              "system": "http://www.nlm.nih.gov/research/umls/hpo"
+            },
+            {
+              "code": "M25.53",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm"
+            },
+            {
+              "code": "MTHU060847",
+              "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+            },
+            {
+              "code": "L11002",
+              "system": "http://hl7.org/fhir/sid/icpc-2p"
+            },
+            {
+              "code": "10048692",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "939",
+              "system": "http://www.nlm.nih.gov/research/umls/medcin"
+            },
+            {
+              "code": "MTHU016462",
+              "system": "http://www.nlm.nih.gov/research/umls/omim"
+            },
+            {
+              "code": "N094F",
+              "system": "http://www.nlm.nih.gov/research/umls/rcd"
+            },
+            {
+              "code": "F-176A0",
+              "system": "http://snomed.info/sct"
+            },
+            {
+              "code": "56608008",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "wrist pain"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 944
+              },
+              {
+                "url": "length",
+                "valueInteger": 10
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "f4f10d5e-f56d-453a-9c01-38dc1ae93660",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/f09f51c8-3c90-42cc-bd02-388dd8c83341",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "C0741034",
+              "display": "Anginal equivalent",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "1017783",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "0000047213",
+              "system": "http://www.nlm.nih.gov/research/umls/chv"
+            },
+            {
+              "code": "I20.8",
+              "system": "http://hl7.org/fhir/sid/icd-10-cm"
+            },
+            {
+              "code": "10076419",
+              "system": "http://www.nlm.nih.gov/research/umls/mdr"
+            },
+            {
+              "code": "413.9",
+              "system": "http://www.nlm.nih.gov/research/umls/mthicd9"
+            }
+          ],
+          "text": "anginal equivalent"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 961
+              },
+              {
+                "url": "length",
+                "valueInteger": 18
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "f09f51c8-3c90-42cc-bd02-388dd8c83341",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "Condition/8a6d9460-243a-4f94-af6f-750dbe381915",
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "problem-list-item",
+                "display": "Problem List Item",
+                "system": "http://terminology.hl7.org/CodeSystem/condition-category"
+              }
+            ],
+            "text": "Problem List Item"
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "code": "C1457887",
+              "display": "Symptoms",
+              "system": "http://www.nlm.nih.gov/research/umls"
+            },
+            {
+              "code": "0000004363",
+              "system": "http://www.nlm.nih.gov/research/umls/aod"
+            },
+            {
+              "code": "0009963",
+              "system": "http://www.nlm.nih.gov/research/umls/ccpss"
+            },
+            {
+              "code": "GENSYMPTOMS",
+              "system": "http://www.nlm.nih.gov/research/umls/cst"
+            },
+            {
+              "code": "780-789.99",
+              "system": "http://hl7.org/fhir/sid/icd-9-cm"
+            },
+            {
+              "code": "MTHU072482",
+              "system": "http://hl7.org/fhir/sid/icpc2icd10eng"
+            },
+            {
+              "code": "sh85131555",
+              "system": "http://www.nlm.nih.gov/research/umls/lch_nw"
+            },
+            {
+              "code": "MTHU021540",
+              "system": "http://loinc.org"
+            },
+            {
+              "code": "2952",
+              "system": "http://www.nlm.nih.gov/research/umls/medcin"
+            },
+            {
+              "code": "31",
+              "system": "http://www.nlm.nih.gov/research/umls/medlineplus"
+            },
+            {
+              "code": "C4876",
+              "system": "http://ncimeta.nci.nih.gov"
+            },
+            {
+              "code": "SDTM-SCTESTCD",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cdisc"
+            },
+            {
+              "code": "CDR0000045022",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_nci-gloss"
+            },
+            {
+              "code": "C4876",
+              "system": "http://www.nlm.nih.gov/research/umls/nci_cadsr"
+            },
+            {
+              "code": "51140",
+              "system": "http://www.nlm.nih.gov/research/umls/psy"
+            },
+            {
+              "code": "F-01250",
+              "system": "http://snomed.info/sct"
+            }
+          ],
+          "text": "symptoms"
+        },
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "extension": [
+          {
+            "extension": [
+              {
+                "url": "offset",
+                "valueInteger": 1012
+              },
+              {
+                "url": "length",
+                "valueInteger": 8
+              }
+            ],
+            "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+          }
+        ],
+        "id": "8a6d9460-243a-4f94-af6f-750dbe381915",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/core/StructureDefinition/us-core-condition"
+          ]
+        },
+        "note": [
+          {
+            "extension": [
+              {
+                "extension": [
+                  {
+                    "url": "offset",
+                    "valueInteger": 1002
+                  },
+                  {
+                    "url": "length",
+                    "valueInteger": 9
+                  }
+                ],
+                "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+              }
+            ],
+            "text": "increased"
+          }
+        ],
+        "resourceType": "Condition",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "code": "confirmed",
+              "display": "Confirmed",
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status"
+            }
+          ],
+          "text": "Confirmed"
+        }
+      }
+    },
+    {
+      "fullUrl": "List/89981c04-f2e1-4ef1-987b-5334d696ae7a",
+      "resource": {
+        "encounter": {
+          "display": "unknown",
+          "reference": "Encounter/e9121e8d-ff8e-4d02-ad47-040aa6ad4a63",
+          "type": "Encounter"
+        },
+        "entry": [
+          {
+            "item": {
+              "display": "cardiac catheterization",
+              "reference": "Observation/8c6320a8-0eb5-419f-979d-0da72f2c2988",
+              "type": "Observation"
+            }
+          },
+          {
+            "item": {
+              "display": "stress echocardiogram",
+              "reference": "Observation/30656c53-7692-4a21-acc5-eec29f57e8e2",
+              "type": "Observation"
+            }
+          },
+          {
+            "item": {
+              "display": "disease",
+              "reference": "Condition/dea2b434-133e-4857-bbdc-5adf28e11bd0",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "coronary artery disease",
+              "reference": "FamilyMemberHistory/854d4c1c-545a-44a9-b720-220db80ed987",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "coronary artery disease",
+              "reference": "FamilyMemberHistory/84de0935-9e3b-4acd-aeef-98decdb85a84",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "coronary artery disease",
+              "reference": "FamilyMemberHistory/64da4ee8-54b0-4fe2-8abe-c19c9ef5cd4b",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "dying",
+              "reference": "FamilyMemberHistory/af797969-718b-4c90-bf16-fed87c3a6852",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "dying",
+              "reference": "FamilyMemberHistory/1618d4d9-2417-4cc6-9b2a-7a69c3964a7a",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "dying",
+              "reference": "FamilyMemberHistory/a87fb000-e393-4212-9773-9c39835fa4bc",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "myocardial infarction",
+              "reference": "FamilyMemberHistory/965bc116-b141-4e5e-8d1a-2cb7703cbb54",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "myocardial infarction",
+              "reference": "FamilyMemberHistory/de458b16-5019-4b33-8449-d68fd907f895",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "myocardial infarction",
+              "reference": "FamilyMemberHistory/a9db0e96-9880-4856-9ad9-00dd179aefca",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "left main disease",
+              "reference": "FamilyMemberHistory/b7414c1c-c74c-4afd-861a-1dc6a0bbffaa",
+              "type": "FamilyMemberHistory"
+            }
+          },
+          {
+            "item": {
+              "display": "coronary artery bypass grafting",
+              "reference": "Procedure/51fff192-e92a-4fea-a945-28af8e640d3e",
+              "type": "Procedure"
+            }
+          },
+          {
+            "item": {
+              "display": "revascularization",
+              "reference": "Procedure/c4e46cf9-0e16-497e-a3c7-8fe91760018d",
+              "type": "Procedure"
+            }
+          },
+          {
+            "item": {
+              "display": "open heart surgery",
+              "reference": "Procedure/aee7f9e5-1150-46c5-9e2e-4d860f477266",
+              "type": "Procedure"
+            }
+          },
+          {
+            "item": {
+              "display": "angina",
+              "reference": "Condition/157d9602-8a77-4c7c-af40-f2a6a430f1e4",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "occlusion",
+              "reference": "Condition/56885ddc-d16f-46a2-91f2-48e8a7506309",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "wall motion abnormalities",
+              "reference": "Condition/7143bb52-acf3-4b7b-8654-cbbbdcfe3397",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "body habitus",
+              "reference": "Condition/c5190bee-909a-4f28-87e9-a318a4ace6ee",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "ST depressions in the anterior lateral leads",
+              "reference": "Condition/061532f2-3805-4623-ae0c-6a4ea212524a",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "fatigue",
+              "reference": "Condition/e0c7098e-9a93-4aef-9587-11ce777533e8",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "wrist pain",
+              "reference": "Condition/f4f10d5e-f56d-453a-9c01-38dc1ae93660",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "anginal equivalent",
+              "reference": "Condition/f09f51c8-3c90-42cc-bd02-388dd8c83341",
+              "type": "Condition"
+            }
+          },
+          {
+            "item": {
+              "display": "symptoms",
+              "reference": "Condition/8a6d9460-243a-4f94-af6f-750dbe381915",
+              "type": "Condition"
+            }
+          }
+        ],
+        "id": "89981c04-f2e1-4ef1-987b-5334d696ae7a",
+        "mode": "snapshot",
+        "resourceType": "List",
+        "status": "current",
+        "subject": {
+          "reference": "Patient/e1ac4d9f-c555-492f-9d5f-7f27d5520c29",
+          "type": "Patient"
+        },
+        "title": "HISTORY OF PRESENT ILLNESS"
+      }
+    }
+  ],
+  "id": "13cf32ad-a51a-425d-a3c2-860cae0cce29",
+  "identifier": {
+    "system": "urn:ietf:rfc:3986",
+    "value": "urn:uuid:13cf32ad-a51a-425d-a3c2-860cae0cce29"
+  },
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/4.0.1/StructureDefinition/Bundle"
+    ]
+  },
+  "resourceType": "Bundle",
+  "type": "document"
+}

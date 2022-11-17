@@ -1,10 +1,22 @@
 ﻿@page "/"
+@inject HttpClient Http
+
 
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
 
+<h2>@responseText</h2>
+
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code {
+
+    string responseText { get; set; } = default!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        //responseText = await Http.GetStringAsync("api/Function1");
+    }
+}
 
