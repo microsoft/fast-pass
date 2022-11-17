@@ -26,11 +26,11 @@
     {
         Logger.LogInformation("HandleValidSubmit called");
 
-        var bundle = await Http.GetStringAsync("sample-data/fhirBundle.json");
+        //var bundle = await Http.GetStringAsync("sample-data/fhirBundle.json");
 
-        //var result = await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TextAnalyticsServiceProxy", textAnalyticsProxyRequest);
+        var result = await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TextAnalyticsServiceProxy", textAnalyticsProxyRequest);
 
-        //var bundle = await result.Content.ReadAsStringAsync();
+        var bundle = await result.Content.ReadAsStringAsync();
 
         await sessionStorage.SetItemAsStringAsync("bundle", bundle);
 
