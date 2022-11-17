@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastPass.UI", "FastPass.UI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastPass.API", "FastPass.API\FastPass.API.csproj", "{6FEA3AC3-D85F-4EA2-8242-955CA6956C3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastPass.Models", "FastPass.Models\FastPass.Models.csproj", "{2A5691BB-7ED8-415E-8C45-310A39D2F863}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastPass.Models", "FastPass.Models\FastPass.Models.csproj", "{2A5691BB-7ED8-415E-8C45-310A39D2F863}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
