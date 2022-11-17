@@ -1,0 +1,107 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{f1db09b9-d15a-ed11-9562-000d3a5bc375}" Name="ProcessImageForHealthData">
+      <JsonFileName>/Workflows/ProcessImageForHealthData-F1DB09B9-D15A-ED11-9562-000D3A5BC375.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="ProcessImageForHealthData" />
+      </LocalizedNames>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <CanvasApps>
+    <CanvasApp>
+      <Name>emops_patientintakeform_107a9</Name>
+      <AppVersion>2022-11-10T19:40:23Z</AppVersion>
+      <Status>Ready</Status>
+      <CreatedByClientVersion>3.22111.12.0</CreatedByClientVersion>
+      <MinClientVersion>3.22111.12.0</MinClientVersion>
+      <Tags>{"primaryDeviceWidth":"1366","primaryDeviceHeight":"768","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","publisherVersion":"3.22111.12","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20221108T164302Z-3.22111.12.0"}</Tags>
+      <IsCdsUpgraded>0</IsCdsUpgraded>
+      <GalleryItemId xsi:nil="true"></GalleryItemId>
+      <BackgroundColor>RGBA(0,176,240,1)</BackgroundColor>
+      <DisplayName>PatientIntakeForm</DisplayName>
+      <Description xsi:nil="true"></Description>
+      <CommitMessage xsi:nil="true"></CommitMessage>
+      <Publisher xsi:nil="true"></Publisher>
+      <AuthorizationReferences>[]</AuthorizationReferences>
+      <ConnectionReferences>{"659f4589-a901-4c02-a0c1-1faa61c117be":{"id":"/providers/microsoft.powerapps/apis/shared_emops-5ffhirpower-5fa4cdbbdd450d1d62","displayName":"FHIRPower","iconUri":"https://prodapiicons.cdn.powerappscdn.net/20220512t000000z27701f735b624dd1a4cd268b075c84a7/customconnectoricon.png","dataSources":["FHIRPower"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["CreatePatient","GetPatients"],"customApiLogicalName":"emops_5Ffhirpower","isCustomApiSolutionAware":true},"6bb45786-9879-4b28-bae7-c80f504192ae":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1534/1.0.1534.2605/logicflows/icon.png","dataSources":["ProcessImageForHealthData"],"dependencies":["2238926b-260b-423e-a0fb-aee81a86a628","7848fadd-27f7-4b9e-b0a0-7abc5bc60282"],"dependents":[],"parameterHints":{"workflowName":{"value":"d8e4cdc1-4bac-4e04-a35f-41cd51aeba75"},"workflowEntityId":{"value":"f1db09b9-d15a-ed11-9562-000d3a5bc375"},"2238926b-260b-423e-a0fb-aee81a86a628":{"value":"shared_cognitiveservicescomputervision_1"},"7848fadd-27f7-4b9e-b0a0-7abc5bc60282":{"value":"shared_emops-5ftextanalytics4health-2d20220515-5fa4cdbbdd450d1d62"}},"parameterHintsV2":{"workflowName":{"value":"d8e4cdc1-4bac-4e04-a35f-41cd51aeba75"},"workflowEntityId":{"value":"f1db09b9-d15a-ed11-9562-000d3a5bc375"},"shared_cognitiveservicescomputervision_1":{"value":"2238926b-260b-423e-a0fb-aee81a86a628"},"shared_emops-5ftextanalytics4health-2d20220515-5fa4cdbbdd450d1d62":{"value":"7848fadd-27f7-4b9e-b0a0-7abc5bc60282"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"],"isCustomApiSolutionAware":false},"2238926b-260b-423e-a0fb-aee81a86a628":{"id":"/providers/microsoft.powerapps/apis/shared_cognitiveservicescomputervision","xrmConnectionReferenceLogicalName":"emops_sharedcognitiveservicescomputervision_5f818","displayName":"Computer Vision API","iconUri":"https://connectoricons-prod.azureedge.net/releases/v1.0.1549/1.0.1549.2680/cognitiveservicescomputervision/icon.png","dataSources":[],"dependencies":[],"dependents":["6bb45786-9879-4b28-bae7-c80f504192ae"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"sharedConnectionId":"ca25c123-ebe3-4fa3-9bfe-5b1eba49a3c8","bypassConsent":false,"dataSets":{},"apiTier":"Standard","isCustomApiSolutionAware":false,"authenticationType":"keyBasedAuth"},"7848fadd-27f7-4b9e-b0a0-7abc5bc60282":{"id":"/providers/microsoft.powerapps/apis/shared_emops-5ftextanalytics4health-2d20220515-5fa4cdbbdd450d1d62","displayName":"TextAnalytics4Health-20220515","iconUri":"https://az787822.vo.msecnd.net/defaulticons/api-dedicated.png","dataSources":[],"dependencies":[],"dependents":["6bb45786-9879-4b28-bae7-c80f504192ae"],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","customApiLogicalName":"emops_5Ftextanalytics4health-2D20220515","isCustomApiSolutionAware":true}}</ConnectionReferences>
+      <DatabaseReferences>{}</DatabaseReferences>
+      <AppComponents>[]</AppComponents>
+      <AppComponentDependencies>[]</AppComponentDependencies>
+      <CanConsumeAppPass>1</CanConsumeAppPass>
+      <CanvasAppType>0</CanvasAppType>
+      <BypassConsent>0</BypassConsent>
+      <AdminControlBypassConsent>0</AdminControlBypassConsent>
+      <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <CdsDependencies>{"cdsdependencies":[{"logicalname":"emops_5Ffhirpower","componenttype":372,"componenttypeplatformname":"connector"},{"logicalname":"emops_5Ftextanalytics4health-2D20220515","componenttype":372,"componenttypeplatformname":"connector"},{"logicalname":"emops_sharedcognitiveservicescomputervision_5f818","componenttype":10029,"componenttypeplatformname":"ConnectionReference"}]}</CdsDependencies>
+      <IsCustomizable>1</IsCustomizable>
+      <BackgroundImageUri>/CanvasApps/emops_patientintakeform_107a9_BackgroundImageUri</BackgroundImageUri>
+      <DocumentUri>/CanvasApps/emops_patientintakeform_107a9_DocumentUri.msapp</DocumentUri>
+    </CanvasApp>
+  </CanvasApps>
+  <Connectors>
+    <Connector>
+      <connectorid>377dfb24-f621-42d2-964a-9c843ba8d0a1</connectorid>
+      <description>Text Analytics For Health (2022-05-15)</description>
+      <displayname>TextAnalytics4Health-20220515</displayname>
+      <iconbrandcolor>#135599</iconbrandcolor>
+      <name>emops_5Ftextanalytics4health-2D20220515</name>
+      <connectortype>1</connectortype>
+      <openapidefinition>/Connector/emops_5Ftextanalytics4health-2D20220515_openapidefinition.json</openapidefinition>
+      <connectionparameters>/Connector/emops_5Ftextanalytics4health-2D20220515_connectionparameters.json</connectionparameters>
+      <policytemplateinstances>/Connector/emops_5Ftextanalytics4health-2D20220515_policytemplateinstances.json</policytemplateinstances>
+      <iconblob>/Connector/emops_5Ftextanalytics4health-2D20220515_iconblob.Png</iconblob>
+    </Connector>
+  </Connectors>
+  <connectionreferences>
+    <connectionreference connectionreferencelogicalname="emops_sharedcognitiveservicescomputervision_5f818">
+      <connectionreferencedisplayname>FastPass - CompVision ConnRef</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_cognitiveservicescomputervision</connectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+    <connectionreference connectionreferencelogicalname="emops_sharedemops5ftextanalytics4health2d202205155fa4cdbbdd450d1d62_07671">
+      <connectionreferencedisplayname>TextAnalytics4Health-20220515 ConnRef</connectionreferencedisplayname>
+      <connectorid>/providers/Microsoft.PowerApps/apis/shared_emops-5ftextanalytics4health-2d20220515-5fa4cdbbdd450d1d62</connectorid>
+      <customconnectorid>
+        <connectorid>377dfb24-f621-42d2-964a-9c843ba8d0a1</connectorid>
+      </customconnectorid>
+      <iscustomizable>1</iscustomizable>
+      <statecode>0</statecode>
+      <statuscode>1</statuscode>
+    </connectionreference>
+  </connectionreferences>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

@@ -1,0 +1,823 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_cognitiveservicescomputervision_1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "emops_sharedcognitiveservicescomputervision_5f818"
+        },
+        "api": {
+          "name": "shared_cognitiveservicescomputervision"
+        }
+      },
+      "shared_emops-5ftextanalytics4health-2d20220515-5fa4cdbbdd450d1d62": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "emops_sharedemops5ftextanalytics4health2d202205155fa4cdbbdd450d1d62_07671"
+        },
+        "api": {
+          "name": "shared_emops-5Ftextanalytics4health-2D20220515-5Fa4cdbbdd450d1d62",
+          "logicalName": "emops_5Ftextanalytics4health-2D20220515"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "87bc09f8-0367-4922-9d43-e87ed11fb500"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "title": "content",
+                  "type": "object",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please select file",
+                  "x-ms-content-hint": "FILE",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "contentBytes": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                }
+              },
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Optical_Character_Recognition_(OCR)_to_Text": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d304f2b8-a7af-4a57-bbe6-d69484da1ff7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_cognitiveservicescomputervision_1",
+              "operationId": "OCRTextV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_cognitiveservicescomputervision"
+            },
+            "parameters": {
+              "format": "Image Content",
+              "Image": "@triggerBody()?['file']?['contentBytes']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_JobId": {
+          "runAfter": {
+            "Async_Extract_Health_Information_Submit": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4c07ebcd-bd10-4c57-a14e-3a2abb788e85"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "JobId",
+                "type": "string",
+                "value": "@{first(split(last(split(outputs('Async_Extract_Health_Information_Submit')?['headers']['operation-location'], '/')),'?'))}"
+              }
+            ]
+          }
+        },
+        "Do_until_Extract_Health_Information_job_complete": {
+          "actions": {
+            "Delay": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "8bf8a6d2-35a7-4ae8-8984-b39de776e2d2"
+              },
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 5,
+                  "unit": "Second"
+                }
+              }
+            },
+            "Update_RequestStatus_Variable": {
+              "runAfter": {
+                "Parse_JSON": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c4bb4f4e-f192-4227-ac1a-ac78c8d2901e"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "RequestStatus",
+                "value": "@body('Parse_JSON')?['status']"
+              }
+            },
+            "Parse_JSON": {
+              "runAfter": {
+                "Extract_Health_Information_Retrieve": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "eb367277-b38b-4112-85cc-afdf7e65205f"
+              },
+              "type": "ParseJson",
+              "inputs": {
+                "content": "@body('Extract_Health_Information_Retrieve')",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jobId": {
+                      "type": "string"
+                    },
+                    "lastUpdatedDateTime": {
+                      "type": "string"
+                    },
+                    "createdDateTime": {
+                      "type": "string"
+                    },
+                    "expirationDateTime": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "array"
+                    },
+                    "tasks": {
+                      "type": "object",
+                      "properties": {
+                        "completed": {
+                          "type": "integer"
+                        },
+                        "failed": {
+                          "type": "integer"
+                        },
+                        "inProgress": {
+                          "type": "integer"
+                        },
+                        "total": {
+                          "type": "integer"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string"
+                              },
+                              "lastUpdateDateTime": {
+                                "type": "string"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "results": {
+                                "type": "object",
+                                "properties": {
+                                  "documents": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "id": {
+                                          "type": "string"
+                                        },
+                                        "entities": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "offset": {
+                                                "type": "integer"
+                                              },
+                                              "length": {
+                                                "type": "integer"
+                                              },
+                                              "text": {
+                                                "type": "string"
+                                              },
+                                              "category": {
+                                                "type": "string"
+                                              },
+                                              "confidenceScore": {
+                                                "type": "number"
+                                              },
+                                              "name": {
+                                                "type": "string"
+                                              },
+                                              "links": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "dataSource": {
+                                                      "type": "string"
+                                                    },
+                                                    "id": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "dataSource",
+                                                    "id"
+                                                  ]
+                                                }
+                                              },
+                                              "assertion": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "certainty": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "required": [
+                                              "offset",
+                                              "length",
+                                              "text",
+                                              "category",
+                                              "confidenceScore"
+                                            ]
+                                          }
+                                        },
+                                        "relations": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "relationType": {
+                                                "type": "string"
+                                              },
+                                              "entities": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "ref": {
+                                                      "type": "string"
+                                                    },
+                                                    "role": {
+                                                      "type": "string"
+                                                    }
+                                                  },
+                                                  "required": [
+                                                    "ref",
+                                                    "role"
+                                                  ]
+                                                }
+                                              }
+                                            },
+                                            "required": [
+                                              "relationType",
+                                              "entities"
+                                            ]
+                                          }
+                                        },
+                                        "warnings": {
+                                          "type": "array"
+                                        },
+                                        "fhirBundle": {
+                                          "type": "object",
+                                          "properties": {
+                                            "resourceType": {
+                                              "type": "string"
+                                            },
+                                            "id": {
+                                              "type": "string"
+                                            },
+                                            "meta": {
+                                              "type": "object",
+                                              "properties": {
+                                                "profile": {
+                                                  "type": "array",
+                                                  "items": {
+                                                    "type": "string"
+                                                  }
+                                                }
+                                              }
+                                            },
+                                            "identifier": {
+                                              "type": "object",
+                                              "properties": {
+                                                "system": {
+                                                  "type": "string"
+                                                },
+                                                "value": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            },
+                                            "type": {
+                                              "type": "string"
+                                            },
+                                            "entry": {
+                                              "type": "array",
+                                              "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "fullUrl": {
+                                                    "type": "string"
+                                                  },
+                                                  "resource": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "resourceType": {
+                                                        "type": "string"
+                                                      },
+                                                      "id": {
+                                                        "type": "string"
+                                                      },
+                                                      "status": {
+                                                        "type": "string"
+                                                      },
+                                                      "type": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "coding": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "system": {
+                                                                  "type": "string"
+                                                                },
+                                                                "code": {
+                                                                  "type": "string"
+                                                                },
+                                                                "display": {
+                                                                  "type": "string"
+                                                                }
+                                                              },
+                                                              "required": [
+                                                                "system",
+                                                                "code",
+                                                                "display"
+                                                              ]
+                                                            }
+                                                          },
+                                                          "text": {
+                                                            "type": "string"
+                                                          }
+                                                        }
+                                                      },
+                                                      "subject": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "reference": {
+                                                            "type": "string"
+                                                          },
+                                                          "type": {
+                                                            "type": "string"
+                                                          },
+                                                          "display": {
+                                                            "type": "string"
+                                                          }
+                                                        }
+                                                      },
+                                                      "encounter": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "reference": {
+                                                            "type": "string"
+                                                          },
+                                                          "type": {
+                                                            "type": "string"
+                                                          },
+                                                          "display": {
+                                                            "type": "string"
+                                                          }
+                                                        }
+                                                      },
+                                                      "date": {
+                                                        "type": "string"
+                                                      },
+                                                      "author": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "reference": {
+                                                              "type": "string"
+                                                            },
+                                                            "type": {
+                                                              "type": "string"
+                                                            },
+                                                            "display": {
+                                                              "type": "string"
+                                                            }
+                                                          },
+                                                          "required": [
+                                                            "reference",
+                                                            "type",
+                                                            "display"
+                                                          ]
+                                                        }
+                                                      },
+                                                      "title": {
+                                                        "type": "string"
+                                                      },
+                                                      "section": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "title": {
+                                                              "type": "string"
+                                                            },
+                                                            "code": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "coding": {
+                                                                  "type": "array",
+                                                                  "items": {
+                                                                    "type": "object",
+                                                                    "properties": {
+                                                                      "system": {
+                                                                        "type": "string"
+                                                                      },
+                                                                      "display": {
+                                                                        "type": "string"
+                                                                      }
+                                                                    },
+                                                                    "required": [
+                                                                      "system",
+                                                                      "display"
+                                                                    ]
+                                                                  }
+                                                                },
+                                                                "text": {
+                                                                  "type": "string"
+                                                                }
+                                                              }
+                                                            },
+                                                            "text": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "status": {
+                                                                  "type": "string"
+                                                                },
+                                                                "div": {
+                                                                  "type": "string"
+                                                                }
+                                                              }
+                                                            },
+                                                            "entry": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "reference": {
+                                                                    "type": "string"
+                                                                  },
+                                                                  "type": {
+                                                                    "type": "string"
+                                                                  },
+                                                                  "display": {
+                                                                    "type": "string"
+                                                                  }
+                                                                },
+                                                                "required": [
+                                                                  "reference",
+                                                                  "type",
+                                                                  "display"
+                                                                ]
+                                                              }
+                                                            }
+                                                          },
+                                                          "required": [
+                                                            "title",
+                                                            "code",
+                                                            "text"
+                                                          ]
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                },
+                                                "required": [
+                                                  "fullUrl",
+                                                  "resource"
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "required": [
+                                        "id",
+                                        "entities",
+                                        "relations",
+                                        "warnings",
+                                        "fhirBundle"
+                                      ]
+                                    }
+                                  },
+                                  "errors": {
+                                    "type": "array"
+                                  },
+                                  "modelVersion": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "lastUpdateDateTime",
+                              "status",
+                              "results"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Extract_Health_Information_Retrieve": {
+              "runAfter": {
+                "Delay": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3576edc7-9b69-4ace-ab47-e027b3232d62"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_emops-5ftextanalytics4health-2d20220515-5fa4cdbbdd450d1d62",
+                  "operationId": "ExtractHealthInformationAsyncRetrieve",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_emops-5Ftextanalytics4health-2D20220515-5Fa4cdbbdd450d1d62"
+                },
+                "parameters": {
+                  "JobId": "@variables('JobId')",
+                  "api-version": "2022-05-15-preview",
+                  "Ocp-Apim-Subscription-Key": "244be795e5f34b708c3d23a01f84eba5"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_RequestStatus_Variable": [
+              "Succeeded"
+            ]
+          },
+          "expression": "@not(equals(variables('RequestStatus'), 'running'))",
+          "limit": {
+            "count": 60,
+            "timeout": "PT1H"
+          },
+          "metadata": {
+            "operationMetadataId": "c61e3012-4928-49ec-84c4-61d06f137410"
+          },
+          "type": "Until"
+        },
+        "Initialize_RequestStatus_Variable": {
+          "runAfter": {
+            "Get_JobId": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9fd3fe15-1755-4ac3-80a4-9fa401097a31"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "RequestStatus",
+                "type": "string",
+                "value": "running"
+              }
+            ]
+          }
+        },
+        "Initialize_fhirBundle": {
+          "runAfter": {
+            "Do_until_Extract_Health_Information_job_complete": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fccc9208-6807-4401-a917-d879202b604e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "fhirBundle",
+                "type": "string",
+                "value": "@{string(body('Parse_JSON')?['tasks']?['items'][0]?['results']?['documents'][0]?['fhirBundle'])}"
+              }
+            ]
+          }
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "DEBUG": [
+              "Succeeded",
+              "Skipped",
+              "Failed",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8d8b6716-8149-4836-aacc-83ee70480627"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "firstname": "@{coalesce(body('Find_Patient_Element')?[0]?['resource']?['name']?[0]?['given']?[0], 'unknown')}",
+              "lastname": "@{coalesce(body('Find_Patient_Element')?[0]?['resource']?['name']?[0]?['family'], 'unknown')}",
+              "address": "@{coalesce(body('Find_Address_Element')?[0]?['resource']?['name'], 'unknown')}",
+              "gender": "@{coalesce(body('Find_Patient_Element')?[0]?['resource']?['gender'], 'unknown')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstname": {
+                  "title": "firstName",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "lastname": {
+                  "title": "lastName",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "address": {
+                  "title": "address",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "gender": {
+                  "title": "gender",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_fhirBundleEntries": {
+          "runAfter": {
+            "Initialize_fhirBundle": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "035042cc-de9b-4165-86bd-690420231c2c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "fhirBundleEntries",
+                "type": "array",
+                "value": "@body('Parse_JSON')?['tasks']?['items']?[0]?['results']?['documents']?[0]?['fhirBundle']?['entry']"
+              }
+            ]
+          }
+        },
+        "Find_Patient_Element": {
+          "runAfter": {
+            "Initialize_fhirBundleEntries": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd0345db-ade8-4fe6-9d44-e96b8cfca0ac"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@variables('fhirBundleEntries')",
+            "where": "@contains(item()['resource']['resourceType'],'Patient')"
+          }
+        },
+        "Find_Address_Element": {
+          "runAfter": {
+            "Find_Patient_Element": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "52c808e0-1bde-4804-bd1d-b562e3a5a521"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@variables('fhirBundleEntries')",
+            "where": "@contains(item()['resource']['resourceType'],'Location')"
+          }
+        },
+        "Find_Observation_Elements": {
+          "runAfter": {
+            "Find_Address_Element": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "53a347bb-b75b-4ed1-a610-57687431b5b7"
+          },
+          "type": "Query",
+          "inputs": {
+            "from": "@variables('fhirBundleEntries')",
+            "where": "@contains(item()['resource']['resourceType'],'Observation')"
+          }
+        },
+        "DEBUG": {
+          "runAfter": {
+            "Find_Observation_Elements": [
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6e1e8978-f9c2-4f36-91e1-7c5ef6f65915"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "DEBUG",
+                "type": "array",
+                "value": "@body('Find_Observation_Elements')"
+              }
+            ]
+          }
+        },
+        "Async_Extract_Health_Information_Submit": {
+          "runAfter": {
+            "Optical_Character_Recognition_(OCR)_to_Text": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "be87c724-5012-421f-bea8-0ede714a6f4b"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_emops-5ftextanalytics4health-2d20220515-5fa4cdbbdd450d1d62",
+              "operationId": "ExtractHealthInformationAsync",
+              "apiId": ""
+            },
+            "parameters": {
+              "api-version": "2022-05-15-preview",
+              "Content-Type": "application/json",
+              "Ocp-Apim-Subscription-Key": "244be795e5f34b708c3d23a01f84eba5",
+              "body/tasks": [
+                {
+                  "parameters/fhirVersion": "4.0.1",
+                  "kind": "Healthcare"
+                }
+              ],
+              "body/analysisInput/documents": [
+                {
+                  "id": "@guid()",
+                  "text": "@outputs('Optical_Character_Recognition_(OCR)_to_Text')?['body/text']",
+                  "language": "en"
+                }
+              ]
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
