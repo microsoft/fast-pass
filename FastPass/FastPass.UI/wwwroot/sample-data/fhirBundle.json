@@ -90,11 +90,23 @@
             "value": "#333582770390100 | MH | 85986313 | | 054351 | 2/14/2001 AM I CORONARY ARTERY DISEASE I Signed I DIS I"
           }
         ],
+        "address": [
+          {
+            "line": [
+              "88 LEWIS BAY ROAD tested Karthick 123"
+            ],
+            "city": "HYANNIS",
+            "state": "MA",
+            "postalCode": "02601",
+            "country": "US"
+          }
+        ],
         "name": [
           {
             "given": [
               "Jeff"
-            ]
+            ],
+            "family": "Smith"
           }
         ],
         "resourceType": "Patient"

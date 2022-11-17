@@ -26,7 +26,7 @@
     {
         Logger.LogInformation("HandleValidSubmit called");
 
-        //var result = await Http.GetStringAsync("sample-data/fhirBundle.json");
+        //var bundle = await Http.GetStringAsync("sample-data/fhirBundle.json");
 
         var result = await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TextAnalyticsServiceProxy", textAnalyticsProxyRequest);
 
@@ -34,7 +34,7 @@
 
         await sessionStorage.SetItemAsStringAsync("bundle", bundle);
 
-        //var patient = bundle.Entry.Find(x => x.Resource.TypeName.ToLower() == "patient")?.Resource as Patient;
+        
 
         Logger.LogInformation(bundle);
 
