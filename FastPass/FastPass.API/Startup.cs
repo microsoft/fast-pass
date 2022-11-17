@@ -41,7 +41,10 @@ public class Startup : FunctionsStartup
 
             var handler = new AuthorizationHandler
             {
-                Scopes = new string[] { model.FhirScope }
+                Scopes = new string[] { model.FhirScope },
+                TenantId = model.TenantId,
+                ClientId = model.ClientId,
+                ClientSecret = model.ClientSecret
             };
 
             var fhirClient = new FhirClient(new Uri(model.FhirServerUri), new FhirClientSettings
