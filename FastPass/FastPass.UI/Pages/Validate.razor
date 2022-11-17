@@ -11,9 +11,7 @@
         try
         {
             var result = await sessionStorage.GetItemAsStringAsync("bundle");
-
             var parser = new Hl7.Fhir.Serialization.FhirJsonParser();
-
             var bundle = parser.Parse<Bundle>(result);
         }
         catch (Exception ex)

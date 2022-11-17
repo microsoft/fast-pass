@@ -28,7 +28,7 @@
 
         //var result = await Http.GetStringAsync("sample-data/fhirBundle.json");
 
-        var result = await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TestAnalyticsServiceProxy", textAnalyticsProxyRequest);
+        var result = await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TextAnalyticsServiceProxy", textAnalyticsProxyRequest);
 
         var bundle = await result.Content.ReadAsStringAsync();
 
