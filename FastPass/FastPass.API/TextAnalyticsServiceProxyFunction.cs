@@ -98,7 +98,6 @@ namespace FastPass.API
 
                     var strResponse = await result.Content.ReadAsStringAsync();
 
-                    // TODO: Look at FhirJsonParser (skip validation on detail of the bundle details)
                     responseObj = JsonConvert.DeserializeObject<TextAnalyticsResponse>(strResponse);
                     requestStatus = responseObj.Status;
                     log.Log(LogLevel.Warning, $"Checked TextAnalytics job for (docId: {documentId}) current status is {requestStatus}.");
