@@ -1,4 +1,6 @@
 ﻿using FastPass.API;
+using FastPass.API.Services;
+using Hl7.Fhir.Rest;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,31 @@ public class Startup : FunctionsStartup
             {
                 configuration.GetSection(ConfigurationModel.Section).Bind(settings);
             });
+
+        builder.Services.AddScoped<IFirelyService>(c =>
+        {
+            var configSvc = c.GetService<IConfiguration>();
+
+            var model = new ConfigurationModel();
+
+            configSvc.GetSection(ConfigurationModel.Section).Bind(model);
+
+            var handler = new AuthorizationHandler
+            {
+                Scopes = new string[] { model.FhirScope },
+                TenantId = model.TenantId,
+                ClientId = model.ClientId,
+                ClientSecret = model.ClientSecret
+            };
+
+            var fhirClient = new FhirClient(new Uri(model.FhirServerUri), new FhirClientSettings
+            {
+                PreferredFormat = ResourceFormat.Json,
+                PreferredReturn = Prefer.ReturnMinimal
+            }, handler);
+
+            return new FirelyService(fhirClient);
+        });
 
         builder.Services.AddScoped(c =>
         {

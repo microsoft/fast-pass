@@ -1,3 +1,4 @@
+using FastPass.API.Services;
 using FastPass.API.TextAnalyticsModels;
 using FastPass.Models;
 using Microsoft.AspNetCore.Http;
@@ -26,12 +27,33 @@ namespace FastPass.API
         private static string _textAnalyticsKey;
         private static HttpClient _client;
         private static JsonSerializerSettings _jsonsettings;
+        private readonly IFirelyService _fhirService;
 
-        public TextAnalyticsServiceProxyFunction(IOptions<ConfigurationModel> config, HttpClient client, JsonSerializerSettings jsonSettings)
+        public TextAnalyticsServiceProxyFunction(IOptions<ConfigurationModel> config, HttpClient client, JsonSerializerSettings jsonSettings, IFirelyService fhirService)
         {
             _client = client;
             _textAnalyticsKey = config.Value.TextAnalyticsKey;
             _jsonsettings = jsonSettings;
+            _fhirService = fhirService;
+        }
+
+        [FunctionName("TestingFetchPatient")]
+        public async Task<IActionResult> RunTestPatientAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req, ILogger log)
+        {
+            try
+            {
+                // Check if user is authenticated
+                if (!StaticWebAppsAuth.AuthorizeUser(req))
+                    return new UnauthorizedResult();
+
+                var patients = await _fhirService.GetPatientsAsync();
+
+                return new OkObjectResult(patients.FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [FunctionName("TextAnalyticsServiceProxy")]
@@ -42,7 +64,7 @@ namespace FastPass.API
                 return new UnauthorizedResult();
 
             string bodyString;
-            using(var sr = new StreamReader(req.Body))
+            using (var sr = new StreamReader(req.Body))
             {
                 bodyString = await sr.ReadToEndAsync();
             }
