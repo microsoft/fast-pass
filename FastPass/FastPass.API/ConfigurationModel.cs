@@ -1,4 +1,4 @@
-﻿namespace FastPass.API;
+﻿namespace FastPass.Api;
 
 public class ConfigurationModel
 {
