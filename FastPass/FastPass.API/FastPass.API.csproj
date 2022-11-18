@@ -13,7 +13,6 @@
 		<PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.8.0" />
 		<PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.0.13" />
 		<PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.7.0" />
-		<PackageReference Include="Microsoft.Azure.Functions.Worker.Core" Version="1.8.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\FastPass.Models\FastPass.Models.csproj" />
@@ -26,5 +25,8 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<Using Include="System.Threading.ExecutionContext" Alias="ExecutionContext" />
 	</ItemGroup>
 </Project>
