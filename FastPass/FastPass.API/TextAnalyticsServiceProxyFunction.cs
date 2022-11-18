@@ -1,107 +1,126 @@
-using FastPass.API.TextAnalyticsModels;
+using FastPass.Api.Services;
+using FastPass.Api.TextAnalyticsModels;
 using FastPass.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
+using System.Net;
 using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace FastPass.API
+namespace FastPass.Api;
+
+public class TextAnalyticsServiceProxyFunction
 {
-    public class TextAnalyticsServiceProxyFunction
-    {
-        private const string OPERATION_LOCATION_HEADER = "operation-location";
-        private const string SUBSCRIPTION_HEADER_NAME = "Ocp-Apim-Subscription-Key";
-        private const string RUNNING_STATUS = "running";
-        private static readonly TimeSpan _requestDelay = TimeSpan.FromSeconds(2);
-        private static string _textAnalyticsKey;
-        private static HttpClient _client;
-        private static JsonSerializerSettings _jsonsettings;
+    private const string OPERATION_LOCATION_HEADER = "operation-location";
+    private const string SUBSCRIPTION_HEADER_NAME = "Ocp-Apim-Subscription-Key";
+    private const string RUNNING_STATUS = "running";
+    private static readonly TimeSpan _requestDelay = TimeSpan.FromSeconds(2);
+    private static string _textAnalyticsKey;
+    private static HttpClient _client;
+    private static JsonSerializerSettings _jsonsettings;
+    private readonly IFirelyService _fhirService;
 
-        public TextAnalyticsServiceProxyFunction(IOptions<ConfigurationModel> config, HttpClient client, JsonSerializerSettings jsonSettings)
+    public TextAnalyticsServiceProxyFunction(IOptions<ConfigurationModel> config, HttpClient client, JsonSerializerSettings jsonSettings, IFirelyService fhirService)
+    {
+        _client = client;
+        _textAnalyticsKey = config.Value.TextAnalyticsKey;
+        _jsonsettings = jsonSettings;
+        _fhirService = fhirService;
+    }
+
+    [Function("TestingFetchPatient")]
+    public async Task<HttpResponseData> RunTestPatientAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestData req, ILogger log)
+    {        
+        try
         {
-            _client = client;
-            _textAnalyticsKey = config.Value.TextAnalyticsKey;
-            _jsonsettings = jsonSettings;
+            var patients = await _fhirService.GetPatientsAsync();
+            var response = req.CreateResponse(HttpStatusCode.OK);
+            await response.WriteAsJsonAsync(patients.FirstOrDefault());
+
+            return response;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
+    }
+
+    [Function("TextAnalyticsServiceProxy")]
+    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req, ILogger log)
+    {        
+        string bodyString;
+        using (var sr = new StreamReader(req.Body))
+        {
+            bodyString = await sr.ReadToEndAsync();
         }
 
-        [FunctionName("TextAnalyticsServiceProxy")]
-        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req, ILogger log)
-        {
-            // Check if user is authenticated
-            if (!StaticWebAppsAuth.AuthorizeUser(req))
-                return new UnauthorizedResult();
+        var proxyRequest = JsonConvert.DeserializeObject<TextAnalyticsProxyRequest>(bodyString);
+        var documentId = String.IsNullOrWhiteSpace(proxyRequest.Id) ? Guid.NewGuid().ToString() : proxyRequest.Id;
 
-            string bodyString;
-            using(var sr = new StreamReader(req.Body))
+        try
+        {
+            HttpResponseMessage result;
+            using (var request = new HttpRequestMessage(HttpMethod.Post, "/language/analyze-text/jobs?api-version=2022-05-15-preview"))
             {
-                bodyString = await sr.ReadToEndAsync();
+                request.Headers.TryAddWithoutValidation(SUBSCRIPTION_HEADER_NAME, _textAnalyticsKey);
+                request.Content = new StringContent(JsonConvert.SerializeObject(new TextAnalyticsRequest(proxyRequest.TextToAnalyze, language: proxyRequest.Language, documentId: documentId), _jsonsettings));
+                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+
+                log.Log(LogLevel.Trace, $"Calling TextAnalytics for documentId {documentId}");
+                result = await _client.SendAsync(request);
             }
 
-            var proxyRequest = JsonConvert.DeserializeObject<TextAnalyticsProxyRequest>(bodyString);
-            var documentId = String.IsNullOrWhiteSpace(proxyRequest.Id) ? Guid.NewGuid().ToString() : proxyRequest.Id;
-
-            try
+            if (result == null || !result.IsSuccessStatusCode || !result.Headers.Contains(OPERATION_LOCATION_HEADER))
             {
-                HttpResponseMessage result;
-                using (var request = new HttpRequestMessage(HttpMethod.Post, "/language/analyze-text/jobs?api-version=2022-05-15-preview"))
+                var message = $"TextAnalytics (docId: {documentId}) call failed with {result.StatusCode}.";
+                log.Log(LogLevel.Warning, message);
+
+                var err = req.CreateResponse(result.StatusCode);
+                err.WriteString(message);
+                return err;
+            }
+
+            var callbackLocation = new Uri(result.Headers.GetValues(OPERATION_LOCATION_HEADER).FirstOrDefault());
+
+            log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) call succeeded with a callback location of {callbackLocation}.");
+
+            string requestStatus;
+            TextAnalyticsResponse responseObj;
+            do
+            {
+                Thread.Sleep(_requestDelay);
+
+                using (var request = new HttpRequestMessage(HttpMethod.Get, callbackLocation.PathAndQuery))
                 {
                     request.Headers.TryAddWithoutValidation(SUBSCRIPTION_HEADER_NAME, _textAnalyticsKey);
-                    request.Content = new StringContent(JsonConvert.SerializeObject(new TextAnalyticsRequest(proxyRequest.TextToAnalyze, language: proxyRequest.Language, documentId: documentId), _jsonsettings));
-                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-
-                    log.Log(LogLevel.Trace, $"Calling TextAnalytics for documentId {documentId}");
                     result = await _client.SendAsync(request);
                 }
 
-                if (result == null || !result.IsSuccessStatusCode || !result.Headers.Contains(OPERATION_LOCATION_HEADER))
-                {
-                    log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) call failed with {result.StatusCode}.");
-                    return new StatusCodeResult((int)result.StatusCode);
-                }
+                var strResponse = await result.Content.ReadAsStringAsync();
 
-                var callbackLocation = new Uri(result.Headers.GetValues(OPERATION_LOCATION_HEADER).FirstOrDefault());
+                responseObj = JsonConvert.DeserializeObject<TextAnalyticsResponse>(strResponse);
+                requestStatus = responseObj.Status;
+                log.Log(LogLevel.Warning, $"Checked TextAnalytics job for (docId: {documentId}) current status is {requestStatus}.");
 
-                log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) call succeeded with a callback location of {callbackLocation}.");
+            } while (requestStatus == RUNNING_STATUS);
 
-                string requestStatus;
-                TextAnalyticsResponse responseObj;
-                do
-                {
-                    Thread.Sleep(_requestDelay);
+            log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) completed successfully, returning FhirBundle.");
 
-                    using (var request = new HttpRequestMessage(HttpMethod.Get, callbackLocation.PathAndQuery))
-                    {
-                        request.Headers.TryAddWithoutValidation(SUBSCRIPTION_HEADER_NAME, _textAnalyticsKey);
-                        result = await _client.SendAsync(request);
-                    }
-
-                    var strResponse = await result.Content.ReadAsStringAsync();
-
-                    responseObj = JsonConvert.DeserializeObject<TextAnalyticsResponse>(strResponse);
-                    requestStatus = responseObj.Status;
-                    log.Log(LogLevel.Warning, $"Checked TextAnalytics job for (docId: {documentId}) current status is {requestStatus}.");
-
-                } while (requestStatus == RUNNING_STATUS);
-
-                log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) completed successfully, returning FhirBundle.");
-                return new OkObjectResult(responseObj.Tasks?.Items?.First()?.Results?.Documents?.First()?.FhirBundle);
-            }
-            catch (Exception ex)
-            {
-                log.Log(LogLevel.Error, $"TextAnalytics (docId: {documentId}) exception caught. Detail: {ex}");
-                return new StatusCodeResult(500);
-            }
-
+            var resp = req.CreateResponse(HttpStatusCode.OK);
+            await resp.WriteAsJsonAsync(responseObj.Tasks?.Items?.First()?.Results?.Documents?.First()?.FhirBundle);
+            return resp;
         }
+        catch (Exception ex)
+        {
+            var msg = $"TextAnalytics (docId: {documentId}) exception caught. Detail: {ex}";
+            log.Log(LogLevel.Error, msg);
+
+            var resp = req.CreateResponse(HttpStatusCode.BadRequest);
+            resp.WriteString(msg);
+            return resp;
+        }
+
     }
 }
