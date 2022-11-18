@@ -22,17 +22,24 @@ public class TextAnalyticsServiceProxyFunction
     private static HttpClient _client;
     private static JsonSerializerSettings _jsonsettings;
     private readonly IFirelyService _fhirService;
+    private readonly ILogger _logger;   
 
-    public TextAnalyticsServiceProxyFunction(IOptions<ConfigurationModel> config, HttpClient client, JsonSerializerSettings jsonSettings, IFirelyService fhirService)
+    public TextAnalyticsServiceProxyFunction(
+        IOptions<ConfigurationModel> config,
+        ILoggerFactory loggerFactory,
+        HttpClient client, 
+        JsonSerializerSettings jsonSettings, 
+        IFirelyService fhirService)
     {
         _client = client;
         _textAnalyticsKey = config.Value.TextAnalyticsKey;
         _jsonsettings = jsonSettings;
         _fhirService = fhirService;
+        _logger = loggerFactory.CreateLogger<TextAnalyticsServiceProxyFunction>();
     }
 
     [Function("TestingFetchPatient")]
-    public async Task<HttpResponseData> RunTestPatientAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestData req, ILogger log)
+    public async Task<HttpResponseData> RunTestPatientAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestData req)
     {
         try
         {
@@ -49,7 +56,7 @@ public class TextAnalyticsServiceProxyFunction
     }
 
     [Function("TextAnalyticsServiceProxy")]
-    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req, ILogger log)
+    public async Task<HttpResponseData> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req)
     {
         string bodyString;
         using (var sr = new StreamReader(req.Body))
@@ -58,7 +65,7 @@ public class TextAnalyticsServiceProxyFunction
         }
 
         var proxyRequest = JsonConvert.DeserializeObject<TextAnalyticsProxyRequest>(bodyString);
-        var documentId = String.IsNullOrWhiteSpace(proxyRequest.Id) ? Guid.NewGuid().ToString() : proxyRequest.Id;
+        var documentId = string.IsNullOrWhiteSpace(proxyRequest.Id) ? Guid.NewGuid().ToString() : proxyRequest.Id;
 
         try
         {
@@ -69,14 +76,14 @@ public class TextAnalyticsServiceProxyFunction
                 request.Content = new StringContent(JsonConvert.SerializeObject(new TextAnalyticsRequest(proxyRequest.TextToAnalyze, language: proxyRequest.Language, documentId: documentId), _jsonsettings));
                 request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
-                log.Log(LogLevel.Trace, $"Calling TextAnalytics for documentId {documentId}");
+                _logger.Log(LogLevel.Trace, $"Calling TextAnalytics for documentId {documentId}");
                 result = await _client.SendAsync(request);
             }
 
             if (result == null || !result.IsSuccessStatusCode || !result.Headers.Contains(OPERATION_LOCATION_HEADER))
             {
                 var message = $"TextAnalytics (docId: {documentId}) call failed with {result.StatusCode}.";
-                log.Log(LogLevel.Warning, message);
+                _logger.Log(LogLevel.Warning, message);
 
                 var err = req.CreateResponse(result.StatusCode);
                 err.WriteString(message);
@@ -85,7 +92,7 @@ public class TextAnalyticsServiceProxyFunction
 
             var callbackLocation = new Uri(result.Headers.GetValues(OPERATION_LOCATION_HEADER).FirstOrDefault());
 
-            log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) call succeeded with a callback location of {callbackLocation}.");
+            _logger.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) call succeeded with a callback location of {callbackLocation}.");
 
             string requestStatus;
             TextAnalyticsResponse responseObj;
@@ -103,11 +110,11 @@ public class TextAnalyticsServiceProxyFunction
 
                 responseObj = JsonConvert.DeserializeObject<TextAnalyticsResponse>(strResponse);
                 requestStatus = responseObj.Status;
-                log.Log(LogLevel.Warning, $"Checked TextAnalytics job for (docId: {documentId}) current status is {requestStatus}.");
+                _logger.Log(LogLevel.Warning, $"Checked TextAnalytics job for (docId: {documentId}) current status is {requestStatus}.");
 
             } while (requestStatus == RUNNING_STATUS);
 
-            log.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) completed successfully, returning FhirBundle.");
+            _logger.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) completed successfully, returning FhirBundle.");
 
             var resp = req.CreateResponse(HttpStatusCode.OK);
             await resp.WriteAsJsonAsync(responseObj.Tasks?.Items?.First()?.Results?.Documents?.First()?.FhirBundle);
@@ -116,7 +123,7 @@ public class TextAnalyticsServiceProxyFunction
         catch (Exception ex)
         {
             var msg = $"TextAnalytics (docId: {documentId}) exception caught. Detail: {ex}";
-            log.Log(LogLevel.Error, msg);
+            _logger.Log(LogLevel.Error, msg);
 
             var resp = req.CreateResponse(HttpStatusCode.BadRequest);
             resp.WriteString(msg);
