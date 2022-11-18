@@ -2,13 +2,20 @@
 using FastPass.API;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Azure.WebJobs.Extensions.ApplicationInsights;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Hl7.Fhir.Rest;
 
+
 var host = new HostBuilder()
-    .ConfigureFunctionsWorkerDefaults()
+    .ConfigureFunctionsWorkerDefaults(builder =>
+    {
+        builder
+            .AddApplicationInsights()
+            .AddApplicationInsightsLogger();
+    })
     .ConfigureServices((ctx, services) =>
     {
         services.AddOptions<ConfigurationModel>()
