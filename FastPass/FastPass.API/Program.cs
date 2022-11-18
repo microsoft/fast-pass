@@ -16,6 +16,7 @@ var host = new HostBuilder()
             .Configure<IConfiguration>((settings, configuration) =>
             {
                 configuration.GetSection(ConfigurationModel.Section).Bind(settings);
+
             });
 
         services.AddScoped<IFirelyService>(c =>
