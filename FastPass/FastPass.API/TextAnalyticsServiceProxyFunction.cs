@@ -117,7 +117,8 @@ public class TextAnalyticsServiceProxyFunction
             _logger.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) completed successfully, returning FhirBundle.");
 
             var resp = req.CreateResponse(HttpStatusCode.OK);
-            await resp.WriteAsJsonAsync(responseObj.Tasks?.Items?.First()?.Results?.Documents?.First()?.FhirBundle);
+            await resp.WriteStringAsync(responseObj.Tasks?.Items?.First()?.Results?.Documents?.First()?.FhirBundle.ToString());
+            resp.Headers.Add("Content-Type", "application/json");
             return resp;
         }
         catch (Exception ex)
