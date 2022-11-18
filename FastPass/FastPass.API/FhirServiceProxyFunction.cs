@@ -1,16 +1,12 @@
 using FastPass.API.Services;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
 
 namespace FastPass.API
 {
@@ -18,15 +14,21 @@ namespace FastPass.API
     {
         private static JsonSerializerSettings _jsonsettings;
         private readonly IFirelyService _fhirService;
+        private readonly ILogger _log;
 
-        public FhirServiceProxyFunction(IOptions<ConfigurationModel> config, JsonSerializerSettings jsonSettings, IFirelyService fhirService)
+        public FhirServiceProxyFunction(
+            IOptions<ConfigurationModel> config, 
+            ILoggerFactory loggerFactory,
+            JsonSerializerSettings jsonSettings, 
+            IFirelyService fhirService)
         {
             _jsonsettings = jsonSettings;
             _fhirService = fhirService;
+            _log = loggerFactory.CreateLogger<FhirServiceProxyFunction>();
         }
 
-        [FunctionName("AddPatient")]
-        public async Task<IActionResult> AddPatient([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req, ILogger log)
+        [Function("AddPatient")]
+        public async Task<HttpResponseData> AddPatient([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req)
         {
             try
             {
@@ -34,21 +36,28 @@ namespace FastPass.API
                 var parser = new FhirJsonParser();
                 var patient = parser.Parse<Patient>(bodyString);
 
-                log.Log(LogLevel.Trace, "Calling FhirService::AddPatient");
+                _log.Log(LogLevel.Trace, "Calling FhirService::AddPatient");
                 var returnedPatient = await _fhirService.CreatePatientAsync(patient);
 
-                log.Log(LogLevel.Trace, $"FhirService::AddPatient succeeded. {returnedPatient.Id} created.");
-                return new OkObjectResult(returnedPatient);
+                _log.Log(LogLevel.Trace, $"FhirService::AddPatient succeeded. {returnedPatient.Id} created.");
+
+                var resp = req.CreateResponse(HttpStatusCode.OK);
+                await resp.WriteAsJsonAsync(returnedPatient);
+                return resp;
             }
             catch (Exception ex)
             {
-                log.Log(LogLevel.Error, $"FhirService::AddPatient failed. Detail: {ex}");
-                return new StatusCodeResult(500);
+                var msg = $"FhirService::AddPatient failed. Detail: {ex}";
+                _log.Log(LogLevel.Error, msg);
+
+                var err = req.CreateResponse(HttpStatusCode.BadRequest);
+                await err.WriteStringAsync(msg);
+                return err;
             }
         }
 
-        [FunctionName("UpdatePatient")]
-        public async Task<IActionResult> UpdatePatient([HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = null)] HttpRequest req, ILogger log)
+        [Function("UpdatePatient")]
+        public async Task<HttpResponseData> UpdatePatient([HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = null)] HttpRequestData req)
         {
             try
             {
@@ -56,16 +65,23 @@ namespace FastPass.API
                 var parser = new FhirJsonParser();
                 var patient = parser.Parse<Patient>(bodyString);
 
-                log.Log(LogLevel.Trace, $"Calling FhirService::UpdatePatient for id {patient.Id}");
+                _log.Log(LogLevel.Trace, $"Calling FhirService::UpdatePatient for id {patient.Id}");
                 var returnedPatient = await _fhirService.UpdatePatientAsync(patient.Id, patient);
 
-                log.Log(LogLevel.Trace, $"FhirService::UpdatePatient succeeded. {patient.Id} updated.");
-                return new OkObjectResult(returnedPatient);
+                _log.Log(LogLevel.Trace, $"FhirService::UpdatePatient succeeded. {patient.Id} updated.");
+
+                var resp = req.CreateResponse(HttpStatusCode.OK);
+                await resp.WriteAsJsonAsync(returnedPatient);
+                return resp;
             }
             catch (Exception ex)
             {
-                log.Log(LogLevel.Error, $"FhirService::AddPatient failed. Detail: {ex}");
-                return new StatusCodeResult(500);
+                var msg = $"FhirService::AddPatient failed. Detail: {ex}";
+                _log.Log(LogLevel.Error, msg);
+
+                var err = req.CreateResponse(HttpStatusCode.BadRequest);
+                await err.WriteStringAsync(msg);
+                return err;
             }
         }
     }
