@@ -53,7 +53,6 @@ namespace FastPass.API
             try
             {
                 var bodyString = await req.GetBodyString();
-                var id = req.Path.Value?.Split('/')?.Last();
                 var parser = new FhirJsonParser();
                 var patient = parser.Parse<Patient>(bodyString);
 
