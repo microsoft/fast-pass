@@ -16,6 +16,7 @@
 		<PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.7.0" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\FastPass.Functions.EasyAuth\FastPass.Functions.EasyAuth.csproj" />
 		<ProjectReference Include="..\FastPass.Models\FastPass.Models.csproj" />
 	</ItemGroup>
 	<ItemGroup>

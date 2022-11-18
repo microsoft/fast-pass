@@ -8,7 +8,11 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+string baseUrl = builder.HostEnvironment.IsDevelopment() ? "http://localhost:7214/" : builder.HostEnvironment.BaseAddress;
+
+builder.Services.AddScoped(sp => {
+    return new HttpClient { BaseAddress = new Uri(baseUrl) };
+});
 
 builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddStaticWebAppsAuthentication();
