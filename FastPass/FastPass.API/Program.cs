@@ -1,37 +1,24 @@
-﻿using FastPass.API;
-using FastPass.API.Services;
-using Hl7.Fhir.Rest;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using FastPass.API.Services;
+using FastPass.API;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Net.Http;
+using Newtonsoft.Json;
+using Microsoft.Extensions.DependencyInjection;
+using Hl7.Fhir.Rest;
 
-[assembly: FunctionsStartup(typeof(Startup))]
-namespace FastPass.API;
 
-public class Startup : FunctionsStartup
-{
-    public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
+var host = new HostBuilder()
+    .ConfigureFunctionsWorkerDefaults()
+    .ConfigureServices((ctx, services) =>
     {
-        FunctionsHostBuilderContext context = builder.GetContext();
-
-        builder.ConfigurationBuilder
-            .SetBasePath(context.ApplicationRootPath)
-            .AddEnvironmentVariables();
-    }
-
-    public override void Configure(IFunctionsHostBuilder builder)
-    {
-        builder.Services.AddOptions<ConfigurationModel>()
+        services.AddOptions<ConfigurationModel>()
             .Configure<IConfiguration>((settings, configuration) =>
             {
                 configuration.GetSection(ConfigurationModel.Section).Bind(settings);
             });
 
-        builder.Services.AddScoped<IFirelyService>(c =>
+        services.AddScoped<IFirelyService>(c =>
         {
             var configSvc = c.GetService<IConfiguration>();
 
@@ -56,7 +43,7 @@ public class Startup : FunctionsStartup
             return new FirelyService(fhirClient);
         });
 
-        builder.Services.AddScoped(c =>
+        services.AddScoped(c =>
         {
             var configSvc = c.GetService<IConfiguration>();
             var model = new ConfigurationModel();
@@ -67,7 +54,7 @@ public class Startup : FunctionsStartup
             };
         });
 
-        builder.Services.AddSingleton(new JsonSerializerSettings()
+        services.AddSingleton(new JsonSerializerSettings()
         {
             ContractResolver = new DefaultContractResolver
             {
@@ -76,5 +63,7 @@ public class Startup : FunctionsStartup
             Formatting = Formatting.Indented,
             NullValueHandling = NullValueHandling.Ignore
         });
-    }
-}
+    })
+    .Build();
+
+host.Run();
