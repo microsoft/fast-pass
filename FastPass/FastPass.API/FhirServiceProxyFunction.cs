@@ -1,4 +1,5 @@
 using FastPass.API.Services;
+using FastPass.API.TextAnalyticsModels;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 using Microsoft.Azure.Functions.Worker;
@@ -14,7 +15,7 @@ namespace FastPass.API
     {
         private static JsonSerializerSettings _jsonsettings;
         private readonly IFirelyService _fhirService;
-        private readonly ILogger _log;
+        private readonly ILogger _logger;
 
         public FhirServiceProxyFunction(
             IOptions<ConfigurationModel> config, 
@@ -24,7 +25,47 @@ namespace FastPass.API
         {
             _jsonsettings = jsonSettings;
             _fhirService = fhirService;
-            _log = loggerFactory.CreateLogger<FhirServiceProxyFunction>();
+            _logger = loggerFactory.CreateLogger<FhirServiceProxyFunction>();
+        }
+
+        [Function("Patient")]
+        public async Task<HttpResponseData> GetPatient([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "Patient/{id?}")] HttpRequestData req)
+        {
+            try
+            {
+                var idFromUri = req.Url.LocalPath.Split('/').Last().Replace("Patient", "");
+                IList<Patient> returnedPatients = null;
+                if (!String.IsNullOrWhiteSpace(idFromUri))
+                {
+                    var filter = new PatientFilters
+                    {
+                        FhirId = idFromUri
+                    };
+                    _logger.LogInformation("FhirService::GetPatient called for {patientId}.", idFromUri);
+
+                    returnedPatients = await _fhirService.GetPatientsAsync(filter);
+                }
+                else
+                {
+                    _logger.LogInformation("FhirService::GetPatient called for all patients.");
+                    returnedPatients = await _fhirService.GetPatientsAsync();
+                }
+
+                var resp = req.CreateResponse(HttpStatusCode.OK);
+                await resp.WriteAsJsonAsync(returnedPatients);
+                return resp;
+            }
+            catch(Exception ex)
+            {
+                var msg = $"FhirService::GetPatient failed. Detail: {ex}";
+                _logger.LogError("FhirService::GetPatient failed. Detail: {MessageException}", msg);
+
+                var err = req.CreateResponse(HttpStatusCode.BadRequest);
+                await err.WriteStringAsync(msg);
+                return err;
+            }
+
+
         }
 
         [Function("AddPatient")]
@@ -36,10 +77,9 @@ namespace FastPass.API
                 var parser = new FhirJsonParser();
                 var patient = parser.Parse<Patient>(bodyString);
 
-                _log.Log(LogLevel.Trace, "Calling FhirService::AddPatient");
+                _logger.LogInformation("Calling FhirService::AddPatient");
                 var returnedPatient = await _fhirService.CreatePatientAsync(patient);
-
-                _log.Log(LogLevel.Trace, $"FhirService::AddPatient succeeded. {returnedPatient.Id} created.");
+                _logger.LogInformation("FhirService::AddPatient succeeded. {patientId} created.", returnedPatient.Id);
 
                 var resp = req.CreateResponse(HttpStatusCode.OK);
                 await resp.WriteAsJsonAsync(returnedPatient);
@@ -48,7 +88,7 @@ namespace FastPass.API
             catch (Exception ex)
             {
                 var msg = $"FhirService::AddPatient failed. Detail: {ex}";
-                _log.Log(LogLevel.Error, msg);
+                _logger.LogError(msg);
 
                 var err = req.CreateResponse(HttpStatusCode.BadRequest);
                 await err.WriteStringAsync(msg);
@@ -65,10 +105,10 @@ namespace FastPass.API
                 var parser = new FhirJsonParser();
                 var patient = parser.Parse<Patient>(bodyString);
 
-                _log.Log(LogLevel.Trace, $"Calling FhirService::UpdatePatient for id {patient.Id}");
+                _logger.LogInformation("Calling FhirService::UpdatePatient for id {patientId}", patient.Id);
                 var returnedPatient = await _fhirService.UpdatePatientAsync(patient.Id, patient);
 
-                _log.Log(LogLevel.Trace, $"FhirService::UpdatePatient succeeded. {patient.Id} updated.");
+                _logger.LogInformation("FhirService::UpdatePatient succeeded. {patientId} updated.", patient.Id);
 
                 var resp = req.CreateResponse(HttpStatusCode.OK);
                 await resp.WriteAsJsonAsync(returnedPatient);
@@ -76,8 +116,8 @@ namespace FastPass.API
             }
             catch (Exception ex)
             {
-                var msg = $"FhirService::AddPatient failed. Detail: {ex}";
-                _log.Log(LogLevel.Error, msg);
+                var msg = $"FhirService::UpdatePatient failed. Detail: {ex}";
+                _logger.LogError(msg);
 
                 var err = req.CreateResponse(HttpStatusCode.BadRequest);
                 await err.WriteStringAsync(msg);

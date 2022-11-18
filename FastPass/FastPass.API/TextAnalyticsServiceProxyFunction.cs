@@ -1,6 +1,5 @@
-using FastPass.API.Services;
-using FastPass.API.TextAnalyticsModels;
 using FastPass.API;
+using FastPass.API.TextAnalyticsModels;
 using FastPass.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -21,38 +20,18 @@ public class TextAnalyticsServiceProxyFunction
     private static string _textAnalyticsKey;
     private static HttpClient _client;
     private static JsonSerializerSettings _jsonsettings;
-    private readonly IFirelyService _fhirService;
     private readonly ILogger _logger;   
 
     public TextAnalyticsServiceProxyFunction(
         IOptions<ConfigurationModel> config,
         ILoggerFactory loggerFactory,
         HttpClient client, 
-        JsonSerializerSettings jsonSettings, 
-        IFirelyService fhirService)
+        JsonSerializerSettings jsonSettings)
     {
         _client = client;
         _textAnalyticsKey = config.Value.TextAnalyticsKey;
         _jsonsettings = jsonSettings;
-        _fhirService = fhirService;
         _logger = loggerFactory.CreateLogger<TextAnalyticsServiceProxyFunction>();
-    }
-
-    [Function("TestingFetchPatient")]
-    public async Task<HttpResponseData> RunTestPatientAsync([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequestData req)
-    {
-        try
-        {
-            var patients = await _fhirService.GetPatientsAsync();
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            await response.WriteAsJsonAsync(patients.FirstOrDefault());
-
-            return response;
-        }
-        catch (Exception ex)
-        {
-            throw ex;
-        }
     }
 
     [Function("TextAnalyticsServiceProxy")]
@@ -76,14 +55,14 @@ public class TextAnalyticsServiceProxyFunction
                 request.Content = new StringContent(JsonConvert.SerializeObject(new TextAnalyticsRequest(proxyRequest.TextToAnalyze, language: proxyRequest.Language, documentId: documentId), _jsonsettings));
                 request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 
-                _logger.Log(LogLevel.Trace, $"Calling TextAnalytics for documentId {documentId}");
+                _logger.LogInformation("Calling TextAnalytics for documentId {documentId}", documentId);
                 result = await _client.SendAsync(request);
             }
 
             if (result == null || !result.IsSuccessStatusCode || !result.Headers.Contains(OPERATION_LOCATION_HEADER))
             {
                 var message = $"TextAnalytics (docId: {documentId}) call failed with {result.StatusCode}.";
-                _logger.Log(LogLevel.Warning, message);
+                _logger.LogWarning(message);
 
                 var err = req.CreateResponse(result.StatusCode);
                 err.WriteString(message);
@@ -92,7 +71,7 @@ public class TextAnalyticsServiceProxyFunction
 
             var callbackLocation = new Uri(result.Headers.GetValues(OPERATION_LOCATION_HEADER).FirstOrDefault());
 
-            _logger.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) call succeeded with a callback location of {callbackLocation}.");
+            _logger.LogInformation("TextAnalytics (docId: {documentId}) call succeeded with a callback location of {callbackLocation}.", documentId, callbackLocation);
 
             string requestStatus;
             TextAnalyticsResponse responseObj;
@@ -110,11 +89,11 @@ public class TextAnalyticsServiceProxyFunction
 
                 responseObj = JsonConvert.DeserializeObject<TextAnalyticsResponse>(strResponse);
                 requestStatus = responseObj.Status;
-                _logger.Log(LogLevel.Warning, $"Checked TextAnalytics job for (docId: {documentId}) current status is {requestStatus}.");
+                _logger.LogInformation("Checked TextAnalytics job for (docId: {documentId}) current status is {requestStatus}.", documentId, requestStatus);
 
             } while (requestStatus == RUNNING_STATUS);
 
-            _logger.Log(LogLevel.Warning, $"TextAnalytics (docId: {documentId}) completed successfully, returning FhirBundle.");
+            _logger.LogInformation("TextAnalytics (docId: {documentId}) completed successfully, returning FhirBundle.", documentId);
 
             var resp = req.CreateResponse(HttpStatusCode.OK);
             await resp.WriteStringAsync(responseObj.Tasks?.Items?.First()?.Results?.Documents?.First()?.FhirBundle.ToString());
@@ -124,7 +103,7 @@ public class TextAnalyticsServiceProxyFunction
         catch (Exception ex)
         {
             var msg = $"TextAnalytics (docId: {documentId}) exception caught. Detail: {ex}";
-            _logger.Log(LogLevel.Error, msg);
+            _logger.LogError(msg);
 
             var resp = req.CreateResponse(HttpStatusCode.BadRequest);
             resp.WriteString(msg);
