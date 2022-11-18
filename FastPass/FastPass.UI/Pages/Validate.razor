@@ -5,6 +5,7 @@
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject ILogger<Validate> Logger
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <h3>Validate Text</h3>
 <EditForm Model="@patientInformation" OnValidSubmit="@HandleValidSubmit">
@@ -81,7 +82,27 @@
 
     private async System.Threading.Tasks.Task HandleValidSubmit()
     {
-        Logger.LogInformation("HandleValidSubmit called");
+        var patient = new Patient();
+
+        var name = new HumanName().WithGiven(patientInformation.FirstName).AndFamily(patientInformation.LastName);
+        patient.Name.Add(name);
+
+        patient.Gender = Enum.Parse<AdministrativeGender>(patientInformation.Gender);
+
+        var address = new Address()
+        {
+            Line = new string[] { patientInformation.StreetAddress },
+            City = patientInformation.City,
+            State = patientInformation.State,
+            PostalCode = patientInformation.PostalCode,
+            Country = patientInformation.Country
+        };
+
+        patient.Address.Add(address);
+
+        var result = await Http.PostAsJsonAsync<Patient>("api/AddPatient", patient);
+
+        NavigationManager.NavigateTo("/");
     }
 }
 

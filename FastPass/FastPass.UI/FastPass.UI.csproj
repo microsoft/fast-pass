@@ -27,10 +27,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Hl7.Fhir.R4B" />
-    <None Remove="ViewModels\" />
     <None Remove="Blazored.SessionStorage" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>
