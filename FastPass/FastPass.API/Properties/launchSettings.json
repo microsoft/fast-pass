@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "FastPass.Api": {
-      "commandName": "Project",
-      "commandLineArgs": "--port 7268",
-      "launchBrowser": false
-    }
-  }
-}
