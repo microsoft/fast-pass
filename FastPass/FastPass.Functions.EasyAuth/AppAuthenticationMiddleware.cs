@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Middleware;
+﻿using Microsoft.Azure.Functions.Worker.Middleware;
 using Microsoft.Extensions.Logging;
 using System.Text;
 using System.Text.Json;
@@ -10,11 +9,14 @@ namespace Microsoft.Azure.Functions.Worker.Extensions.StaticWebAppAuth;
 public class AppAuthenticationMiddleware
     : IFunctionsWorkerMiddleware
 {
+    private const string INVALID_ROLES_MESSAGE = "Invalid user role claims.";
+    private const string NOT_ATHENTICATED_MESSAGE = "Request was not authenticated.";
+
     private readonly ILogger<AppAuthenticationMiddleware> logger;
 
-    public AppAuthenticationMiddleware(ILogger<AppAuthenticationMiddleware> logger)
+    public AppAuthenticationMiddleware(ILoggerFactory logFactory)
     {
-        this.logger = logger;
+        logger = logFactory.CreateLogger<AppAuthenticationMiddleware>();
     }
     public async Task Invoke(FunctionContext context, FunctionExecutionDelegate next)
     {
@@ -40,14 +42,16 @@ public class AppAuthenticationMiddleware
 
                 if (!principal.UserRoles?.Any() ?? true)
                 {
-                    await context.CreateJsonResponse(System.Net.HttpStatusCode.Unauthorized, new { Message = "Invalid user role claims." });
+                    logger.LogWarning(INVALID_ROLES_MESSAGE);
+                    await context.CreateJsonResponse(System.Net.HttpStatusCode.Unauthorized, new { Message = INVALID_ROLES_MESSAGE });
                 }
 
                 await next(context);
             }
             else
             {
-                await context.CreateJsonResponse(System.Net.HttpStatusCode.Unauthorized, new { Message = "Request was not authenticated." });
+                logger.LogWarning(NOT_ATHENTICATED_MESSAGE);
+                await context.CreateJsonResponse(System.Net.HttpStatusCode.Unauthorized, new { Message = NOT_ATHENTICATED_MESSAGE });
             }
         }        
     }
