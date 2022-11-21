@@ -9,16 +9,7 @@ using Hl7.Fhir.Rest;
 
 
 var host = new HostBuilder()
-    .ConfigureFunctionsWorkerDefaults((ctx, builder) =>
-    {                
-        builder.AddAppAuthentication(() =>
-        {
-            // function must return a boolean which will determine if middleware is used or not
-            return string.IsNullOrEmpty(ctx.Configuration["IsDevelopment"]) 
-                ? true 
-                : !bool.Parse(ctx.Configuration["IsDevelopment"]);
-        });
-    })
+    .ConfigureFunctionsWorkerDefaults()
     .ConfigureServices((ctx, services) =>
     {
         services.AddOptions<ConfigurationModel>()
