@@ -1,0 +1,69 @@
+﻿@using FastPass.Models
+@using FastPass.UI.Services;
+@using Hl7.Fhir.Model
+@using Hl7.Fhir.Serialization
+@using Task = System.Threading.Tasks.Task;
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject ApiService _apiService;
+
+<h3>Patient @Index</h3>
+<EditForm Model="@PatientInformation" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <p>
+        <label>First Name:</label>
+        <InputText @bind-Value="PatientInformation.FirstName" />
+    </p>
+    <p>
+        <label>Last Name:</label>
+        <InputText @bind-Value="PatientInformation.LastName" />
+    </p>
+    <p>
+        <label>Gender:</label>
+        <InputText @bind-Value="PatientInformation.Gender" />
+    </p>
+    <p>
+        <label>Street Address:</label>
+        <InputText @bind-Value="PatientInformation.StreetAddress" />
+    </p>
+    <p>
+        <label>City:</label>
+        <InputText @bind-Value="PatientInformation.City" />
+    </p>
+
+    <p>
+        <label>State:</label>
+        <InputText @bind-Value="PatientInformation.State" />
+    </p>
+    <p>
+        <label>Postal Code:</label>
+        <InputText @bind-Value="PatientInformation.PostalCode" />
+    </p>
+    <p>
+        <label>Country:</label>
+        <InputText @bind-Value="PatientInformation.Country" />
+    </p>
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int Index { get; set; }
+
+    [Parameter]
+    public Patient Patient { get; set; } = default!;
+
+    PatientInformation PatientInformation = new PatientInformation();
+
+    protected override async Task OnInitializedAsync()
+    {
+        PatientInformation = new PatientInformation(Patient);
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        var patient = PatientInformation.ToPatient();
+
+        await _apiService.SubmitPatientAsync(patient);
+    }
+}
