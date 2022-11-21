@@ -2,6 +2,7 @@
 @using FastPass.Models
 @using Hl7.Fhir.Model
 @using Hl7.Fhir.Serialization
+@using System.Text
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject ILogger<Validate> Logger
 @inject HttpClient Http
@@ -100,7 +101,13 @@
 
         patient.Address.Add(address);
 
-        var result = await Http.PostAsJsonAsync<Patient>("api/AddPatient", patient);
+        var serializer = new FhirJsonSerializer();
+
+        var data = await serializer.SerializeToStringAsync(patient);
+
+        var content = new StringContent(data, Encoding.UTF8, "application/json");
+
+        var result = await Http.PostAsync("api/AddPatient", content);
 
         NavigationManager.NavigateTo("/");
     }
