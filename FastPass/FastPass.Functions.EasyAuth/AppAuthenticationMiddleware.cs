@@ -1,5 +1,4 @@
-﻿using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Middleware;
+﻿using Microsoft.Azure.Functions.Worker.Middleware;
 using Microsoft.Extensions.Logging;
 using System.Text;
 using System.Text.Json;
@@ -12,9 +11,9 @@ public class AppAuthenticationMiddleware
 {
     private readonly ILogger<AppAuthenticationMiddleware> logger;
 
-    public AppAuthenticationMiddleware(ILogger<AppAuthenticationMiddleware> logger)
+    public AppAuthenticationMiddleware(ILoggerFactory logFactory)
     {
-        this.logger = logger;
+        this.logger = logFactory.CreateLogger<AppAuthenticationMiddleware>();
     }
     public async Task Invoke(FunctionContext context, FunctionExecutionDelegate next)
     {
@@ -31,6 +30,7 @@ public class AppAuthenticationMiddleware
             
             if (!string.IsNullOrEmpty(httpHeaders?.ClientPrincipal))
             {
+                logger.LogInformation("x-ms-client-principal header found. Parsing ClientPrincipal...");
                 //Validation logic for your token.
                 var decoded = Convert.FromBase64String(httpHeaders.ClientPrincipal);
                 var json = Encoding.UTF8.GetString(decoded);
@@ -40,6 +40,7 @@ public class AppAuthenticationMiddleware
 
                 if (!principal.UserRoles?.Any() ?? true)
                 {
+                    logger.LogWarning("No valid user roles found in ClientPrincipal");
                     await context.CreateJsonResponse(System.Net.HttpStatusCode.Unauthorized, new { Message = "Invalid user role claims." });
                 }
 
@@ -47,6 +48,7 @@ public class AppAuthenticationMiddleware
             }
             else
             {
+                logger.LogWarning("x-ms-client-principal header was not found or was not parsed");
                 await context.CreateJsonResponse(System.Net.HttpStatusCode.Unauthorized, new { Message = "Request was not authenticated." });
             }
         }        

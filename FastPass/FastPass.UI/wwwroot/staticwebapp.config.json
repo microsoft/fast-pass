@@ -1,10 +1,4 @@
-{
-  "routes": [
-    {
-      "route": "/api/*",
-      "allowedRoles": [ "authenticated" ]
-    }
-  ],
+{  
   "navigationFallback": {
     "rewrite": "/index.html"
   }
