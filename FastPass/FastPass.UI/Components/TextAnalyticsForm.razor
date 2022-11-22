@@ -1,0 +1,41 @@
+﻿@using FastPass.Models;
+@using FastPass.UI.Services;
+@using Hl7.Fhir.Model;
+@using Hl7.Fhir.Serialization;
+@using Task = System.Threading.Tasks.Task;
+@inject ApiService _apiService;
+
+<EditForm Model="@TextAnalyticsProxyRequest" OnValidSubmit="@SubmitTextAsync" class="form">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Input Text</span>
+        </div>
+        <InputTextArea @bind-Value="TextAnalyticsProxyRequest.TextToAnalyze" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    TextAnalyticsProxyRequest TextAnalyticsProxyRequest = new TextAnalyticsProxyRequest
+    {
+        Id = Guid.NewGuid().ToString(),
+        Language = "en"
+    };
+
+    [Parameter]
+    public Bundle Value { get; set; } = default!;
+
+    [Parameter]
+    public EventCallback<Bundle> ValueChanged { get; set; }
+
+    private async Task SubmitTextAsync()
+    {
+        var bundle = await _apiService.AnalyzeTextAsync(TextAnalyticsProxyRequest);
+
+        Value = bundle;
+
+        await ValueChanged.InvokeAsync(Value);
+    }
+}
