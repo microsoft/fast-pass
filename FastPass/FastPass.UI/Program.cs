@@ -9,7 +9,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-var baseUrl = builder.HostEnvironment.IsDevelopment() ? "http://localhost:7214/" : builder.HostEnvironment.BaseAddress;
+var baseUrl = builder.HostEnvironment.BaseAddress;
 
 builder.Services.AddScoped(sp => {
     return new HttpClient { BaseAddress = new Uri(baseUrl) };

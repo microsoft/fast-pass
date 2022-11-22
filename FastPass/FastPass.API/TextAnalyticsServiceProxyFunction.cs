@@ -118,7 +118,7 @@ public class TextAnalyticsServiceProxyFunction
 
     private async Task<HttpResponseData> CreateResponseAsync(HttpRequestData req, HttpStatusCode responseCode, string body)
     {
-        var resp = req.CreateResponse(HttpStatusCode.BadRequest);
+        var resp = req.CreateResponse(responseCode);
 
         await resp.WriteStringAsync(body);
 
