@@ -31,37 +31,10 @@ public class ApiService
 
     public async Task SubmitPatientAsync(Patient patient)
     {
-        var json1 = await patient.ToJsonAsync();
-        var json2 = await _serializer.SerializeToStringAsync(patient);
-        var json3 = await _serializer.SerializeToStringAsync(patient, SummaryType.Text);
+        var json = await patient.ToJsonAsync();
 
-        HttpResponseMessage result;
-        try
-        {
-            result = await _client.PostAsync(FHIR_SUBMISSION_ENDPOINT, new StringContent(json1));
-            Console.WriteLine(result);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-        //try
-        //{
-        //    result = await _client.PostAsync(FHIR_SUBMISSION_ENDPOINT, new StringContent(json2));
-        //    Console.WriteLine(result);
-        //}
-        //catch (Exception ex)
-        //{
-        //    Console.WriteLine(ex.Message);
-        //}
-        //try
-        //{
-        //    result = await _client.PostAsync(FHIR_SUBMISSION_ENDPOINT, new StringContent(json3));
-        //    Console.WriteLine(result);
-        //}
-        //catch (Exception ex)
-        //{
-        //    Console.WriteLine(ex.Message);
-        //}
+        var result = await _client.PostAsync(FHIR_SUBMISSION_ENDPOINT, new StringContent(json));
+
+        Console.WriteLine(result);
     }
 }
