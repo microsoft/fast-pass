@@ -8,21 +8,21 @@
 <EditForm Model="@TextAnalyticsProxyRequest" OnValidSubmit="@SubmitTextAsync" class="form">
     <DataAnnotationsValidator />
     <ValidationSummary />
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text">Input Text</span>
-        </div>
-        <InputTextArea @bind-Value="TextAnalyticsProxyRequest.TextToAnalyze" class="form-control" />
+    <div class="mb-3">
+        <label for="textToAnalyzeInput" class="form-label">Input Text</label>
+        <InputTextArea id="textToAnalyzeInput" @bind-Value="TextAnalyticsProxyRequest.TextToAnalyze" class="form-control" rows="10" />
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </EditForm>
 
 @code {
     TextAnalyticsProxyRequest TextAnalyticsProxyRequest = new TextAnalyticsProxyRequest
-    {
-        Id = Guid.NewGuid().ToString(),
-        Language = "en"
-    };
+        {
+            Id = Guid.NewGuid().ToString(),
+            Language = "en"
+        };
 
     [Parameter]
     public Bundle Value { get; set; } = default!;

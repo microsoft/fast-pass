@@ -3,28 +3,22 @@
 
 <PageTitle>Find FHIR Data</PageTitle>
 
-@*<h1>Weather forecast</h1>*@
-
-@if(FhirBundle == null)
+@if (FhirBundle == null)
 {
     // todo: handle bad responses by displaying error message and keeping form displayed
     <TextAnalyticsForm @bind-Value="@FhirBundle"></TextAnalyticsForm>
-} else
-{
-    for (var i = 0; i < Patients.Count; i++)
-    {
-        <PatientForm Patient="@Patients[i]" Index="@i"></PatientForm>
-    }
 }
+else
+{
+    <form>
+        @foreach (var patient in Patients)
+        {
+            <PatientForm Patient="@patient"></PatientForm>
+        }
 
-@* modal for text submision *@
-@* modal for fhir patient *@
-@* modal(s) for fhir observations *@
-@* modal(s) for finding existing entity - just patient for now based on user selected pii pairings *@
-@* 
-    this parent page should keep track of 
-    (a) fhir bundle 
-    (b) patients 
-    (c) related objects
-    (d) keep track of objects that have been submitted - 
-*@
+        @foreach (var observation in Observations)
+        {
+            <ObservationDisplay Observation="@observation"></ObservationDisplay>
+        }
+    </form>
+}
