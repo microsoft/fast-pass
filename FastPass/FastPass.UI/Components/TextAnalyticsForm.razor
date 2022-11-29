@@ -8,13 +8,11 @@
 <EditForm Model="@TextAnalyticsProxyRequest" OnValidSubmit="@SubmitTextAsync" class="form">
     <DataAnnotationsValidator />
     <ValidationSummary />
-    <div class="mb-3">
-        <label for="textToAnalyzeInput" class="form-label">Input Text</label>
-        <InputTextArea id="textToAnalyzeInput" @bind-Value="TextAnalyticsProxyRequest.TextToAnalyze" class="form-control" rows="10" />
-    </div>
-    <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
+    <p>
+        <label>Input Text:</label>
+        <InputTextArea @bind-Value="TextAnalyticsProxyRequest.TextToAnalyze" class="form-control" rows="10" />
+    </p>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
 
 @code {

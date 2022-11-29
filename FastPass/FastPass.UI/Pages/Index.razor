@@ -1,22 +1,43 @@
 ﻿@page "/"
 @inject HttpClient Http
 
+<PageTitle>Home</PageTitle>
 
-<PageTitle>Index</PageTitle>
+<div class="container py-4">
+    <header class="pb-3 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+            <HomeIcon />
+            &nbsp;<span class="fs-4">Fast-Pass: Text Analytics for Health Sample</span>
+        </a>
+    </header>
 
-<h1>Hello, world!</h1>
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Overview</h1>
+            <p class="col-md-8">Text Analytics for health is one of the features offered by Azure Cognitive Service for Language, a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language.</p>
+            <a href="https://learn.microsoft.com/en-us/azure/cognitive-services/language-service/text-analytics-for-health/overview?tabs=ner" class="btn btn-primary" target="_blank">Learn more</a>
+        </div>
+    </div>
 
-<h2>@responseText</h2>
-
-Welcome to your new app.
-
-@code {
-
-    string responseText { get; set; } = default!;
-
-    protected override async Task OnInitializedAsync()
-    {
-        //responseText = await Http.GetStringAsync("api/Function1");
-    }
-}
-
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-bg-dark border rounded-3">
+                <h2>Analyze Medical Text</h2>
+                <p>Submit free text containing medical terminology to test the Text Analytics for Health service.</p>
+                <NavLink class="btn btn-outline-primary" href="submittext">
+                    <span>Try it</span>
+                </NavLink>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-bg-dark border rounded-3">
+                <h2>Search FHIR Data</h2>
+                <p>Use this form to search for patient data in the back-end FHIR Api service.</p>
+                <NavLink class="btn btn-outline-primary" href="find-fhir-data">
+                    <span>Try it</span>
+                </NavLink>
+            </div>
+        </div>
+    </div>
+    
+</div>
