@@ -55,7 +55,7 @@
 
     PatientInformation PatientInformation = new PatientInformation();
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         PatientInformation = new PatientInformation(Patient);
     }
