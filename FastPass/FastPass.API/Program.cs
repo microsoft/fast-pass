@@ -51,18 +51,7 @@ var host = new HostBuilder()
             configSvc.GetSection(ConfigurationModel.Section).Bind(model);
             var client = new TextAnalyticsClient(new Uri(model.TextAnalyticsBase), new AzureKeyCredential(model.TextAnalyticsKey));
             return client;
-        });
-
-        //services.AddScoped(c =>
-        //{
-        //    var configSvc = c.GetService<IConfiguration>();
-        //    var model = new ConfigurationModel();
-        //    configSvc.GetSection(ConfigurationModel.Section).Bind(model);
-        //    return new HttpClient
-        //    {
-        //        BaseAddress = new Uri(model.TextAnalyticsBase)
-        //    };
-        //});
+        });        
 
         services.AddSingleton(new JsonSerializerSettings()
         {
