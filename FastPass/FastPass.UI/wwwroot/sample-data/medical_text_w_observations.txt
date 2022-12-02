@@ -1,0 +1,45 @@
+﻿Provider: Ken Cure, MD
+Patient: Patient H Sample
+Provider's Pt ID: 6910828
+Sex: Female
+Attachment Control Number: XA728302
+
+ 
+
+HOSPITAL DISCHARGE DX
+
+174.8 Malignant neoplasm of female breast: Other specified sites of female breast
+
+163.8 Other specified sites of pleura.
+
+HOSPITAL DISCHARGE PROCEDURES
+
+1. 32650 Thoracoscopy with chest tube placement and pleurodesis.
+
+HISTORY OF PRESENT ILLNESS
+
+The patient is a very pleasant, 70-year-old female with a history of breast cancer that was originally diagnosed in the early 70's. At that time she had a radical mastectomy with postoperative radiotherapy. In the mid 70's she developed a chest wall recurrence and was treated with further radiation therapy. She then went without evidence of disease for many years until the late 80's when she developed bone metastases with involvement of her sacroiliac joint, right trochanter, and left sacral area. She was started on Tamoxifen at that point in time and has done well until recently when she developed shortness of breath and was found to have a larger pleural effusion. This has been tapped on two occasions and has rapidly reaccumulated so she was admitted at this time for thoracoscopy with pleurodesis. Of note, her CA15-3 was 44 in the mid 90's and recently was found to be 600.
+
+HOSPITAL DISCHARGE PHYSICAL FINDINGS
+
+Physical examination at the time of admission revealed a thin, pleasant female in mild respiratory distress. She had no adenopathy. She had decreased breath sounds three fourths of the way up on the right side. The left lung was mostly clear although there were a few scattered rales. Cardiac examination revealed a regular rate and rhythm without murmurs. She had no hepatosplenomegaly and no peripheral clubbing, cyanosis, or edema.
+
+HOSPITAL DISCHARGE STUDIES SUMMARY
+
+A chest x-ray showed a large pleural effusion on the right.
+
+HOSPITAL COURSE
+
+The patient was admitted. A CT scan was performed which showed a possibility that the lung was trapped by tumor and that there were some adhesions. The patient then underwent thoracoscopy which confirmed the presence of a pleural peel of tumor and multiple adhesions which were taken down. Two chest tubes were subsequently placed.
+
+These were left in place for approximately four days after which a TALC slurry was infused and the chest tubes were removed the following day. Because of the significant pleural peel and the trapped lungs, it is clearly possible that the pleurodesis will not be successful and this was explained to the patient and the family prior to the procedure.
+
+Of note, we started her on Megace during this hospitalization because she was having significant nausea and vomiting with the Arimidex that she had been taking.
+
+HOSPITAL DISCHARGE FOLLOWUP
+
+The patient is being transferred to an extended-care facility near her home, where she will remain until she has enough strength to go home. It is possible that the fluid may reaccumulate and require repeat tapping despite the pleurodesis that was performed. Hopefully, however, with the combination of pleurodesis and the Megace that she was started on, she will have improvement of her cancer and a decrease in her pulmonary symptomatology. Overall, however, her prognosis is poor because of her debilitated state and the status of her lungs.
+
+She is being discharged on Tylenol with Codeine as needed for pain, Megace, and a Multivitamin. She will have a follow-up appointment with Dr. Follow in three weeks with a chest x-ray. They have been instructed to call us in the interim should there be any problems.
+
+Signed by: Ken Cure, MD on 30 Oct 1998 12:53
