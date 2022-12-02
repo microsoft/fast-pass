@@ -22,10 +22,11 @@ public class ApiService
 
     public async Task<Bundle> AnalyzeTextAsync(TextAnalyticsProxyRequest request)
     {
-        var result = await _client.PostAsJsonAsync(TEXT_ANALYTICS_ENDPOINT, request);
+        var text = string.IsNullOrEmpty(request.TextToAnalyze) ? "" : request.TextToAnalyze;
+        var result = await _client.PostAsync(TEXT_ANALYTICS_ENDPOINT, new StringContent(text));
 
         var json = await result.Content.ReadAsStringAsync();
-
+        
         return _parser.Parse<Bundle>(json);
     }
 

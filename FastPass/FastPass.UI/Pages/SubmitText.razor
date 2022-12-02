@@ -25,20 +25,16 @@
     private async System.Threading.Tasks.Task HandleValidSubmit()
     {
         Logger.LogInformation("HandleValidSubmit called");
-
+        var text = string.IsNullOrEmpty(textAnalyticsProxyRequest?.TextToAnalyze) ? "" : textAnalyticsProxyRequest!.TextToAnalyze;
         //var bundle = await Http.GetStringAsync("sample-data/fhirBundle.json");
 
-        var result = await Http.PostAsJsonAsync<TextAnalyticsProxyRequest>("api/TextAnalyticsServiceProxy", textAnalyticsProxyRequest);
-
+        var result = await Http.PostAsync("api/TextAnalyticsServiceProxy", new StringContent(text));
         var bundle = await result.Content.ReadAsStringAsync();
 
         await sessionStorage.SetItemAsStringAsync("bundle", bundle);
-
-        
 
         Logger.LogInformation(bundle);
 
         NavigationManager.NavigateTo("/validate");
     }
 }
-
