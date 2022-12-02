@@ -47,7 +47,7 @@ public class TextAnalyticsServiceProxyFunction
             }
 
             var results = healthOps.GetValues();
-            var fhirResults = results.SelectMany(p => p.Select(d => d.FhirBundle));
+            var fhirResults = results.SelectMany(p => p.Select(d => d.FhirBundle)).FirstOrDefault();
             return await CreateResponseAsync(req, HttpStatusCode.OK, JsonConvert.SerializeObject(fhirResults));
 
         }
