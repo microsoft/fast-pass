@@ -1,9 +1,6 @@
 ﻿using Azure.Core;
 using Azure.Identity;
-using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace FastPass.API.Services;
 
@@ -19,7 +16,7 @@ public class AuthorizationHandler : HttpClientHandler
     {
         var ctx = new TokenRequestContext(Scopes);
         var clientSecretCredential = new ClientSecretCredential(TenantId, ClientId, ClientSecret);
-        var ccToken = clientSecretCredential.GetToken(ctx, cancellationToken);
+        var ccToken = await clientSecretCredential.GetTokenAsync(ctx, cancellationToken);
 
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", ccToken.Token);
 

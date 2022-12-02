@@ -1,0 +1,273 @@
+{
+  "jobId": "83ba2b4c-61cb-48cb-b173-c3b3643aed40",
+  "lastUpdatedDateTime": "2022-12-02T13:29:50Z",
+  "createdDateTime": "2022-12-02T13:29:48Z",
+  "expirationDateTime": "2022-12-03T13:29:48Z",
+  "status": "succeeded",
+  "errors": [],
+  "tasks": {
+    "completed": 1,
+    "failed": 0,
+    "inProgress": 0,
+    "total": 1,
+    "items": [
+      {
+        "kind": "HealthcareLROResults",
+        "lastUpdateDateTime": "2022-12-02T13:29:50.527182Z",
+        "status": "succeeded",
+        "results": {
+          "documents": [
+            {
+              "id": "880fe6f4-77d7-4e01-bab4-401adab1af0d",
+              "entities": [
+                {
+                  "offset": 0,
+                  "length": 5,
+                  "text": "aleve",
+                  "category": "MedicationName",
+                  "confidenceScore": 1.0,
+                  "name": "Aleve",
+                  "links": [
+                    {
+                      "dataSource": "UMLS",
+                      "id": "C0718343"
+                    },
+                    {
+                      "dataSource": "CHV",
+                      "id": "0000045283"
+                    },
+                    {
+                      "dataSource": "MMSL",
+                      "id": "8137"
+                    },
+                    {
+                      "dataSource": "MSH",
+                      "id": "D009288"
+                    },
+                    {
+                      "dataSource": "NCI",
+                      "id": "C48006"
+                    },
+                    {
+                      "dataSource": "RXNORM",
+                      "id": "215101"
+                    }
+                  ]
+                }
+              ],
+              "relations": [],
+              "warnings": [],
+              "fhirBundle": {
+                "resourceType": "Bundle",
+                "id": "b5ae9ece-8c6c-40b9-acd9-85d8af3e1f0e",
+                "meta": { "profile": [ "http://hl7.org/fhir/4.0.1/StructureDefinition/Bundle" ] },
+                "identifier": {
+                  "system": "urn:ietf:rfc:3986",
+                  "value": "urn:uuid:b5ae9ece-8c6c-40b9-acd9-85d8af3e1f0e"
+                },
+                "type": "document",
+                "entry": [
+                  {
+                    "fullUrl": "Composition/60f23244-9a8e-4af9-bb77-75a2cc8f7062",
+                    "resource": {
+                      "resourceType": "Composition",
+                      "id": "60f23244-9a8e-4af9-bb77-75a2cc8f7062",
+                      "status": "final",
+                      "type": {
+                        "coding": [
+                          {
+                            "system": "http://loinc.org",
+                            "code": "11526-1",
+                            "display": "Pathology study"
+                          }
+                        ],
+                        "text": "Pathology study"
+                      },
+                      "subject": {
+                        "reference": "Patient/89e3ace5-93d9-423a-82da-2b1276fcffda",
+                        "type": "Patient"
+                      },
+                      "encounter": {
+                        "reference": "Encounter/dea41eb8-af4e-47c4-8be6-6d5857a314f9",
+                        "type": "Encounter",
+                        "display": "unknown"
+                      },
+                      "date": "2022-12-02",
+                      "author": [
+                        {
+                          "reference": "Practitioner/5303f5e2-4f8d-48c4-8b58-562d6e7bfb49",
+                          "type": "Practitioner",
+                          "display": "Unknown"
+                        }
+                      ],
+                      "title": "Pathology study",
+                      "section": [
+                        {
+                          "title": "General",
+                          "code": {
+                            "coding": [
+                              {
+                                "system": "",
+                                "display": "Unrecognized Section"
+                              }
+                            ],
+                            "text": "General"
+                          },
+                          "text": {
+                            "status": "additional",
+                            "div": "<div>\r\n\t\t\t\t\t\t\t<h1>General</h1>\r\n\t\t\t\t\t\t\t<p>aleve</p>\r\n\t\t\t\t\t</div>"
+                          },
+                          "entry": [
+                            {
+                              "reference": "List/ab898f9d-0b5b-4bd0-a907-e2eb7f774892",
+                              "type": "List",
+                              "display": "General"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fullUrl": "Practitioner/5303f5e2-4f8d-48c4-8b58-562d6e7bfb49",
+                    "resource": {
+                      "resourceType": "Practitioner",
+                      "id": "5303f5e2-4f8d-48c4-8b58-562d6e7bfb49",
+                      "name": [
+                        {
+                          "text": "Unknown",
+                          "family": "Unknown"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fullUrl": "Patient/89e3ace5-93d9-423a-82da-2b1276fcffda",
+                    "resource": {
+                      "resourceType": "Patient",
+                      "id": "89e3ace5-93d9-423a-82da-2b1276fcffda",
+                      "gender": "unknown"
+                    }
+                  },
+                  {
+                    "fullUrl": "Encounter/dea41eb8-af4e-47c4-8be6-6d5857a314f9",
+                    "resource": {
+                      "resourceType": "Encounter",
+                      "id": "dea41eb8-af4e-47c4-8be6-6d5857a314f9",
+                      "meta": { "profile": [ "http://hl7.org/fhir/us/core/StructureDefinition/us-core-encounter" ] },
+                      "status": "finished",
+                      "class": {
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                        "display": "unknown"
+                      },
+                      "subject": {
+                        "reference": "Patient/89e3ace5-93d9-423a-82da-2b1276fcffda",
+                        "type": "Patient"
+                      },
+                      "period": {
+                        "start": "2022-12-02",
+                        "end": "2022-12-02"
+                      }
+                    }
+                  },
+                  {
+                    "fullUrl": "MedicationStatement/d6321c2b-0fb4-40a4-b4df-a4148396cb4a",
+                    "resource": {
+                      "resourceType": "MedicationStatement",
+                      "id": "d6321c2b-0fb4-40a4-b4df-a4148396cb4a",
+                      "extension": [
+                        {
+                          "extension": [
+                            {
+                              "url": "offset",
+                              "valueInteger": 0
+                            },
+                            {
+                              "url": "length",
+                              "valueInteger": 5
+                            }
+                          ],
+                          "url": "http://hl7.org/fhir/StructureDefinition/derivation-reference"
+                        }
+                      ],
+                      "status": "active",
+                      "medicationCodeableConcept": {
+                        "coding": [
+                          {
+                            "system": "http://www.nlm.nih.gov/research/umls",
+                            "code": "C0718343",
+                            "display": "Aleve"
+                          },
+                          {
+                            "system": "http://www.nlm.nih.gov/research/umls/chv",
+                            "code": "0000045283"
+                          },
+                          {
+                            "system": "http://www.nlm.nih.gov/research/umls/mmsl",
+                            "code": "8137"
+                          },
+                          {
+                            "system": "http://www.nlm.nih.gov/research/umls/msh",
+                            "code": "D009288"
+                          },
+                          {
+                            "system": "http://ncimeta.nci.nih.gov",
+                            "code": "C48006"
+                          },
+                          {
+                            "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+                            "code": "215101"
+                          }
+                        ],
+                        "text": "aleve"
+                      },
+                      "subject": {
+                        "reference": "Patient/89e3ace5-93d9-423a-82da-2b1276fcffda",
+                        "type": "Patient"
+                      },
+                      "context": {
+                        "reference": "Encounter/dea41eb8-af4e-47c4-8be6-6d5857a314f9",
+                        "type": "Encounter",
+                        "display": "unknown"
+                      }
+                    }
+                  },
+                  {
+                    "fullUrl": "List/ab898f9d-0b5b-4bd0-a907-e2eb7f774892",
+                    "resource": {
+                      "resourceType": "List",
+                      "id": "ab898f9d-0b5b-4bd0-a907-e2eb7f774892",
+                      "status": "current",
+                      "mode": "snapshot",
+                      "title": "General",
+                      "subject": {
+                        "reference": "Patient/89e3ace5-93d9-423a-82da-2b1276fcffda",
+                        "type": "Patient"
+                      },
+                      "encounter": {
+                        "reference": "Encounter/dea41eb8-af4e-47c4-8be6-6d5857a314f9",
+                        "type": "Encounter",
+                        "display": "unknown"
+                      },
+                      "entry": [
+                        {
+                          "item": {
+                            "reference": "MedicationStatement/d6321c2b-0fb4-40a4-b4df-a4148396cb4a",
+                            "type": "MedicationStatement",
+                            "display": "aleve"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "errors": [],
+          "modelVersion": "2022-03-01"
+        }
+      }
+    ]
+  }
+}
