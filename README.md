@@ -85,18 +85,19 @@ This repository provides starter kit PowerApp and PowerAutomate pacakges with th
 10. After building and running you should run the following command in a separate instance:
     `swa start http://localhost:5043 --api-location http://localhost:7214`
 11. With the debugger open on your local host go to the local host port indicated by the emulator. For example:
+    `Azure Static Web Apps emulator started at http://localhost:4280. Press CTRL+C to exit.`
+12. Log in to the version of the app residing at the port indicated by the emulator using one of the given options
+13. Begin submitting text. For example: 
+    ```
+    Patient:
+    Patient H Sample
+
+    Provider's Pt ID:
+    6910828
     
-12. Log in using one of the given options
-13. Begin submitting text
-
-
-
-As the maintainer of this project, please make a few updates:
-
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+    Sex:
+    Female
+    ```
 
 ## Contributing
 
