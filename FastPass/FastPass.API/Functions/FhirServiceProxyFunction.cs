@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Net;
 
-namespace FastPass.API
+namespace FastPass.API.Functions
 {
     public class FhirServiceProxyFunction
     {
@@ -18,9 +18,9 @@ namespace FastPass.API
         private readonly ILogger _logger;
 
         public FhirServiceProxyFunction(
-            IOptions<ConfigurationModel> config, 
+            IOptions<ConfigurationModel> config,
             ILoggerFactory loggerFactory,
-            JsonSerializerSettings jsonSettings, 
+            JsonSerializerSettings jsonSettings,
             IFirelyService fhirService)
         {
             _jsonsettings = jsonSettings;
@@ -35,7 +35,7 @@ namespace FastPass.API
             {
                 var idFromUri = req.Url.LocalPath.Split('/').Last().Replace("Patient", "");
                 IList<Patient> returnedPatients = null;
-                if (!String.IsNullOrWhiteSpace(idFromUri))
+                if (!string.IsNullOrWhiteSpace(idFromUri))
                 {
                     var filter = new PatientFilters
                     {
@@ -55,7 +55,7 @@ namespace FastPass.API
                 await resp.WriteAsJsonAsync(returnedPatients);
                 return resp;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var msg = $"FhirService::GetPatient failed. Detail: {ex}";
                 _logger.LogError("FhirService::GetPatient failed. Detail: {MessageException}", msg);
