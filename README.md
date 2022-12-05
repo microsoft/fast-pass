@@ -53,7 +53,41 @@ This repository provides starter kit PowerApp and PowerAutomate pacakges with th
 ## Overview
 
 ## Setup Guide
-
+1. Clone Project from Git
+2. Expand FastPass.API and add a document called local.setting.json
+3. Initialize the following properties in the new file:
+```
+    {
+    "IsEncrypted": false,
+    "Host": {
+    "CORS": "*"  },
+     "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "IsDevelopment": "true",
+    "APIConfig:TextAnalyticsBase": "",
+    "APIConfig:TextAnalyticsKey": "",
+    "APIConfig:FhirScope": "",
+    "APIConfig:FhirServerUri": "",
+    "APIConfig:Authority": "",
+    "APIConfig:TenantId": "",
+    "APIConfig:ClientId": "",
+    "APIConfig:ClientSecret": ""  }
+    }
+```
+4. The <ins>Base</ins> and <ins>Key</ins> can be found in the resource group contianing your Azure Language service
+5. The <ins>Uri</ins> can be found in the resource group containing your Azure API for FHIR service and the <ins>Scope</ins> will be the default so it should look like the following: 
+    `"your uri"/.default`
+6. The <ins>Tenant Id</ins> can be found in the Tenant Properties of your AAD subscription
+7. The <ins>ClienntId</ins> and <ins>ClientSecret</ins> can be found in your Azure Static Web Page resource
+8. Make sure you have Azure Functions CLI, Static Web Apps CLI, and atleast DOTNET version 7 downloaded
+9. Right click on the solution file and select "startup project" and select the "multiple files option". You will select "start" for both the API and UI files
+10. After building and running you should run the following command in a separate instance:
+    `swa start http://localhost:5043 --api-location http://localhost:7214`
+11. With the debugger open on your local host go to the local host port indicated by the emulator. For example:
+    
+12. Log in using one of the given options
+13. Begin submitting text
 
 
 
