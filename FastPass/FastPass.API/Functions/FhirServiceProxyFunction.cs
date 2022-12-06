@@ -124,5 +124,33 @@ namespace FastPass.API.Functions
                 return err;
             }
         }
+
+        [Function("AddObservation")]
+        public async Task<HttpResponseData> AddObservation([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req)
+        {
+            try
+            {
+                var bodyString = await req.GetBodyString();
+                var parser = new FhirJsonParser();
+                var observation = parser.Parse<Observation>(bodyString);
+
+                _logger.LogInformation($"Calling {nameof(_fhirService)}::{nameof(_fhirService.CreateObservationAsync)}");
+                var returnedObservation = await _fhirService.CreateObservationAsync(observation);
+                _logger.LogInformation($"{nameof(_fhirService)}::{nameof(_fhirService.CreateObservationAsync)} succeeded. {returnedObservation.Id} created.");
+
+                var resp = req.CreateResponse(HttpStatusCode.OK);
+                await resp.WriteAsJsonAsync(returnedObservation);
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                var msg = $"{nameof(_fhirService)}::{nameof(_fhirService.CreateObservationAsync)} failed. Detail: {ex}";
+                _logger.LogError(msg);
+
+                var err = req.CreateResponse(HttpStatusCode.BadRequest);
+                await err.WriteStringAsync(msg);
+                return err;
+            }
+        }
     }
 }
