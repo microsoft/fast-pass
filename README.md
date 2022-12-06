@@ -9,6 +9,7 @@
 
 ## Overview
 
+
 ### Azure API for FHIR
 The healthcare industry is rapidly transforming health data to the emerging standard of FHIR® (Fast Healthcare Interoperability Resources). FHIR enables a robust, extensible data model with standardized semantics and data exchange that enables all systems using FHIR to work together. FHIR also enables the rapid exchange of data in applications. Backed by a managed PaaS [Azure API for FHIR](https://docs.microsoft.com/en-us/azure/healthcare-apis/overview) offering, FHIR also provides a scalable and secure environment for the management and storage of Protected Health Information (PHI) data in the native FHIR format.
 
@@ -20,6 +21,13 @@ The two Connectors that work with Azure API for FHIR contain a subset of FHIR Re
 **[FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/)** and **[FHIRClinical](
 https://docs.microsoft.com/en-us/connectors/fhirclinical/)** are certified custom connectors that allows for building secure healthcare applications to enable interoperability using FHIR.
 
+# Power Platform
+
+##Solution Architecture Overview
+
+## Healthcare Use Cases
+This repository provides starter kit PowerApp and PowerAutomate pacakges with the ability to extend the App.
+
 ## Prerequisites
 
 ### Azure API for FHIR
@@ -30,7 +38,6 @@ https://docs.microsoft.com/en-us/connectors/fhirclinical/)** are certified custo
     - Detailed instructions to load synthetic data can be found in the [OpenHack-FHIR Github](https://github.com/microsoft/OpenHack-FHIR/tree/main/Challenge01-AzureAPIforFHIR#task-2-generate--load-synthetic-data)
 - See the following link for more details on [Using Azure API for FHIR](https://github.com/microsoft/OpenHack-FHIR)
 
-### Power Platform
 #### Certified Connector
 - Get access to [Power Platform](https://docs.microsoft.com/en-us/power-platform/) environment to create Power Apps.
 - Custom Connectors [FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/) and [FHIRClinical](
@@ -43,14 +50,14 @@ https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be added to y
 - Instructions to create your custom connector, can be found [here][(./CUSTOM_CONNECTOR.md) ](https://github.com/microsoft/FHIRPower/blob/main/CUSTOM_CONNECTOR.md)
 - Sample custom connector can be found [here][(./SampleFHIRCustomConnector)](https://github.com/microsoft/FHIRPower/tree/main/SampleFHIRCustomConnector)
 
-## PowerApps and PowerAutomate- Healthcare Use Cases
-This repository provides starter kit PowerApp and PowerAutomate pacakges with the ability to extend the App.
-
-
-
 # Pro dev
 
-## Overview
+## Solution Architecture Overview
+
+##Healthcare Use Cases
+
+##Prerequisites
+Most recent version of Azure Functions CLI, Static Web Apps CLI, and atleast DOTNET version 7 downloaded
 
 ## Setup Guide
 1. Clone Project from Git
@@ -80,14 +87,13 @@ This repository provides starter kit PowerApp and PowerAutomate pacakges with th
     `"your uri"/.default`
 6. The <ins>Tenant Id</ins> can be found in the Tenant Properties of your AAD subscription
 7. The <ins>ClienntId</ins> and <ins>ClientSecret</ins> can be found in your Azure Static Web Page resource
-8. Make sure you have Azure Functions CLI, Static Web Apps CLI, and atleast DOTNET version 7 downloaded
-9. Right click on the solution file and select "startup project" and select the "multiple files option". You will select "start" for both the API and UI files
-10. After building and running you should run the following command in a separate instance:
+8. Right click on the solution file and select "startup project" and select the "multiple files option". You will select "start" for both the API and UI files
+9. After building and running you should run the following command in a separate instance:
     `swa start http://localhost:5043 --api-location http://localhost:7214`
-11. With the debugger open on your local host go to the local host port indicated by the emulator. For example:
+10. With the debugger open on your local host go to the local host port indicated by the emulator. For example:
     `Azure Static Web Apps emulator started at http://localhost:4280. Press CTRL+C to exit.`
-12. Log in to the version of the app residing at the port indicated by the emulator using one of the given options
-13. Begin submitting text. For example: 
+11. Log in to the version of the app residing at the port indicated by the emulator using one of the given options
+12. Begin submitting text. For example: 
     ```
     Patient:
     Patient H Sample
