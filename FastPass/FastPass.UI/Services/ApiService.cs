@@ -1,8 +1,6 @@
 ﻿using FastPass.Models;
 using Hl7.Fhir.Model;
-using Hl7.Fhir.Rest;
 using Hl7.Fhir.Serialization;
-using System.Net.Http.Json;
 using Task = System.Threading.Tasks.Task;
 
 namespace FastPass.UI.Services;
@@ -10,10 +8,10 @@ namespace FastPass.UI.Services;
 public class ApiService
 {
     private const string TEXT_ANALYTICS_ENDPOINT = "api/TextAnalyticsServiceProxy";
-    private const string FHIR_SUBMISSION_ENDPOINT = "api/AddPatient";
+    private const string FHIR_PATIENT_SUBMISSION_ENDPOINT = "api/AddPatient";
+    private const string FHIR_OBSERVATION_SUBMISSION_ENDPOINT = "api/AddObservation";
     private readonly HttpClient _client;
     private FhirJsonParser _parser = new FhirJsonParser();
-    private FhirJsonSerializer _serializer = new FhirJsonSerializer();
 
     public ApiService(HttpClient client)
     {
@@ -34,8 +32,13 @@ public class ApiService
     {
         var json = await patient.ToJsonAsync();
 
-        var result = await _client.PostAsync(FHIR_SUBMISSION_ENDPOINT, new StringContent(json));
+        var result = await _client.PostAsync(FHIR_PATIENT_SUBMISSION_ENDPOINT, new StringContent(json));
+    }
 
-        Console.WriteLine(result);
+    public async Task SubmitObservationAsync(Observation observation)
+    {
+        var json = await observation.ToJsonAsync();
+
+        await _client.PostAsync(FHIR_OBSERVATION_SUBMISSION_ENDPOINT, new StringContent(json));
     }
 }
