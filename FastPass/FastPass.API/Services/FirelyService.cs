@@ -199,4 +199,13 @@ public class FirelyService : IFirelyService
         return await _fhirClient.UpdateAsync(practitioner);
     }
     #endregion
+
+    #region Observations
+
+    public async Task<Observation> CreateObservationAsync(Observation observation)
+    {
+        return await _fhirClient.CreateAsync(observation);
+    }
+
+    #endregion
 }
