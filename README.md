@@ -1,36 +1,27 @@
-# Project
-
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
-
-## Scenario
-
-**Digitizing Paper forms** Documents are uploaded using PowerApps which triggers a PowerAutomate flow. The flow scans the document using OCR and Text Anlaytics for Health extracts the relevant keyword.
-
-## Overview
-
-
-### Azure API for FHIR
-The healthcare industry is rapidly transforming health data to the emerging standard of FHIR® (Fast Healthcare Interoperability Resources). FHIR enables a robust, extensible data model with standardized semantics and data exchange that enables all systems using FHIR to work together. FHIR also enables the rapid exchange of data in applications. Backed by a managed PaaS [Azure API for FHIR](https://docs.microsoft.com/en-us/azure/healthcare-apis/overview) offering, FHIR also provides a scalable and secure environment for the management and storage of Protected Health Information (PHI) data in the native FHIR format.
-
-### Power Platform Connectors for Azure API for FHIR
-A connector is a proxy or a wrapper around an API that allows the underlying service to talk to Microsoft Power Platform. Connectors provide a way for users to leverage a set of pre-built actions and triggers to build applications and workflows.
-
-The two Connectors that work with Azure API for FHIR contain a subset of FHIR Resources and are bi-directional, supporting both reads and writes to the FHIR Service.
-
-**[FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/)** and **[FHIRClinical](
-https://docs.microsoft.com/en-us/connectors/fhirclinical/)** are certified custom connectors that allows for building secure healthcare applications to enable interoperability using FHIR.
-
-# Power Platform
-
-##Solution Architecture Overview
+# Project Overview
+An application to assist healthcare users in forming new patient records with both accuracy and efficiency.
 
 ## Healthcare Use Cases
-This repository provides starter kit PowerApp and PowerAutomate pacakges with the ability to extend the App.
+We built this project over two different phases, each representing two different possible operations of health care data.
+
+### Medical Intake
+Patient presents medical insurance card at the doctors office. An image of the insurance card is uploaded to the system and sent to the OCR service to extract patient biographic information as well as insurance coverage information.
+
+The information exracted by the OCR is presented on a form for a intake specialist to verify, correct, and then submit to the EMR system using the FHIR API exposed by the Azure Health Data Service.
+
+### Disharge Summary Analysis
+For a given patient, we obtain a discharge summary and extract relevant medical information. Using a custom web application, we submit the contents of the dischard summary to the Text Analytics for Healthcare service.
+
+Upon successful processing, we extract the entities identified as well as the FHIR bundle. The extracted entities are then displayed on a web page on a custom web
+application  to conduct quick spot/quality check. Once the data is validated, the extracted FHIR bundle is submitted to the Azure Health Data Services for saving into the EMR using the Azure Health Data Service FHIR API.
+
+# Power Platform Version
 
 ## Prerequisites
 
 ### Azure API for FHIR
+The healthcare industry is rapidly transforming health data to the emerging standard of FHIR® (Fast Healthcare Interoperability Resources). FHIR enables a robust, extensible data model with standardized semantics and data exchange that enables all systems using FHIR to work together. FHIR also enables the rapid exchange of data in applications. Backed by a managed PaaS [Azure API for FHIR](https://docs.microsoft.com/en-us/azure/healthcare-apis/overview) offering, FHIR also provides a scalable and secure environment for the management and storage of Protected Health Information (PHI) data in the native FHIR format.
+
 - Deploy Azure API for FHIR with First Party Auth by [deploying via the Azure Portal](https://docs.microsoft.com/en-us/azure/healthcare-apis/fhir-paas-portal-quickstart). 
 - To access the Azure API for FHIR, apply RBAC by adding users to `FHIR Data Reader` or `FHIR Data Contributor` role using Access Control (IAM). The users with access will authenticate through the Connector which assumes their role.
 - Load sample data into Azure API for FHIR. 
@@ -52,21 +43,6 @@ https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be added to y
 
 # Pro dev
 
-## Healthcare Use Cases
-
-We built this project over two different phases, each representing two different possible operations of health care data.
-### Medical Intake
-Patient presents medical insurance card at the doctors office. An image of the insurance card is uploaded to the system and sent to the OCR service to extract patient biographic information as well as insurance coverage information.
-
-
-The information exracted by the OCR is presented on a form for a intake specialist to verify, correct, and then submit to the EMR system using the FHIR API exposed by the Azure Health Data Service.
-### Disharge Summary Analysis
-For a given patient, we obtain a discharge summary and extract relevant medical information. Using a custom web application, we submit the contents of the dischard summary to the Text Analytics for Healthcare service.
-
-
-Upon successful processing, we extract the entities identified as well as the FHIR bundle. The extracted entities are then displayed on a web page on a custom web
-application  to conduct quick spot/quality check. Once the data is validated, the extracted FHIR bundle is submitted to the Azure Health Data Services for saving into the EMR using the Azure Health Data Service FHIR API.
-
 ## Solution Architecture Overview
 We built a custom web application using Blazor to handle the application flow. The application manages the two usecases mentioned above, the medical intake as well as the discharge summary analysis.
 
@@ -75,6 +51,7 @@ The application will be deployed as a static website for performance purposes. W
 Since we are using a static website for production deployment, we’ll need to using the SWA CLI for local development. When you deploy a static website on Azure, Azure provides the backend support required to run the application. This includes wiring up support of Authentication/Authorization as well as access to Azure Functions. In order to support local development, this infrastructure is not available, which is what the SWA CLI provides.
 
 ![Architecture](./Fast-Pass-Architecture-resized.png)
+
 ## Prerequisites
 Most recent version of Azure Functions CLI, Static Web Apps CLI, and atleast DOTNET version 7
 
@@ -125,7 +102,6 @@ Most recent version of Azure Functions CLI, Static Web Apps CLI, and atleast DOT
     ```
 
 ## Contributing
-
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
@@ -139,7 +115,6 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
 ## Trademarks
-
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
 trademarks or logos is subject to and must follow 
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
