@@ -52,11 +52,30 @@ https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be added to y
 
 # Pro dev
 
+## Healthcare Use Cases
+
+We built this project over two different phases, each representing two different possible operations of health care data.
+### Medical Intake
+Patient presents medical insurance card at the doctors office. An image of the insurance card is uploaded to the system and sent to the OCR service to extract patient biographic information as well as insurance coverage information.
+
+
+The information exracted by the OCR is presented on a form for a intake specialist to verify, correct, and then submit to the EMR system using the FHIR API exposed by the Azure Health Data Service.
+### Disharge Summary Analysis
+For a given patient, we obtain a discharge summary and extract relevant medical information. Using a custom web application, we submit the contents of the dischard summary to the Text Analytics for Healthcare service.
+
+
+Upon successful processing, we extract the entities identified as well as the FHIR bundle. The extracted entities are then displayed on a web page on a custom web
+application  to conduct quick spot/quality check. Once the data is validated, the extracted FHIR bundle is submitted to the Azure Health Data Services for saving into the EMR using the Azure Health Data Service FHIR API.
+
 ## Solution Architecture Overview
+We built a custom web application using Blazor to handle the application flow. The application manages the two usecases mentioned above, the medical intake as well as the discharge summary analysis.
 
-##Healthcare Use Cases
 
-##Prerequisites
+The application will be deployed as a static website for performance purposes. We want to improve the performance, while also lowering the deployment cost.
+Since we are using a static website for production deployment, we’ll need to using the SWA CLI for local development. When you deploy a static website on Azure, Azure provides the backend support required to run the application. This includes wiring up support of Authentication/Authorization as well as access to Azure Functions. In order to support local development, this infrastructure is not available, which is what the SWA CLI provides.
+
+![Architecture](./Fast-Pass-Architecture-resized.png)
+## Prerequisites
 Most recent version of Azure Functions CLI, Static Web Apps CLI, and atleast DOTNET version 7 downloaded
 
 ## Setup Guide
