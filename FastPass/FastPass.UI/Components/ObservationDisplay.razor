@@ -1,6 +1,8 @@
 ﻿@using FastPass.UI.Services;
+@using Hl7.Fhir.Introspection;
 @using Hl7.Fhir.Model;
 @using Hl7.Fhir.Serialization;
+@using Hl7.Fhir.Specification;
 @using Newtonsoft.Json;
 @inject HttpClient Http
 @using Task = System.Threading.Tasks.Task;
@@ -64,7 +66,7 @@
                 {
                     <div class="row mt-2 mb-2">
                         <div class="col">
-                            <b>Effective:</b> @string.Join(' ',  Observation?.Effective?.Select(e => $"[{e.Key}: {e.Value}]")?.ToArray() ?? new string[]{})
+                           <EffectiveDisplay Effective="@Observation!.Effective"></EffectiveDisplay>
                         </div>
                     </div>
                 }
@@ -219,7 +221,6 @@
                         </div>
                     </div>
                 }
-
 
                 <button type="submit" class="btn btn-primary" @onclick="@(e => HandleValidSubmit())">Submit</button>
             </form>
