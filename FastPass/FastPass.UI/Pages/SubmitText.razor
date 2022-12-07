@@ -1,12 +1,13 @@
 ﻿@page "/submittext"
-@using FastPass.Models
-@using FastPass.UI.ViewModels
+@using FastPass.UI.Services;
 @using Hl7.Fhir.Model
 @using Hl7.Fhir.Serialization
+@using Newtonsoft.Json;
+
 @inject ILogger<SubmitText> Logger
-@inject HttpClient Http
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject NavigationManager NavigationManager
+@inject HttpClient Http
 
 <h3>Submit Text</h3>
 <EditForm Model="@textAnalyticsProxyRequest" OnValidSubmit="@HandleValidSubmit">
@@ -19,8 +20,14 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
 
+<div class="row">
+    <AnalyzeHealthcareEntitiesResultComponent Entities="@entities" />
+</div>
+
 @code {
     TextAnalyticsProxyRequest textAnalyticsProxyRequest = new TextAnalyticsProxyRequest { };
+    IList<HealthcareEntity> entities = default!;
+
 
     private async System.Threading.Tasks.Task HandleValidSubmit()
     {
@@ -28,13 +35,20 @@
         var text = string.IsNullOrEmpty(textAnalyticsProxyRequest?.TextToAnalyze) ? "" : textAnalyticsProxyRequest!.TextToAnalyze;
         //var bundle = await Http.GetStringAsync("sample-data/fhirBundle.json");
 
-        var result = await Http.PostAsync("api/TextAnalyticsServiceProxy", new StringContent(text));
-        var bundle = await result.Content.ReadAsStringAsync();
+        var response = await Http.PostAsync("api/TextAnalyticsServiceProxy", new StringContent(text));
+        var resultsJson = await response.Content.ReadAsStringAsync();
+        var results = JsonConvert.DeserializeObject<IList<AnalyzeHealthcareEntitiesResult>>(resultsJson, new JsonSerializerSettings { ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor });
+        entities = results.SelectMany(r => r.Entities).ToList();
 
-        await sessionStorage.SetItemAsStringAsync("bundle", bundle);
+        //entities = new[] { TextAnalyticsModelFactory.HealthcareEntity("advil", "", 0, 5, 1.0) };
 
-        Logger.LogInformation(bundle);
 
-        NavigationManager.NavigateTo("/validate");
+        //var bundle = await result.Content.ReadAsStringAsync();
+
+        //await sessionStorage.SetItemAsStringAsync("bundle", bundle);
+
+        //Logger.LogInformation(bundle);
+
+        //NavigationManager.NavigateTo("/validate");
     }
 }

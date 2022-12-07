@@ -50,8 +50,8 @@ var host = new HostBuilder()
             var configSvc = c.GetService<IConfiguration>();
             var model = new ConfigurationModel();
             configSvc.GetSection(ConfigurationModel.Section).Bind(model);
-            var client = new TextAnalyticsClient(new Uri(model.TextAnalyticsBase), 
-                new DefaultAzureCredential(new DefaultAzureCredentialOptions { TenantId = model.TenantId }));
+            var client = new TextAnalyticsClient(new Uri(model.TextAnalyticsBase),
+                new AzureKeyCredential(model.TextAnalyticsKey));
             return client;
         });        
 

@@ -1,0 +1,33 @@
+﻿<h3>AnalyzeHealthcareEntitiesResultComponent</h3>
+
+<div class="row">        
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Text</th>
+                <th>Confidence</th>
+                <th>Offset</th>
+                <th>Normalized</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Entities is not null)
+            {
+                @foreach (var r in Entities)
+                {
+                    <tr>
+                        <td>@r.Text</td>
+                        <td>@r.ConfidenceScore</td>
+                        <td>@r.Offset</td>
+                        <td>@r.NormalizedText</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    [Parameter]
+    public IList<HealthcareEntity> Entities { get; set; } = default!;
+}

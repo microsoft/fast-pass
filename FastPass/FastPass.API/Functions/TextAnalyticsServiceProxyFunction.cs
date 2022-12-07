@@ -1,8 +1,12 @@
 using Azure.AI.TextAnalytics;
+using Azure.Identity;
+using FastPass.Models;
 using Hl7.Fhir.Rest;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
+using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Net;
 
@@ -12,13 +16,16 @@ public class TextAnalyticsServiceProxyFunction
 {
     private static TextAnalyticsClient _client;
     private readonly ILogger _logger;
+    private readonly ConfigurationModel _settings;
 
     public TextAnalyticsServiceProxyFunction(
+        IOptions<ConfigurationModel> options,
         ILoggerFactory loggerFactory,
         TextAnalyticsClient client)
     {
         _client = client;
         _logger = loggerFactory.CreateLogger<TextAnalyticsServiceProxyFunction>();
+        _settings = options.Value;
     }
 
     [Function("TextAnalyticsServiceProxy")]
@@ -46,9 +53,10 @@ public class TextAnalyticsServiceProxyFunction
                 return await CreateResponseAsync(req, HttpStatusCode.BadRequest, msg);
             }
 
-            var results = healthOps.GetValues();
-            var fhirResults = results.SelectMany(p => p.Select(d => d.FhirBundle)).FirstOrDefault();
-            return await CreateResponseAsync(req, HttpStatusCode.OK, JsonConvert.SerializeObject(fhirResults));
+            var results = healthOps.GetValues().SelectMany(p => p.Select(r => r));
+            //var fhirResults = results.SelectMany(p => p.Select(d => d.FhirBundle)).FirstOrDefault();
+
+            return await CreateResponseAsync(req, HttpStatusCode.OK, JsonConvert.SerializeObject(results));
 
         }
         catch (Exception ex)
