@@ -76,7 +76,7 @@ Since we are using a static website for production deployment, we’ll need to u
 
 ![Architecture](./Fast-Pass-Architecture-resized.png)
 ## Prerequisites
-Most recent version of Azure Functions CLI, Static Web Apps CLI, and atleast DOTNET version 7 downloaded
+Most recent version of Azure Functions CLI, Static Web Apps CLI, and atleast DOTNET version 7
 
 ## Setup Guide
 1. Clone Project from Git
