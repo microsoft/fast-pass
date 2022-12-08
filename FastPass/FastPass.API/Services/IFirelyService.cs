@@ -66,4 +66,8 @@ public interface IFirelyService
 
     Task<Practitioner> UpdatePractitionerAsync(string practitionerId, Practitioner practitioner);
     #endregion
+
+    #region Observations
+    Task<Observation> CreateObservationAsync(Observation observation);
+    #endregion
 }

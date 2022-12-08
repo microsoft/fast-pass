@@ -50,13 +50,12 @@ public class TextAnalyticsServiceProxyFunction
             {
                 var msg = $"No values returned from Text Analytics.";
                 _logger.LogWarning(msg);
-                return await CreateResponseAsync(req, HttpStatusCode.BadRequest, msg);
+                return await req.CreateResponseAsync(HttpStatusCode.BadRequest, msg);
             }
 
             var results = healthOps.GetValues().SelectMany(p => p.Select(r => r));
-            //var fhirResults = results.SelectMany(p => p.Select(d => d.FhirBundle)).FirstOrDefault();
 
-            return await CreateResponseAsync(req, HttpStatusCode.OK, JsonConvert.SerializeObject(results));
+            return await req.CreateResponseAsync(HttpStatusCode.OK, JsonConvert.SerializeObject(results));
 
         }
         catch (Exception ex)
@@ -64,20 +63,7 @@ public class TextAnalyticsServiceProxyFunction
             var msg = $"TextAnalytics exception caught. Detail: {ex}";
             _logger.LogError(msg);
 
-            return await CreateResponseAsync(req, HttpStatusCode.BadRequest, msg);
+            return await req.CreateResponseAsync(HttpStatusCode.BadRequest, msg);
         }
-    }
-
-
-    private async Task<HttpResponseData> CreateResponseAsync(HttpRequestData req, HttpStatusCode responseCode, string body)
-    {
-        var resp = req.CreateResponse(responseCode);
-
-        await resp.WriteStringAsync(body);
-
-        if (responseCode.IsSuccessful())
-            resp.Headers.Add("Content-Type", "application/json");
-
-        return resp;
     }
 }

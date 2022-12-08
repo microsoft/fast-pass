@@ -1,0 +1,71 @@
+﻿@using Hl7.Fhir.Model;
+@using Task = System.Threading.Tasks.Task;
+
+<div class="input-group" style="border-radius: 5px; border: 2px solid gray; padding: 20px">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4>Effective</h4>
+            </div>
+        </div>
+
+        @if (string.IsNullOrEmpty(EffectiveStr))
+        {
+            <div class="row">
+                <div class="col">
+                    <b>URL:</b> @Effective?.Extension?.FirstOrDefault()?.Url
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <b>Value:</b> @Effective?.Extension?.FirstOrDefault()?.Value
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="col">
+                    @EffectiveStr
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public DataType Effective { get; set; } = default!;
+
+    private string? EffectiveStr { get; set; } = null;
+
+    protected override void OnParametersSet()
+    {
+        var str = string.Join(' ', Effective?.Select(e => $"[{e.Key}: {e.Value}]")?.ToArray() ?? new string[] { });
+        switch (Effective?.TypeName)
+        {
+            case "dateTime":
+                var dt = Effective as FhirDateTime;
+                EffectiveStr = dt?.Value;
+                break;
+            case "Period":
+                // todo: fancy
+                var period = Effective as Period;
+                EffectiveStr = $"{period?.Start} - {period?.End}";
+                break;
+            case "Timing":
+                // todo: fancy
+                var timing = Effective as Timing;
+                EffectiveStr = string.Join(',', timing?.Event ?? new string[]{ });
+                // how to show timing.repeat?
+                break;
+            case "instant":
+                // todo: fancy
+                var instant = Effective as Instant;
+                EffectiveStr = instant?.ToString();
+                break;
+            default:
+                throw new Exception("Effective is not a known FHIR type");
+        }
+    }
+}
