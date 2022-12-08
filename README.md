@@ -150,7 +150,7 @@ New-AzResourceGroupDeployment
 ```
 
 ### App Registration via the Bicep Template
-This approach (manageAppRegistration=true). Requires a managed identity to be able to create the App Registration. Follow the process [here](https://reginbald.medium.com/creating-app-registration-with-arm-bicep-b1d48a287abb) - don't skip the step where you assigning the Application Administrator role to the identity.
+This approach (manageAppRegistration=true). Requires a managed identity to be able to create the App Registration. Follow the process [here](https://reginbald.medium.com/creating-app-registration-with-arm-bicep-b1d48a287abb) - don't skip the step where you are assigning the Application Administrator role to the identity.
 
 Azure CLI...
 ```
