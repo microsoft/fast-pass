@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Hl7.Fhir.Rest;
 using Azure.AI.TextAnalytics;
 using Azure;
+using Azure.Identity;
 
 var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()
@@ -49,7 +50,8 @@ var host = new HostBuilder()
             var configSvc = c.GetService<IConfiguration>();
             var model = new ConfigurationModel();
             configSvc.GetSection(ConfigurationModel.Section).Bind(model);
-            var client = new TextAnalyticsClient(new Uri(model.TextAnalyticsBase), new AzureKeyCredential(model.TextAnalyticsKey));
+            var client = new TextAnalyticsClient(new Uri(model.TextAnalyticsBase),
+                new AzureKeyCredential(model.TextAnalyticsKey));
             return client;
         });        
 

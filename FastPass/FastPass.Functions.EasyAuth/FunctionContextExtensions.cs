@@ -33,18 +33,20 @@ public static class FunctionContextExtentions
     /// <returns>return HttpRequestData.</returns>
     public static HttpRequestData GetHttpRequestData(this FunctionContext functionContext)
     {
+#pragma warning disable CS8603 // Possible null reference return.
         try
         {
             KeyValuePair<Type, object> keyValuePair = functionContext.Features.SingleOrDefault(f => f.Key.Name == "IFunctionBindingsFeature");
             object functionBindingsFeature = keyValuePair.Value;
             Type type = functionBindingsFeature.GetType();
             var inputData = type.GetProperties().Single(p => p.Name == "InputData").GetValue(functionBindingsFeature) as IReadOnlyDictionary<string, object>;
-            return inputData?.Values.SingleOrDefault(o => o is HttpRequestData) as HttpRequestData;
+            return inputData?.Values?.SingleOrDefault(o => o is HttpRequestData) as HttpRequestData;
         }
         catch
         {
             return null;
         }
+#pragma warning restore CS8603 // Possible null reference return.
     }
 
     /// <summary>
@@ -58,7 +60,7 @@ public static class FunctionContextExtentions
         var feature = functionContext.Features.FirstOrDefault(f => f.Key.Name == "IFunctionBindingsFeature").Value;
         if (feature == null) throw new Exception("Required binding feature is not present.");
         var pinfo = feature.GetType().GetProperty("InvocationResult");
-        pinfo.SetValue(feature, responseData);
+        pinfo?.SetValue(feature, responseData);
     }
 
     /// <summary>

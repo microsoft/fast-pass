@@ -5,6 +5,7 @@
 @using Task = System.Threading.Tasks.Task;
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject ApiService _apiService;
+@inject NotificationService _notificationService;
 
 <h3>Patient @Index</h3>
 <EditForm Model="@PatientInformation" OnValidSubmit="@HandleValidSubmit">
@@ -64,6 +65,13 @@
     {
         var patient = PatientInformation.ToPatient();
 
-        await _apiService.SubmitPatientAsync(patient);
+        var returnedPatient = await _apiService.SubmitPatientAsync(patient);
+
+        _notificationService.AddNotification(new Notification
+        {
+            Title = "Patient Created",
+                Message = $"Patient {returnedPatient.Id} created successfully",
+            CreatedAt = DateTime.Now
+        });
     }
 }

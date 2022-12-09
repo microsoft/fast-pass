@@ -1,8 +1,11 @@
 using Azure.AI.TextAnalytics;
-using Hl7.Fhir.Rest;
+using FastPass.Models;
+using Google.Protobuf.Collections;
+using Hl7.Fhir.Serialization;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Net;
 
@@ -46,10 +49,9 @@ public class TextAnalyticsServiceProxyFunction
                 return await req.CreateResponseAsync(HttpStatusCode.BadRequest, msg);
             }
 
-            var results = healthOps.GetValues();
-            var fhirResults = results.SelectMany(p => p.Select(d => d.FhirBundle)).FirstOrDefault();
-            return await req.CreateResponseAsync(HttpStatusCode.OK, JsonConvert.SerializeObject(fhirResults));
+            var results = healthOps.GetValues().SelectMany(p => p.Select(r => r.ToTextAnalyticsResult()));
 
+            return await req.CreateResponseAsync(HttpStatusCode.OK, JsonConvert.SerializeObject(results));
         }
         catch (Exception ex)
         {

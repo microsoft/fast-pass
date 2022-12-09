@@ -16,6 +16,7 @@ namespace FastPass.API.Functions
         private static JsonSerializerSettings _jsonsettings;
         private readonly IFirelyService _fhirService;
         private readonly ILogger _logger;
+        private readonly FhirJsonSerializer _serializer = new ();
 
         public FhirServiceProxyFunction(
             IOptions<ConfigurationModel> config,
@@ -55,9 +56,10 @@ namespace FastPass.API.Functions
                     returnedPatients = await _fhirService.GetPatientsAsync();
                 }
 
-                var json = JsonConvert.SerializeObject(returnedPatients);
+                // hack to return multiple patients
+                var resultStr = "[" + string.Join(',', returnedPatients.Select(p => p.ToJson()).ToArray()) + "]";
 
-                return await req.CreateResponseAsync(HttpStatusCode.OK, json);
+                return await req.CreateResponseAsync(HttpStatusCode.OK, resultStr);
             }
             catch (Exception ex)
             {
@@ -88,7 +90,7 @@ namespace FastPass.API.Functions
 
                 _logger.LogInformation($"{fhirFx} succeeded. {returnedPatient.Id} created.");
 
-                var json = JsonConvert.SerializeObject(returnedPatient);
+                var json = await _serializer.SerializeToStringAsync(returnedPatient);
 
                 return await req.CreateResponseAsync(HttpStatusCode.OK, json);
             }
@@ -150,8 +152,8 @@ namespace FastPass.API.Functions
 
                 _logger.LogInformation($"{fhirFx} succeeded. {returnedObservation.Id} created.");
 
-                var json = JsonConvert.SerializeObject(returnedObservation);
-                
+                var json = await _serializer.SerializeToStringAsync(returnedObservation);
+
                 return await req.CreateResponseAsync(HttpStatusCode.OK, json);
             }
             catch (Exception ex)

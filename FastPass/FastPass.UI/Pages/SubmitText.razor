@@ -1,12 +1,13 @@
 ﻿@page "/submittext"
-@using FastPass.Models
-@using FastPass.UI.ViewModels
+@using FastPass.UI.Services;
 @using Hl7.Fhir.Model
 @using Hl7.Fhir.Serialization
+@using Newtonsoft.Json;
+
 @inject ILogger<SubmitText> Logger
-@inject HttpClient Http
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject NavigationManager NavigationManager
+@inject ApiService _apiService;
 
 <h3>Submit Text</h3>
 <EditForm Model="@textAnalyticsProxyRequest" OnValidSubmit="@HandleValidSubmit">
@@ -19,22 +20,19 @@
     <button type="submit" class="btn btn-primary">Submit</button>
 </EditForm>
 
+<div class="row">
+    <AnalyzeHealthcareEntitiesResultComponent Entities="@entities" />
+</div>
+
 @code {
     TextAnalyticsProxyRequest textAnalyticsProxyRequest = new TextAnalyticsProxyRequest { };
+    IList<Entity> entities = default!;
+
 
     private async System.Threading.Tasks.Task HandleValidSubmit()
     {
         Logger.LogInformation("HandleValidSubmit called");
-        var text = string.IsNullOrEmpty(textAnalyticsProxyRequest?.TextToAnalyze) ? "" : textAnalyticsProxyRequest!.TextToAnalyze;
-        //var bundle = await Http.GetStringAsync("sample-data/fhirBundle.json");
 
-        var result = await Http.PostAsync("api/TextAnalyticsServiceProxy", new StringContent(text));
-        var bundle = await result.Content.ReadAsStringAsync();
-
-        await sessionStorage.SetItemAsStringAsync("bundle", bundle);
-
-        Logger.LogInformation(bundle);
-
-        NavigationManager.NavigateTo("/validate");
+        entities = await _apiService.FindEntitiesAsync(textAnalyticsProxyRequest);
     }
 }
