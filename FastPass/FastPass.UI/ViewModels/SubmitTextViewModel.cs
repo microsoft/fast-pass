@@ -13,7 +13,7 @@ namespace FastPass.UI.ViewModels
         {
             get
             {
-                return patient?.Name[0]?.Given.FirstOrDefault();
+                return patient?.Name[0]?.Given?.FirstOrDefault() ?? string.Empty;
             }
         }
     }
