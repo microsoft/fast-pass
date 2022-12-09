@@ -11,6 +11,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 var baseUrl = builder.HostEnvironment.BaseAddress;
 
+var notificationService = new NotificationService();
+builder.Services.AddSingleton(notificationService);
 builder.Services.AddScoped(sp => {
     return new HttpClient { BaseAddress = new Uri(baseUrl) };
 });

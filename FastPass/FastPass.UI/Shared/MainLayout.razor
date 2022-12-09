@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@using FastPass.UI.Services;
+@inherits LayoutComponentBase
+@inject NotificationService _notificationService;
 
 <div class="page">
     <div class="sidebar">
@@ -13,6 +15,21 @@
         <article class="content px-4">
             @Body
         </article>
+
+        <div style="position: fixed; bottom: 20px; right: 20px; min-height: 200px;">
+            <div style="position: absolute; top: 0; right: 0;">
+                @foreach (var notification in _notificationService.Notifications)
+                {
+                    <Toast Notification="@notification"></Toast>
+                }
+            </div>
+        </div>
     </main>
 </div>
 
+@code{
+    protected override void OnInitialized()
+    {
+        _notificationService.OnChange += StateHasChanged;
+    }
+}

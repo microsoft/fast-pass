@@ -1,0 +1,27 @@
+﻿@using FastPass.UI.Services;
+@inject NotificationService _notificationService;
+
+<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <strong class="me-auto">@Notification.Title</strong>
+        <small class="text-muted">@Notification.TimeSinceStr</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close" @onclick="(e => _notificationService.RemoveNotification(Notification))"></button>
+    </div>
+    <div class="toast-body">
+        @Notification.Message
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Notification Notification { get; set; } = default!;
+
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    [Parameter]
+    public string Message { get; set; } = string.Empty;
+}
