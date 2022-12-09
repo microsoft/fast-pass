@@ -7,7 +7,7 @@
 @inject ILogger<SubmitText> Logger
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 @inject NavigationManager NavigationManager
-@inject HttpClient Http
+@inject ApiService _apiService;
 
 <h3>Submit Text</h3>
 <EditForm Model="@textAnalyticsProxyRequest" OnValidSubmit="@HandleValidSubmit">
@@ -26,29 +26,13 @@
 
 @code {
     TextAnalyticsProxyRequest textAnalyticsProxyRequest = new TextAnalyticsProxyRequest { };
-    IList<HealthcareEntity> entities = default!;
+    IList<Entity> entities = default!;
 
 
     private async System.Threading.Tasks.Task HandleValidSubmit()
     {
         Logger.LogInformation("HandleValidSubmit called");
-        var text = string.IsNullOrEmpty(textAnalyticsProxyRequest?.TextToAnalyze) ? "" : textAnalyticsProxyRequest!.TextToAnalyze;
-        //var bundle = await Http.GetStringAsync("sample-data/fhirBundle.json");
 
-        var response = await Http.PostAsync("api/TextAnalyticsServiceProxy", new StringContent(text));
-        var resultsJson = await response.Content.ReadAsStringAsync();
-        var results = JsonConvert.DeserializeObject<IList<AnalyzeHealthcareEntitiesResult>>(resultsJson, new JsonSerializerSettings { ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor });
-        entities = results.SelectMany(r => r.Entities).ToList();
-
-        //entities = new[] { TextAnalyticsModelFactory.HealthcareEntity("advil", "", 0, 5, 1.0) };
-
-
-        //var bundle = await result.Content.ReadAsStringAsync();
-
-        //await sessionStorage.SetItemAsStringAsync("bundle", bundle);
-
-        //Logger.LogInformation(bundle);
-
-        //NavigationManager.NavigateTo("/validate");
+        entities = await _apiService.FindEntitiesAsync(textAnalyticsProxyRequest);
     }
 }

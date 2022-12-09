@@ -30,7 +30,7 @@
 
     private async Task SubmitTextAsync()
     {
-        var bundle = await _apiService.AnalyzeTextAsync(TextAnalyticsProxyRequest);
+        var bundle = await _apiService.FindFhirDataAsync(TextAnalyticsProxyRequest);
 
         Value = bundle;
 
