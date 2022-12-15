@@ -9,7 +9,7 @@
 		},
 		"ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {}
 	},
-	"postCreateCommand": "npm install -g @azure/static-web-apps-cli"
+	"onCreateCommand": "npm install -g @azure/static-web-apps-cli && cd FastPass/ && swa build"
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
