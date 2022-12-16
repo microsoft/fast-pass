@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastPass.Models", "FastPass
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastPass.Functions.EasyAuth", "FastPass.Functions.EasyAuth\FastPass.Functions.EasyAuth.csproj", "{8EBF25C6-44F7-42E5-9BD4-DA9AD9A0B81E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastPass.Tests", "FastPass.Tests\FastPass.Tests.csproj", "{54AE4160-B0C2-4B64-99E5-68DE596447FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8EBF25C6-44F7-42E5-9BD4-DA9AD9A0B81E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EBF25C6-44F7-42E5-9BD4-DA9AD9A0B81E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EBF25C6-44F7-42E5-9BD4-DA9AD9A0B81E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54AE4160-B0C2-4B64-99E5-68DE596447FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54AE4160-B0C2-4B64-99E5-68DE596447FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54AE4160-B0C2-4B64-99E5-68DE596447FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54AE4160-B0C2-4B64-99E5-68DE596447FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
