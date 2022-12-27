@@ -31,8 +31,8 @@ The healthcare industry is rapidly transforming health data to the emerging stan
 
 ### Certified Connector
 - Get access to [Power Platform](https://docs.microsoft.com/en-us/power-platform/) environment to create Power Apps.
-- Custom Connectors [FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/) and [FHIRClinical](
-https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be added to your PowerPlatform Environment by an Environment Administrator.
+- Certified Connectors [FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/) and [FHIRClinical](
+https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be allowed in your Power Platform Environment DLP rules by an Environment Administrator.
 - Details on [FHIRBase Actions](https://docs.microsoft.com/en-us/connectors/fhirbase/#actions) and [FHIRClinical Actions](https://docs.microsoft.com/en-us/connectors/fhirclinical/#actions) for API calls.
 - Mapping [FHIR Base and Clinical Resources](https://www.hl7.org/fhir/resourcelist.html) to FHIRBase and FHIRClinical connectors.
 - More details on [Power Apps](https://docs.microsoft.com/en-us/powerapps/)
