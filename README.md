@@ -50,7 +50,7 @@ We built a custom web application using Blazor to handle the application flow. T
 The application will be deployed as a static website for performance purposes. We want to improve the performance, while also lowering the deployment cost.
 Since we are using a static website for production deployment, we’ll need to use the SWA CLI for local development. When you deploy a static website on Azure, Azure provides the backend support required to run the application. This includes wiring up support of Authentication/Authorization as well as access to Azure Functions. In order to support local development, this infrastructure is not available, which is what the SWA CLI provides.
 
-![Architecture](./Fast-Pass-Architecture.png)
+![Architecture](./Fast-Pass-Architecture-resized.png)
 
 ## Prerequisites
 Most recent version of Azure Functions CLI, Static Web Apps CLI, and at least DOTNET version 7
