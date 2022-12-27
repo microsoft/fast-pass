@@ -31,8 +31,8 @@ The healthcare industry is rapidly transforming health data to the emerging stan
 
 ### Certified Connector
 - Get access to [Power Platform](https://docs.microsoft.com/en-us/power-platform/) environment to create Power Apps.
-- Custom Connectors [FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/) and [FHIRClinical](
-https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be added to your PowerPlatform Environment by an Environment Administrator.
+- Certified Connectors [FHIRBase](https://docs.microsoft.com/en-us/connectors/fhirbase/) and [FHIRClinical](
+https://docs.microsoft.com/en-us/connectors/fhirclinical/) need to be allowed in your Power Platform Environment DLP rules by an Environment Administrator.
 - Details on [FHIRBase Actions](https://docs.microsoft.com/en-us/connectors/fhirbase/#actions) and [FHIRClinical Actions](https://docs.microsoft.com/en-us/connectors/fhirclinical/#actions) for API calls.
 - Mapping [FHIR Base and Clinical Resources](https://www.hl7.org/fhir/resourcelist.html) to FHIRBase and FHIRClinical connectors.
 - More details on [Power Apps](https://docs.microsoft.com/en-us/powerapps/)
@@ -50,7 +50,7 @@ We built a custom web application using Blazor to handle the application flow. T
 The application will be deployed as a static website for performance purposes. We want to improve the performance, while also lowering the deployment cost.
 Since we are using a static website for production deployment, we’ll need to use the SWA CLI for local development. When you deploy a static website on Azure, Azure provides the backend support required to run the application. This includes wiring up support of Authentication/Authorization as well as access to Azure Functions. In order to support local development, this infrastructure is not available, which is what the SWA CLI provides.
 
-![Architecture](./Fast-Pass-Architecture.png)
+![Architecture](./Fast-Pass-Architecture-resized.png)
 
 ## Prerequisites
 Most recent version of Azure Functions CLI, Static Web Apps CLI, and at least DOTNET version 7
